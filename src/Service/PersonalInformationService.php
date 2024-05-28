@@ -6,7 +6,7 @@ use App\Entity\PersonalInformation;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PersonalInformationRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use stdClass;
 class PersonalInformationService
 {
     private $entityManager;
@@ -15,62 +15,70 @@ class PersonalInformationService
     {
         $this->entityManager = $em;
     }
-    
 
-    public function getInfo(): object
+    public function getInfo(): ?object
     {
         $personalInformation = $this->entityManager->getRepository(PersonalInformation::class)->findOneBy([]);
-        if (!$personalInformation)  return [];
+
+        if (!$personalInformation) {
+            return new stdClass(); 
+        }
+
         return $personalInformation;
     }
 
-    public function create(array $data): PersonalInformation
+
+    public function createInfo(object $request): PersonalInformation
     {
+        $session = $request->getSession();
+        $sesstion_csrf_token =   $session->get('csrf_token');
+     
+        if($sesstion_csrf_token != $request->get('csrf_token')){
+            throw new \Exception('Invalid CSRF token');
+        }
+
         $personalInfo = new PersonalInformation();
-       
+    
         $personalInfo->setFirstName($request->get('firstName'));
         $personalInfo->setLastName($request->get('lastName'));
         $personalInfo->setNickName($request->get('nickName'));
         $personalInfo->setAbout($request->get('about'));
         $personalInfo->setEmail($request->get('email'));
+        $personalInfo->setPosition($request->get('position'));
+        $personalInfo->setPassword($request->get('password'));
         
-        // Hash the password before setting it
-        $password = $request->get('password');
-        if ($password) {
-            $hashedPassword = $passwordEncoder->encodePassword($personalInfo, $password);
-            $personalInfo->setPassword($hashedPassword);
-        }
-    
         $this->entityManager->persist($personalInfo);
         $this->entityManager->flush();
-    
+        
         return $personalInfo;
     }
-
-
-    public function updateInfo(int $id, Request $request, UserPasswordEncoderInterface $passwordEncoder): PersonalInformation
+    
+    
+    public function updateInfo(int $id,object $request): PersonalInformation
     {
+        $session = $request->getSession();
+        $sesstion_csrf_token =   $session->get('csrf_token');
+     
+        if($sesstion_csrf_token != $request->get('csrf_token')){
+            throw new \Exception('Invalid CSRF token');
+        }
+        
         $personalInfo = $this->entityManager->getRepository(PersonalInformation::class)->find($id);
         if (!$personalInfo) {
             throw new PersonalInformationNotFoundException('Personal Information not found.');
         }
-    
+        
         $personalInfo->setFirstName($request->get('firstName'));
         $personalInfo->setLastName($request->get('lastName'));
         $personalInfo->setNickName($request->get('nickName'));
         $personalInfo->setAbout($request->get('about'));
         $personalInfo->setEmail($request->get('email'));
-        
-        // Hash the password before setting it
-        $password = $request->get('password');
-        if ($password) {
-            $hashedPassword = $passwordEncoder->encodePassword($personalInfo, $password);
-            $personalInfo->setPassword($hashedPassword);
-        }
+        $personalInfo->setPosition($request->get('position'));
+        $personalInfo->setPassword($request->get('password'));
     
         $this->entityManager->flush();
-    
+
         return $personalInfo;
-    }
+}
 
 }

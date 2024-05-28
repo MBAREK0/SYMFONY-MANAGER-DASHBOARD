@@ -31,6 +31,10 @@ class PersonalInformation
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $position = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +108,17 @@ class PersonalInformation
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+    public function getPosition(): ?string // Getter for 'position'
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?string $position): static // Setter for 'position'
+    {
+        $this->position = $position;
 
         return $this;
     }
