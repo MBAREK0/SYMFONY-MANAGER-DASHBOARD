@@ -22,8 +22,8 @@ class AuthService
     {
         $personalInformation = $this->personalInformationRepository->findOneBy([]);
         if ($personalInformation && $personalInformation->getPassword() === $request->get('password')) {
-            $session = $request->getSession();
-            $session->set('is_i_log_in', true);
+         
+          
 
             return $personalInformation;
         }

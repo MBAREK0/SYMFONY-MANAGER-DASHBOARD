@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use App\Controller\BaseController;
+
 
 
 class AuthController extends AbstractController
@@ -24,7 +26,7 @@ class AuthController extends AbstractController
         $csrfToken = $this->csrfTokenManager->getToken('csrf')->getValue();
         $session = $request->getSession();
         $session->set('csrf_token', $csrfToken);
-      
+     
         return $this->render('auth/index.html.twig', [
             'controller_name' => 'AuthController',
             'csrf_token' => $csrfToken
@@ -35,6 +37,7 @@ class AuthController extends AbstractController
     {
         // dd($request->request->all());
         $session = $request->getSession();
+     
         $csrfToken = $session->get('csrf_token');
         $submittedToken = $request->request->get('csrf_token');
         if ($csrfToken !== $submittedToken) {
@@ -44,6 +47,8 @@ class AuthController extends AbstractController
         $password = $request->request->get('password');
        $check =  $AuthService->login($request);
        if($check){
+        $session->set('is_i_log_in', true);
+       
         return $this->redirectToRoute('app_home');
        }
        else{
@@ -55,7 +60,7 @@ class AuthController extends AbstractController
     public function logout(Request $request): Response
     {
         $session = $request->getSession();
-        $session->remove('is_i_log_in');
+        $session->invalidate();
         return $this->redirectToRoute('app_auth');
     }
 }
