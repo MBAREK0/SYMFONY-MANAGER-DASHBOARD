@@ -1,0 +1,168 @@
+
+body {
+    max-width: 100% !important;
+    font-family: Helvetica sans-serif;
+    padding: 0;
+    margin: 0;
+     background-color: #000 !important;
+    overflow: hidden !important;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+         -o-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+canvas {
+     background-color: #000 !important;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000 !important;
+   
+    
+    
+}
+.earth {
+    width: 100%;
+    position: absolute;
+    bottom: 70%;
+    
+
+}
+.samaka {
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    
+
+}
+.input-container {
+  display: flex;
+  align-items: center;
+  background-color: #0F172A;
+  padding: 10px 15px;
+  gap: 5px;
+  border-radius: 20px;
+}
+
+.input-container .bash-text {
+  font-size: .8rem;
+  margin: 0;
+  color: white;
+}
+
+.input-container .bash-text .user {
+  color: #0bfa03;
+}
+
+.input-container .bash-text .vm {
+  color: #d511cd;
+}
+
+.input-container .bash-text .char {
+  color: #A78BFA;
+}
+
+.input-container input[type=text].input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+
+
+
+@-webkit-keyframes sharkSwim {
+    0% {
+        margin-left: 100%;
+    }
+    100% {
+        margin-left: -135%;
+    }
+}
+
+@keyframes sharkSwim {
+    0% {
+        margin-left: 100%;
+    }
+    100% {
+        margin-left: -135%;
+    }
+}
+
+/*END Fish Animation*/
+#video-container {
+    margin:0;
+	position: absolute;
+    top: 0 !important;	
+    z-index: 2000;
+    width: 550px;
+    height: 250px;
+    background: transparent !important;
+    /* background-color: #d511cd !important; */
+        animation: sharkSwim 40s ease-in-out forwards; /* Runs once, slow speed */
+    -webkit-animation: sharkSwim 40s ease-in-out forwards; /* For webkit browsers */
+
+}
+@media screen and (max-width: 900px) {
+    #video-container {
+        animation: sharkSwim 20s ease-in-out forwards; /* Runs once, slow speed */
+        -webkit-animation: sharkSwim 20s ease-in-out forwards; /* For webkit browsers */
+
+    }
+    
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 30%;
+    background: transparent !important;
+}
+
+@keyframes blinkCursor {
+    50% {
+      border-right-color: transparent;
+    }
+  }
+  
+  @keyframes typeAndDelete {
+    0%,
+    10% {
+      width: 0;
+    }
+    45%,
+    55% {
+      width: 6.2em;
+    } /* adjust width based on content */
+    90%,
+    100% {
+      width: 0;
+    }
+  }
+  
+.correct_password {
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    transform: translate(-50%, -50%);
+    color:red;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.2em solid green; /* Cursor */
+  animation: typeAndDelete 4s steps(11) infinite,
+    blinkCursor 0.5s step-end infinite alternate;
+  margin-top: 1.5em;
+}
