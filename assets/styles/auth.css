@@ -157,12 +157,12 @@ canvas {
     top: 50%;
     right: -10%;
     transform: translate(-50%, -50%);
-    color:red;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 0.2em solid green; /* Cursor */
-  animation: typeAndDelete 4s steps(11) infinite,
+    color:green;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.2em solid green; /* Cursor */
+    animation: typeAndDelete 4s steps(11) infinite,
     blinkCursor 0.5s step-end infinite alternate;
-  margin-top: 1.5em;
+    margin-top: 1.5em;
 }
