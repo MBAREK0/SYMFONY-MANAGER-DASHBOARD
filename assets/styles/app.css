@@ -2,15 +2,14 @@ body {
     background-color: skyred;
 }
 
-#projects {
-/* margin-top: 30px !important; */
-}
+
 .dataTables_filter {
     /* margin: 10px !important; */
     margin-bottom: 30px !important;
-    
+
 
 }
+
 .dataTables_filter input {
     outline: none !important;
     background-color: #fff !important;
@@ -20,48 +19,71 @@ body {
     width: 13em !important;
     border-radius: 1rem !important;
     color: #686868 !important;
-   
+
     cursor: pointer !important;
 }
+
 .dataTables_filter input:focus {
     border: 1px solid #2DD4BF !important;
-    
-  }
+
+}
+
 .dataTables_paginate {
-    margin: 30px  !important;
+    margin: 30px !important;
 }
-.dataTables_paginate  .paginate_button  {
+
+.dataTables_paginate .paginate_button {
     border: none !important;
-  cursor: pointer !important;
-  padding: 2px 4px !important;
-  margin-left: 10px !important;
-  font-size: small !important;
+    cursor: pointer !important;
+    padding: 2px 4px !important;
+    margin-left: 10px !important;
+    font-size: small !important;
 
-    
+
 }
 
-#projects_paginate span  .current  {
+#projects_paginate span .current {
     border: 1px solid #2DD4BF !important;
     background-color: #2DD4BF !important;
     background: #2DD4BF !important;
-   padding: 0 !important;
+    padding: 0 !important;
     color: white !important;
     cursor: pointer !important;
-    
-  /* cursor: pointer !important; */
-    
+
+    /* cursor: pointer !important; */
+
 }
+
 .dataTables_paginate .paginate_button:hover {
-   
+
     background-color: #2DD4BF !important;
     color: white !important;
 
 }
-#projects_previous:hover, #projects_next:hover {
+
+#projects_previous:hover,
+#projects_next:hover {
     background-color: #2DD4BF !important;
     color: white !important;
-  
+
 }
+
 #projects_info {
     display: none !important;
+}
+
+.whiteShadow {
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2)
+}
+
+.c_scale {
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    /* Added transform to the transition */
+}
+
+.c_scale:hover {
+    box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+    /* Slight scale increase on hover */
 }

@@ -21,12 +21,11 @@
     <div class="info whiteShadow" >
     
     <div></div>
-        <form  action="{{ path('app_auth_login') }}" method="post">
+        <form  action="" method="post">
             <div class="input-container">
                 <p class="bash-text">
                     <span class="user">user@</span><span class="vm">password</span>:<span class="char">~</span>$
                 </p>
-                <input type="hidden"  class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="csrf_token" value="{{ csrf_token }}">
                 <input class="input" id="passwordInput" placeholder="sudo rm -rf pass word/" name="password" type="text">
             </div>
         </form>
