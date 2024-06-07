@@ -7,7 +7,7 @@ use App\Entity\PersonalInformation;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PersonalInformationRepository;
 
-class AuthService
+class SecurityService
 {
     private $personalInformationRepository;
     private $entityManager;
