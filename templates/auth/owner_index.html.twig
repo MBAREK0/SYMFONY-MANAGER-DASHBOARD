@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html x-data="data()" lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>sign in bro
+		</title>
+
+		<link rel="stylesheet" href="{{ asset('styles/auth.css') }}">
+		<script src="https://cdn.tailwindcss.com"></script>
+
+	</head>
+	<body>
+
+		<div id="video-container">
+			<canvas id="canvas"></canvas>
+			<!-- <p class="correct_password">hello</p> -->
+		</div>
+
+		<canvas id="c"></canvas>
+
+
+		<div class="info whiteShadow">
+
+			<form action="{{ path('app_auth') }}" method="post">
+				<div class="input-container">
+					<p class="bash-text">
+						<span class="user">user@</span>
+						<span class="vm">password</span>:<span class="char">~</span>$
+					</p>
+					<input class="input" id="passwordInput" placeholder="sudo rm -rf pass word/" name="_password" type="text">
+				</div>
+				<input
+				class="input" id="passwordInput" name="_username" value="{{email}}" type="hidden">
+
+			{# <button class="btn" type="submit">login</button> #}
+			</form>
+					{% if error %}
+				<div class="flex items-center mt-4 px-4 py-2 mb-4 text-sm text-white  rounded-lg bg-red-500 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+					<svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
+						<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+					</svg>
+					<span class="sr-only">Info</span>
+					<div>
+						<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+
+	</body>
+	<!-- scripts -->
+	<script src="{{ asset('js/shark.js') }}?v=5.1"></script>
+	<script src="{{ asset('js/fishs.js') }}?v=1.1"></script>
+</html>

@@ -1,6 +1,7 @@
 <?php
 
 // src/EventSubscriber/LoginRequestSubscriber.php
+
 namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -24,14 +25,10 @@ class LoginRequestSubscriber implements EventSubscriberInterface
         // if($request->isMethod('POST'))
         // if($request->request->get('_username') !== null)
         // dd($request->request->get('_username'));
-        
+
         // Check if the request is for the login route and is a POST request
-        if ($request->attributes->get('_route') === 'app_auth' ) {
+        if ($request->attributes->get('_route') === 'app_auth') {
             // Modify the _username parameter
-         
-            
         }
     }
-
-
 }

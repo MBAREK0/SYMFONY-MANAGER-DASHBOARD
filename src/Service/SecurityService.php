@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Service;
 
 use App\Entity\PersonalInformation;
@@ -22,9 +21,9 @@ class SecurityService
     {
         $personalInformation = $this->personalInformationRepository->findOneBy([]);
         if ($personalInformation && $personalInformation->getPassword() === $request->get('password')) {
-         
             return $personalInformation;
         }
+
         return  null;
     }
 }

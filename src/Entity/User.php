@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity('email')]
@@ -25,13 +24,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Email]
     #[Assert\NotBlank()]
     private ?string $email = null;
-    
+
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
     private array $roles = [];
-    
+
     /**
      * @var string The hashed password
      */

@@ -112,13 +112,11 @@ class PersonalInformation
         return $this;
     }
     public function getPosition(): ?string // Getter for 'position'
-    {
-        return $this->position;
+    {return $this->position;
     }
 
     public function setPosition(?string $position): static // Setter for 'position'
-    {
-        $this->position = $position;
+    {$this->position = $position;
 
         return $this;
     }
