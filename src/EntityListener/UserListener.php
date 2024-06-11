@@ -1,8 +1,8 @@
 <?php
+
 namespace App\EntityListener;
 
 use App\Entity\User;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -27,19 +27,17 @@ class UserListener
     }
 
     /**
-     * Encode Password Based on Plain Password
-     * 
-     * @param User $user
+     * Encode Password Based on Plain Password.
      */
     private function encodePassword(User $user): void
     {
-        if ($user->getPlainPassword() === null) {
+        if (null === $user->getPlainPassword()) {
             return;
         }
 
         $user->setPassword(
             $this->hasher->hashPassword(
-                $user, 
+                $user,
                 $user->getPlainPassword()
             )
         );
