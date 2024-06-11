@@ -9,19 +9,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use App\Repository\UserRepository;
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class PersonalInformationController extends AbstractController
 {
     private $personalInformationService;
     private $csrfTokenManager;
-
+    private $userRepository;
+    private $entityManager;
+    private UserPasswordHasherInterface $hasher;
 
     public function __construct(
         PersonalInformationService $personalInformationService,
-        CsrfTokenManagerInterface $csrfTokenManager
+        CsrfTokenManagerInterface $csrfTokenManager,
+        UserRepository $userRepository,
+        EntityManagerInterface $em,
+        UserPasswordHasherInterface $hasher
     ) {
         $this->personalInformationService = $personalInformationService;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->userRepository = $userRepository;
+        $this->entityManager = $em;
+        $this->hasher = $hasher;
     }
 
     /**
@@ -35,13 +47,30 @@ class PersonalInformationController extends AbstractController
 
         $session = $requestStack->getSession();
         $session->set('csrf_token', $csrfToken);
-        $data = $this->personalInformationService->getInfo();
+        $PersonalInformations = $this->personalInformationService->getInfo();
 
-        return $this->render('portfolio/personal_information/index.html.twig', [
-            'controller_name' => 'PersonalInformationController',
-            'data'            => $data,
-            'csrf_token'      => $csrfToken,
-        ]);
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_auth');
+        }
+
+        $roles = $user->getRoles();
+
+
+        if (in_array('ROLE_OWNER', $roles)) {
+            $owner = $this->userRepository->findOneBy(['email' => $_ENV['OWNER_EMAIL']]);
+
+            return $this->render('portfolio/personal_information/index.html.twig', [
+                'PersonalInformations'  => $PersonalInformations,
+                'csrf_token'            => $csrfToken,
+                'owner'                 => $owner,
+            ]);
+        } else {
+            return $this->render('portfolio/personal_information/index.html.twig', [
+                'PersonalInformations'  => $PersonalInformations,
+                'csrf_token'            => $csrfToken,
+            ]);
+        }
     }
 
 
@@ -72,5 +101,35 @@ class PersonalInformationController extends AbstractController
                 return new Response('An error occurred: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         }
+    }
+
+    /**
+     * @Route("/owner/credentials/update/{id}", name="app_update_owner_password")
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+
+    #[Route('/owner/credentials/update/{id}', name: 'app_update_owner_password', methods: ['POST'])]
+    public function updatePassword(int $id, Request $request): Response
+    {
+        $user = $this->entityManager->getRepository(User::class)->find($id);
+
+
+        if (!$user) {
+            throw $this->createNotFoundException('User not found');
+        }
+
+        // Update  password
+
+        $password = $this->hasher->hashPassword(
+            $user,
+            $request->request->get('password')
+        );
+        $user->setPassword($password);
+
+        $this->entityManager->flush();
+
+        return $this->redirectToRoute('app_personal_information');
     }
 }

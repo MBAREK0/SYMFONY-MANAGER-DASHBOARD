@@ -12,60 +12,91 @@
 				<hr class="w-[10%] mb-10 mt-2">
 				<div class="mb-3 whiteShadow  rounded-lg p-6  ">
 					<form action="{{ path('app_update_personal_information') }}" method="post">
-						{% if data is defined and data.id is defined %}
+						{% if PersonalInformations is defined and PersonalInformations.id is defined %}
 							<div>
 								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									<input type="hidden" name="id" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="id" value="{{ data.id }}">
-									<input type="hidden" name="csrf_token" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="csrf_token" value="{{ csrf_token }}">
+									<input type="hidden" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="id" value="{{ PersonalInformations.id }}">
+									<input type="hidden" name="csrf_token" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="csrf_token" value="{{ csrf_token }}">
 								</div>
 								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-									<input type="text" placeholder="First name" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="firstName" value="{{ data.firstName }}">
-									<input type="text" placeholder="Last name" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="lastName" value="{{ data.lastName }}">
-									<input type="text" placeholder="nick name" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="nickName" value="{{ data.nickName }}">
+									<input type="text" placeholder="First name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="firstName" value="{{ PersonalInformations.firstName }}">
+									<input type="text" placeholder="Last name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="lastName" value="{{ PersonalInformations.lastName }}">
+									<input type="text" placeholder="nick name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nickName" value="{{ PersonalInformations.nickName }}">
 								</div>
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									<input type="email" placeholder="Email address" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="email" value="{{ data.email }}">
-									<input type="text" placeholder="pass word" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="password" value="{{ data.password }}">
+								
+								<div class="mb-4">
+									<textarea placeholder="about" name="about" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ PersonalInformations.about }}</textarea>
 								</div>
 								<div class="mb-4">
-									<textarea placeholder="about" name="about" class="border focus:border-[#2DD4BF] p-2 rounded w-full">{{ data.about }}</textarea>
-								</div>
-								<div class="mb-4">
-									<input type="text" placeholder="position" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="position" value="{{ data.position }}">
+									<input type="text" placeholder="position" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="position" value="{{ PersonalInformations.position }}">
 								</div>
 							</div>
 						{% else %}
 							<div>
 								<div
 									class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									{# <input type="hidden" name="id" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="id" value="6"> #}
-									<input type="hidden" name="csrf_token" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="csrf_token" value="{{ csrf_token }}">
+									{# <input type="hidden" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="id" value="6"> #}
+									<input type="hidden" name="csrf_token" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="csrf_token" value="{{ csrf_token }}">
 								</div>
 								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-									<input type="text" placeholder="First name" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="firstName" value="">
-									<input type="text" placeholder="Last name" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="lastName" value="">
-									<input type="text" placeholder="nick name" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="nickName" value="">
+									<input type="text" placeholder="First name" class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="firstName" value="">
+									<input type="text" placeholder="Last name"  class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="lastName" value="">
+									<input type="text" placeholder="nick name"  class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nickName" value="">
 								</div>
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									<input type="email" placeholder="Email address" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="email" value="">
-									<input type="text" placeholder="pass word" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="password" value="">
+								
+								<div class="mb-4">
+									<textarea placeholder="about" name="about" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 								</div>
 								<div class="mb-4">
-									<textarea placeholder="about" name="about" class="border focus:border-[#2DD4BF] p-2 rounded w-full"></textarea>
-								</div>
-								<div class="mb-4">
-									<input type="text" placeholder="position" class="border focus:border-[#2DD4BF] p-2 rounded w-full" name="position" value="">
+									<input type="text" placeholder="position" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="position" value="">
 								</div>
 							</div>
 						{% endif %}
 						<div class=" w-full flex items-center justify-end">
-							<button type="submit" id="theme-toggle" class="px-4 py-2 rounded  bg-[#2DD4BF] text-black hover:text-white hover:bg-blue-600 focus:outline-none transition-colors">
+							<button type="submit" id="theme-toggle" class=" w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-[#2DD4BF] text-black hover:text-white hover:bg-blue-600 focus:outline-none transition-colors">
 								update information
 							</button>
 						</div>
 					</form>
 				</div>
-				
+				{% if owner is defined and owner.id is defined %}
+
+					<h1 class="text-xl font-semibold text-white m-0 mt-16">Guest Credentials</h1>
+					<hr class="w-[10%] mb-10 mt-2">
+
+
+					<div class="mb-3 whiteShadow  rounded-lg p-6  ">
+						<form action="{{ path('app_update_owner_password', {'id': owner.id}) }}" method="post">
+
+							<div>
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+									<input type="hidden" name="csrf_token" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="csrf_token" value="{{ csrf_token }}">
+								</div>
+
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+								<div>
+								<label for="email" class="text-white mb-12">E-mail</label>
+									<input disabled type="email" placeholder="Email address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2" name="email" value="{{ owner.email }}">
+								</div>
+							<div>
+								<label for="password" class="text-white ">Password</label>
+
+									<input type="text" value="change me "  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2" placeholder="•••••••••" name="password" />
+
+							</div>
+								</div>
+
+							</div>
+
+							<div class=" w-full flex items-center justify-end">
+								<button type="submit" id="theme-toggle" class="w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-[#2DD4BF] text-black hover:text-white hover:bg-blue-600 focus:outline-none transition-colors">
+									update guest credentials
+								</button>
+							</div>
+						</form>
+					</div>
+				{% endif %}
+
 			</div>
 
 

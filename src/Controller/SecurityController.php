@@ -17,24 +17,22 @@ class SecurityController extends AbstractController
     {
         $this->userRepository = $userRepository;
     }
+
     #[Route('/auth', name: 'app_auth') , methods(['GET']) ]
     public function index(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
- 
         return $this->render('auth/index.html.twig', [
             'error'         => $authenticationUtils->getLastAuthenticationError(),
-            'email'         => $this->userRepository->findOneBy(['email' => 'user@porto.com'])->getEmail(),
+            'email'         => $this->userRepository->findOneBy(['email' => $_ENV['GUEST_EMAIL']])->getEmail(),
         ]);
     }
 
     #[Route('/auth/owner', name: 'app_owner_auth') , methods(['GET']) ]
     public function owner_index(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
-
-
         return $this->render('auth/owner_index.html.twig', [
             'error'         => $authenticationUtils->getLastAuthenticationError(),
-            'email'         => $this->userRepository->findOneBy(['email' => 'mbarekelaadraoui@gmail.com'])->getEmail(),
+            'email'         => $_ENV['OWNER_EMAIL'],
         ]);
     }
 

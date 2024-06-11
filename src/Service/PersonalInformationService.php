@@ -42,9 +42,8 @@ class PersonalInformationService
         $personalInfo->setLastName($request->get('lastName'));
         $personalInfo->setNickName($request->get('nickName'));
         $personalInfo->setAbout($request->get('about'));
-        $personalInfo->setEmail($request->get('email'));
         $personalInfo->setPosition($request->get('position'));
-        $personalInfo->setPassword($request->get('password'));
+
 
         $this->entityManager->persist($personalInfo);
         $this->entityManager->flush();
@@ -71,9 +70,8 @@ class PersonalInformationService
         $personalInfo->setLastName($request->get('lastName'));
         $personalInfo->setNickName($request->get('nickName'));
         $personalInfo->setAbout($request->get('about'));
-        $personalInfo->setEmail($request->get('email'));
         $personalInfo->setPosition($request->get('position'));
-        $personalInfo->setPassword($request->get('password'));
+
 
         $this->entityManager->flush();
 

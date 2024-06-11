@@ -39,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(min: 6, max: 180)]
     private ?string $password = null;
 
-    private ?string $plainPassword = null;
+    private ?string $plainPassword = 'null';
 
 
 
