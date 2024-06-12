@@ -3,9 +3,7 @@
 {% block body %}
 
 
-	<div class="grid mb-4 pb-10 pt-3   lg:px-8 lg:mx-4 mx-2 rounded-sm bg-black min-h-screen">
-
-
+	<div class="grid mb-4 pb-10 pt-3 lg:px-8 lg:mx-4 mx-2 rounded-sm bg-black min-h-screen">
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
 				<h1 class="text-xl font-semibold text-white m-0 ">Personal Information</h1>
@@ -23,7 +21,7 @@
 									<input type="text" placeholder="Last name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="lastName" value="{{ PersonalInformations.lastName }}">
 									<input type="text" placeholder="nick name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nickName" value="{{ PersonalInformations.nickName }}">
 								</div>
-								
+
 								<div class="mb-4">
 									<textarea placeholder="about" name="about" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ PersonalInformations.about }}</textarea>
 								</div>
@@ -40,10 +38,10 @@
 								</div>
 								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
 									<input type="text" placeholder="First name" class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="firstName" value="">
-									<input type="text" placeholder="Last name"  class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="lastName" value="">
-									<input type="text" placeholder="nick name"  class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nickName" value="">
+									<input type="text" placeholder="Last name" class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="lastName" value="">
+									<input type="text" placeholder="nick name" class="border focus:border-[#2DD4BF] p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="nickName" value="">
 								</div>
-								
+
 								<div class="mb-4">
 									<textarea placeholder="about" name="about" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 								</div>
@@ -53,56 +51,17 @@
 							</div>
 						{% endif %}
 						<div class=" w-full flex items-center justify-end">
-							<button type="submit" id="theme-toggle" class=" w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-[#2DD4BF] text-black hover:text-white hover:bg-blue-600 focus:outline-none transition-colors">
+							<button type="submit" class=" w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-[#2DD4BF] text-black hover:text-white hover:bg-blue-600 focus:outline-none transition-colors">
 								update information
 							</button>
 						</div>
 					</form>
 				</div>
-				{% if owner is defined and owner.id is defined %}
-
-					<h1 class="text-xl font-semibold text-white m-0 mt-16">Guest Credentials</h1>
-					<hr class="w-[10%] mb-10 mt-2">
 
 
-					<div class="mb-3 whiteShadow  rounded-lg p-6  ">
-						<form action="{{ path('app_update_owner_password', {'id': owner.id}) }}" method="post">
 
-							<div>
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									<input type="hidden" name="csrf_token" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="csrf_token" value="{{ csrf_token }}">
-								</div>
-
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-								<div>
-								<label for="email" class="text-white mb-12">E-mail</label>
-									<input disabled type="email" placeholder="Email address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2" name="email" value="{{ owner.email }}">
-								</div>
-							<div>
-								<label for="password" class="text-white ">Password</label>
-
-									<input type="text" value="change me "  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-2" placeholder="•••••••••" name="password" />
-
-							</div>
-								</div>
-
-							</div>
-
-							<div class=" w-full flex items-center justify-end">
-								<button type="submit" id="theme-toggle" class="w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-[#2DD4BF] text-black hover:text-white hover:bg-blue-600 focus:outline-none transition-colors">
-									update guest credentials
-								</button>
-							</div>
-						</form>
-					</div>
-				{% endif %}
 
 			</div>
-
-
 		</div>
-
 	</div>
-
-
 {% endblock %}

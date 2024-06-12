@@ -4,20 +4,31 @@ namespace App\Service;
 
 use App\Entity\PersonalInformation;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use stdClass;
 
 class PersonalInformationService
 {
     private $entityManager;
+    private $user;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
     {
         $this->entityManager = $em;
+        $token = $tokenStorage->getToken();
+
+        if ($token) {
+            if ($token->getUser() && is_object($token->getUser())) {
+                $this->user = $token->getUser();
+            } else {
+                throw new \Exception('User not found');
+            }
+        }
     }
 
     public function getInfo(): ?object
     {
-        $personalInformation = $this->entityManager->getRepository(PersonalInformation::class)->findOneBy([]);
+        $personalInformation = $this->user->getPersonalInformation();
 
         if (!$personalInformation) {
             return new stdClass();
@@ -38,13 +49,15 @@ class PersonalInformationService
 
         $personalInfo = new PersonalInformation();
 
-        $personalInfo->setFirstName($request->get('firstName'));
-        $personalInfo->setLastName($request->get('lastName'));
-        $personalInfo->setNickName($request->get('nickName'));
-        $personalInfo->setAbout($request->get('about'));
-        $personalInfo->setPosition($request->get('position'));
+        $personalInfo->setFirstName($request->get('firstName'))
+                         ->setLastName($request->get('lastName'))
+                         ->setNickName($request->get('nickName'))
+                         ->setAbout($request->get('about'))
+                         ->setPosition($request->get('position'));
 
 
+
+        $this->entityManager->persist($this->user->setPersonalInformation($personalInfo));
         $this->entityManager->persist($personalInfo);
         $this->entityManager->flush();
 
@@ -66,11 +79,11 @@ class PersonalInformationService
             throw new PersonalInformationNotFoundException('Personal Information not found.');
         }
 
-        $personalInfo->setFirstName($request->get('firstName'));
-        $personalInfo->setLastName($request->get('lastName'));
-        $personalInfo->setNickName($request->get('nickName'));
-        $personalInfo->setAbout($request->get('about'));
-        $personalInfo->setPosition($request->get('position'));
+        $personalInfo->setFirstName($request->get('firstName'))
+                     ->setLastName($request->get('lastName'))
+                     ->setNickName($request->get('nickName'))
+                     ->setAbout($request->get('about'))
+                     ->setPosition($request->get('position'));
 
 
         $this->entityManager->flush();

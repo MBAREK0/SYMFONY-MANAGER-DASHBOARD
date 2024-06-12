@@ -54,25 +54,12 @@ class PersonalInformationController extends AbstractController
             return $this->redirectToRoute('app_auth');
         }
 
-        $roles = $user->getRoles();
-
-
-        if (in_array('ROLE_OWNER', $roles)) {
-            $owner = $this->userRepository->findOneBy(['email' => $_ENV['OWNER_EMAIL']]);
-
-            return $this->render('portfolio/personal_information/index.html.twig', [
-                'PersonalInformations'  => $PersonalInformations,
-                'csrf_token'            => $csrfToken,
-                'owner'                 => $owner,
-            ]);
-        } else {
-            return $this->render('portfolio/personal_information/index.html.twig', [
-                'PersonalInformations'  => $PersonalInformations,
-                'csrf_token'            => $csrfToken,
-            ]);
-        }
+        return $this->render('portfolio/personal_information/index.html.twig', [
+            'PersonalInformations'  => $PersonalInformations,
+            'csrf_token'            => $csrfToken,
+            'user'                  => $user,
+        ]);
     }
-
 
     /**
      * @Route("/personal_information/update", name="app_update_personal_information")
@@ -120,16 +107,25 @@ class PersonalInformationController extends AbstractController
             throw $this->createNotFoundException('User not found');
         }
 
+
         // Update  password
-
-        $password = $this->hasher->hashPassword(
-            $user,
-            $request->request->get('password')
-        );
-        $user->setPassword($password);
-
-        $this->entityManager->flush();
-
-        return $this->redirectToRoute('app_personal_information');
-    }
-}
+        $old_password =  $request->get('_old_password');
+        if (!$this->hasher->isPasswordValid($user, $old_password)) {
+            $this->addFlash('error', 'Incorrect old password');
+            return $this->redirectToRoute('app_personal_information');
+            
+            }
+            
+            $password = $this->hasher->hashPassword(
+                $user,
+                $request->request->get('_new_password')
+                );
+                $user->setPassword($password);
+                
+                $this->entityManager->flush();
+                
+                $this->addFlash('success', 'Password changed successfully');
+                return $this->redirectToRoute('app_personal_information');
+                }
+                }
+                

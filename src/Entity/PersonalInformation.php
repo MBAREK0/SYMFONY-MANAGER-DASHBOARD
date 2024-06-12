@@ -28,6 +28,10 @@ class PersonalInformation
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $position = null;
 
+    #[ORM\OneToOne(mappedBy: 'PersonalInformation', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
+
 
     public function getId(): ?int
     {
@@ -89,6 +93,23 @@ class PersonalInformation
 
     public function setPosition(?string $position): static // Setter for 'position'
     {$this->position = $position;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getPersonalInformation() !== $this) {
+            $user->setPersonalInformation($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }
