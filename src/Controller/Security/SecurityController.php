@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,25 +18,40 @@ class SecurityController extends AbstractController
         $this->userRepository = $userRepository;
     }
 
-    #[Route('/auth', name: 'app_auth') , methods(['GET']) ]
+    /**
+     * ? @Route("/login", name="app_login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
+     */
+
+
+    #[Route('/auth/sign_in', name: 'app_auth_sign_in') , methods(['GET']) ]
     public function index(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('auth/index.html.twig', [
+        return $this->render('auth/sign_in.html.twig', [
             'error'         => $authenticationUtils->getLastAuthenticationError(),
-            'email'         => $this->userRepository->findOneBy(['email' => $_ENV['GUEST_EMAIL']])->getEmail(),
         ]);
     }
 
-    #[Route('/auth/owner', name: 'app_owner_auth') , methods(['GET']) ]
+    /**
+     * ? @Route("/sign_up", name="app_sign_up")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
+     */
+
+    #[Route('/auth/sign_up', name: 'app_auth_sign_up') , methods(['GET']) ]
     public function owner_index(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('auth/owner_index.html.twig', [
+        return $this->render('auth/sign_up.html.twig', [
             'error'         => $authenticationUtils->getLastAuthenticationError(),
-            'email'         => $_ENV['OWNER_EMAIL'],
         ]);
     }
 
 
+    /**
+     * ? @Route("/logout", name="app_logout")
+     * @return void
+     */
 
     #[Route('/logout', name: 'app_logout')]
     public function logout(): void

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Portfolio;
 
 use App\Service\PersonalInformationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Repository\UserRepository;
-use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -37,7 +36,10 @@ class PersonalInformationController extends AbstractController
     }
 
     /**
-     * @Route("/personal_information", name="app_personal_information")
+     * ? @Route("/personal_information", name="app_personal_information")
+     * @param RequestStack $requestStack
+     * @return Response
+     * @throws \Exception
      */
 
     #[Route('/personal_information', name: 'app_personal_information')]
@@ -62,7 +64,7 @@ class PersonalInformationController extends AbstractController
     }
 
     /**
-     * @Route("/personal_information/update", name="app_update_personal_information")
+     * ? @Route("/personal_information/update", name="app_update_personal_information")
      * @param Request $request
      * @return Response
      * @throws \Exception
@@ -89,43 +91,4 @@ class PersonalInformationController extends AbstractController
             }
         }
     }
-
-    /**
-     * @Route("/owner/credentials/update/{id}", name="app_update_owner_password")
-     * @param int $id
-     * @param Request $request
-     * @return Response
-     */
-
-    #[Route('/owner/credentials/update/{id}', name: 'app_update_owner_password', methods: ['POST'])]
-    public function updatePassword(int $id, Request $request): Response
-    {
-        $user = $this->entityManager->getRepository(User::class)->find($id);
-
-
-        if (!$user) {
-            throw $this->createNotFoundException('User not found');
-        }
-
-
-        // Update  password
-        $old_password =  $request->get('_old_password');
-        if (!$this->hasher->isPasswordValid($user, $old_password)) {
-            $this->addFlash('error', 'Incorrect old password');
-            return $this->redirectToRoute('app_personal_information');
-            
-            }
-            
-            $password = $this->hasher->hashPassword(
-                $user,
-                $request->request->get('_new_password')
-                );
-                $user->setPassword($password);
-                
-                $this->entityManager->flush();
-                
-                $this->addFlash('success', 'Password changed successfully');
-                return $this->redirectToRoute('app_personal_information');
-                }
-                }
-                
+}

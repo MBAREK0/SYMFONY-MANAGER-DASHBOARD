@@ -20,21 +20,11 @@ security:
             lazy: true
             provider: app_user_provider
             form_login:
-                login_path: app_auth
-                check_path: app_auth
+                login_path: app_auth_sign_in
+                check_path: app_auth_sign_in
             logout:
                 path: app_logout
-                target: app_auth
-
-        owner:
-            lazy: true
-            provider: app_user_provider
-            form_login:
-                login_path: app_owner_auth
-                check_path: app_owner_auth
-            logout:
-                path: app_logout
-                target: app_auth
+                target: app_auth_sign_in
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
