@@ -45,7 +45,7 @@ class SettingsController extends AbstractController
 
         $user = $this->getUser();
         if (!$user) {
-            return $this->redirectToRoute('app_auth');
+            return $this->redirectToRoute('app_auth_sign_in');
         }
 
         return $this->render('settings/index.html.twig', [
@@ -98,5 +98,4 @@ class SettingsController extends AbstractController
 
         return $this->redirectToRoute('app_settings');
     }
-    
 }

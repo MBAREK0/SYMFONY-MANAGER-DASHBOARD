@@ -8,14 +8,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Repository\UserRepository;
+use App\Entity\User;
+use App\Form\UserType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SecurityController extends AbstractController
 {
     private $userRepository;
+    private UserPasswordHasherInterface $hasher;
+    private $entityManager;
 
-    public function __construct(UserRepository $userRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        UserPasswordHasherInterface $hasher,
+        EntityManagerInterface $em,
+    ) {
+        $this->entityManager = $em;
         $this->userRepository = $userRepository;
+        $this->hasher = $hasher;
     }
 
     /**
@@ -39,11 +50,35 @@ class SecurityController extends AbstractController
      * @return Response
      */
 
-    #[Route('/auth/sign_up', name: 'app_auth_sign_up') , methods(['GET']) ]
-    public function owner_index(Request $request, AuthenticationUtils $authenticationUtils): Response
+    #[Route('/auth/create_new_user', name: 'app_auth_create_user') , methods(['GET']) ]
+    public function create_new_user(Request $request): Response
     {
-        return $this->render('auth/sign_up.html.twig', [
-            'error'         => $authenticationUtils->getLastAuthenticationError(),
+        $User = new User();
+        $form = $this->createForm(UserType::class, $User);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $User->setEmail($form->get('email')->getData());
+            $User->setRoles($form->get('roles')->getData());
+            $password = $this->hasher->hashPassword(
+                $User,
+                $form->get('password')->getData()
+            );
+            $User->setPassword($password);
+
+
+            $this->entityManager->persist($User);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'User Created successfully');
+
+            return $this->redirectToRoute('app_auth_create_user');
+        }
+
+        return $this->render('auth/add_users.html.twig', [
+            'form' => $form->createView(),
+
+
         ]);
     }
 
