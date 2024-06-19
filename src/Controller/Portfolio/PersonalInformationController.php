@@ -49,7 +49,7 @@ class PersonalInformationController extends AbstractController
 
         $session = $requestStack->getSession();
         $session->set('csrf_token', $csrfToken);
-        $PersonalInformations = $this->personalInformationService->getInfo();
+        $PersonalInformation = $this->personalInformationService->getInfo();
 
         $user = $this->getUser();
         if (!$user) {
@@ -57,7 +57,7 @@ class PersonalInformationController extends AbstractController
         }
 
         return $this->render('portfolio/personal_information/index.html.twig', [
-            'PersonalInformations'  => $PersonalInformations,
+            'PersonalInformation'  => $PersonalInformation ,
             'csrf_token'            => $csrfToken,
             'user'                  => $user,
         ]);
@@ -75,7 +75,12 @@ class PersonalInformationController extends AbstractController
     {
         if ($request->request->get('id')) {
             try {
-                $this->personalInformationService->updateInfo($request->request->get('id'), $request);
+                $personalInformation = $this->personalInformationService->updateInfo($request->request->get('id'), $request);
+                if ($personalInformation->getId()) {
+                    $this->addFlash('success', 'Personal Information Updated successfully');
+                } else {
+                    $this->addFlash('error', 'Personal Information not Updated Please try again later');
+                }
 
                 return $this->redirectToRoute('app_personal_information');
             } catch (\Exception $e) {
@@ -83,7 +88,12 @@ class PersonalInformationController extends AbstractController
             }
         } else {
             try {
-                $this->personalInformationService->createInfo($request);
+                $personalInformation = $this->personalInformationService->createInfo($request);
+                if ($personalInformation->getId()) {
+                    $this->addFlash('success', 'Personal Information Created successfully');
+                } else {
+                    $this->addFlash('error', 'Personal Information not Created Please try again later');
+                }
 
                 return $this->redirectToRoute('app_personal_information');
             } catch (\Exception $e) {

@@ -61,6 +61,8 @@ class PersonalInformationService
         $this->entityManager->persist($personalInfo);
         $this->entityManager->flush();
 
+
+
         return $personalInfo;
     }
 
@@ -87,6 +89,7 @@ class PersonalInformationService
 
 
         $this->entityManager->flush();
+
 
         return $personalInfo;
     }
