@@ -11,8 +11,6 @@
 				<h1 class="text-xl font-semibold text-white m-0 ">Create New Skill</h1>
 				<hr class="w-[10%] mb-10 mt-2">
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
-
-
 					{% for flashMessage in app.flashes('success') %}
 						<div id="alert-3" class="flex items-center p-4 mb-4 text-white rounded-lg bg-green-600 dark:bg-gray-800 dark:text-green-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
@@ -29,7 +27,6 @@
 							</button>
 						</div>
 					{% endfor %}
-
 					{% for flashMessage in app.flashes('error') %}
 						<div id="alert-2" class="flex items-center p-4 mb-4 text-white rounded-lg bg-red-600 dark:bg-gray-800 dark:text-red-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
@@ -64,14 +61,24 @@
 						</div>
 					</div>
 
-					<div class="w-full flex items-center justify-end">
+					<div class=" w-full flex items-center justify-end">
 						{{ form_widget(form.submit) }}
 					</div>
 					{{ form_end(form) }}
 
+					<script>
+						document.addEventListener('DOMContentLoaded', (event) => {
+const deleteLabel = document.querySelector('label[for$="_imageFile_delete"]');
+if (deleteLabel) {
+deleteLabel.textContent = 'Delete image';
+deleteLabel.classList.add('custom-delete-label', 'text-gray-100');
+}
+});
+					</script>
+
 
 				</div>
-				
+
 			</div>
 
 

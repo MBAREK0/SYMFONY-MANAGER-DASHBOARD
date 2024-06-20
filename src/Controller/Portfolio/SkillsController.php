@@ -23,31 +23,28 @@ class SkillsController extends AbstractController
     }
 
 
-    #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
-    #[Route('/skills', name: 'app_skills')]
-    public function index(Request $request): Response
-    {
-        return $this->render('portfolio/skills/index.html.twig', [
 
-        ]);
-    }
 
     /**
-     * ? @Route("/skills/create", name="app_skills_create")
+     * ? in this Function we can add, edit see all the skills
+     * ? @Route("/skills", name="app_skills")
      * @param Request $request
      * @return Response
      */
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
-    #[Route('/skills/create', name: 'app_skills_create')]
-    public function create(Request $request): Response
+    #[Route('/skills', name: 'app_skills')]
+    public function index(Request $request): Response
     {
         $skill = new Skill();
         $form = $this->createForm(SkillType::class, $skill);
 
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $skill->setUser($this->getUser());
+
             $this->entityManager->persist($skill);
             $this->entityManager->flush();
 
@@ -56,8 +53,56 @@ class SkillsController extends AbstractController
             return $this->redirectToRoute('app_skills');
         }
 
-        return $this->render('portfolio/skills/create.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('portfolio/skills/index.html.twig', [
+            'form'   => $form->createView(),
+            'skills' => $this->getUser()->getSkills(),
         ]);
+    }
+
+    /**
+     * ? @Route("/skills/{id}/edit", name="app_skills_edit")
+     * @param Request $request
+     * @param Skill $skill
+     * @return Response
+     */
+
+    #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
+    #[Route('/skills/{id}/edit', name: 'app_skills_edit')]
+    public function edit(Request $request, Skill $skill): Response
+    {
+        $form = $this->createForm(SkillType::class, $skill);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Skill updated successfully!');
+
+            return $this->redirectToRoute('app_skills');
+        }
+
+        return $this->render('portfolio/skills/edit.html.twig', [
+            'form'  => $form->createView(),
+            'skill' => $skill,
+        ]);
+    }
+
+    /**
+     * ? @Route("/skills/{id}/delete", name="app_skills_delete")
+     * @param Skill $skill
+     * @return Response
+     */
+
+    #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
+    #[Route('/skills/{id}/delete', name: 'app_skills_delete')]
+    public function delete(Skill $skill): Response
+    {
+        $this->entityManager->remove($skill);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'Skill deleted successfully!');
+
+        return $this->redirectToRoute('app_skills');
     }
 }

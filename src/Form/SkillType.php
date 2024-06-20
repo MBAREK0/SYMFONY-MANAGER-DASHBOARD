@@ -25,28 +25,27 @@ class SkillType extends AbstractType
             ],
             'constraints' => [
                 new NotBlank(['message' => 'Skill Name cannot be blank']),
-
             ],
             'label'      => 'Name',
             'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
         ])
-            ->add('imageFile', VichImageType::class, [
-                'required'       => false,
-                'allow_delete'   => true,
-                'download_uri'   => true,
-                'download_label' => true,
-                'image_uri'      => true,
-                'asset_helper'   => true,
-                'attr'           => [
-                    'class' => 'form-control block text-sm font-medium text-gray-100 mb-2',
-                ],
-                'label'      => 'Image',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
-            ])
-            ->add('submit', SubmitType::class, [
-                'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none transition-colors mb-3'],
-                'label' => 'Add Skill',
-            ]);
+        ->add('imageFile', VichImageType::class, [
+            'required'       => false,
+            'allow_delete'   => true,
+            'download_uri'   => true,
+            'download_label' => true,
+            'image_uri'      => true,
+            'asset_helper'   => true,
+            'attr'           => [
+                'class' => 'form-control block text-sm font-medium text-gray-100 mb-2',
+            ],
+            'label'      => 'Image',
+            'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+        ])
+        ->add('submit', SubmitType::class, [
+            'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none transition-colors mb-3'],
+            'label' => 'Add Skill',
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
