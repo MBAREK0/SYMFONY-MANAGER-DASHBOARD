@@ -12,7 +12,7 @@ class MediaController extends AbstractController
     public function index(): Response
     {
         return $this->render('portfolio/media/index.html.twig', [
-            'controller_name' => 'MediaController',
+
         ]);
     }
 }

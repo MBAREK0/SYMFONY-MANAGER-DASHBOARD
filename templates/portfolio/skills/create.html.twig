@@ -8,13 +8,8 @@
 
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
-				<h1 class="text-xl font-semibold text-white m-0 ">Skills Information</h1>
+				<h1 class="text-xl font-semibold text-white m-0 ">Create New Skill</h1>
 				<hr class="w-[10%] mb-10 mt-2">
-				<div class="flex justify-end">
-					<a href="{{path('app_skills_create')}}" class="  text-gray-100 text-center text-sm text-white rounded-lg  block w-full md:w-1/2 lg:w-1/3 p-2 bg-blue-600 ">
-						Add Skill
-					</a>
-				</div>
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
 
 
@@ -51,46 +46,32 @@
 							</button>
 						</div>
 					{% endfor %}
-				</div>
-				<div class=" mb-3 whiteShadow rounded-lg p-6">
 
-
-					<div class=" c_scale  grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 border border-indigo-600 border-2 p-2 rounded-md">
-						<div
-							class="flex gap-2 ">
-							{# <div class="pt-3 md:py-0 rounded w-[60px] overflow-hidden flex items-center bg-center bg-cover bg-no-repeat bg-gray-300" style="background-image:url('{{ vich_uploader_asset(skill, 'imageFile') }}')"></div> #}
-
-							<input type="text" placeholder="name" class="border focus:border-indigo-600 px-2 py-2 md:py-0 rounded w-full">
+					{{ form_start(form) }}
+					<div>
+						{{ form_label(form.name) }}
+						{{ form_widget(form.name) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.name) }}
 						</div>
-						<input type="text" placeholder="link" class="border focus:border-indigo-600 px-2 py-2 md:py-0  rounded w-full">
-						<div class="flex  items-center justify-between">
-							<div class="p-0 rounded w-[60px]   overflow-hidden flex items-center">
-								<label for="fileInput" class="w-full  rounded-md  cursor-pointer text-white inline-block">
-
-									<img src="https://th.bing.com/th/id/OIP.7ys--RDJddWtloAL-uNQxAHaHa?rs=1&pid=ImgDetMain" class="w-[40px] rounded-lg" alt="">
-									<input type="file" id="fileInput" class="hidden">
-								</label>
-							</div>
-							<div class="px-6  whitespace-no-wrap text-sm leading-5">
-								<div class="flex space-x-4">
-									<a href="#" class="text-blue-500 hover:text-white 00">
-										<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewbox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-										</svg>
-										<p>Edit</p>
-									</a>
-									<a href="#" class="text-red-500 hover:text-white 00">
-										<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1 ml-3" fill="none" viewbox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-										</svg>
-										<p>Delete</p>
-									</a>
-								</div>
-							</div>
-						</div>
-
 					</div>
+
+					<div>
+						{{ form_label(form.imageFile) }}
+						{{ form_widget(form.imageFile) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.imageFile) }}
+						</div>
+					</div>
+
+					<div class="w-full flex items-center justify-end">
+						{{ form_widget(form.submit) }}
+					</div>
+					{{ form_end(form) }}
+
+
 				</div>
+				
 			</div>
 
 
