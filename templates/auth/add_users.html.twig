@@ -11,7 +11,7 @@
 				<h1 class="text-xl font-semibold text-white m-0 mt-16">
 					Create New User
 				</h1>
-				<hr class="w-[10%] mb-10 mt-2">
+				<hr class="w-[10%] mb-6 mt-2">
 
 				<div class="mb-3 rounded-lg p-6 transition duration-300 ease-in-out transform hover:shadow-lg transition-transform duration-300 ease-in-out ">
 
@@ -53,7 +53,7 @@
 						</div>
 					{% endfor %}
 
-					{{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+					{{ form_start(form, {'attr': {'class': 'space-y-2'}}) }}
 					<div>
 						{{ form_label(form.email) }}
 						{{ form_widget(form.email) }}

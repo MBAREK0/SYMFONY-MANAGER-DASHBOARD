@@ -3,10 +3,11 @@
 namespace App\Controller\Settings;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
-use App\Service\PersonalInformationService;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,20 +29,20 @@ class SettingsController extends AbstractController
     }
 
     /**
-     * ? @Route("/settings", name="app_settings")
+     * ? @Route("/settings/credentials", name="app_settings_credentials")
      * @param RequestStack $requestStack
      * @return Response
      * @throws \Exception
      */
 
-    #[Route('/settings', name: 'app_settings')]
+    #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
+    #[Route('/settings/credentials', name: 'app_settings_credentials')]
     public function index(RequestStack $requestStack): Response
     {
         $csrfToken = bin2hex(openssl_random_pseudo_bytes(16));
 
         $session = $requestStack->getSession();
         $session->set('csrf_token', $csrfToken);
-        // $PersonalInformations = $this->personalInformationService->getInfo();
 
         $user = $this->getUser();
         if (!$user) {
@@ -64,6 +65,11 @@ class SettingsController extends AbstractController
      * @throws \Exception
      */
 
+    #[IsGranted(
+        attribute: new Expression('user === subject and is_granted("ROLE_USER")'),
+        subject: new Expression('args["user"]')
+    )]
+
     #[Route('/settings/credentials/update/{id}', name: 'app_update_credentials', methods: ['POST'])]
     public function updatePassword(User $user, Request $request): Response
     {
@@ -83,7 +89,7 @@ class SettingsController extends AbstractController
         if (!$this->hasher->isPasswordValid($user, $old_password)) {
             $this->addFlash('error', 'Incorrect old password');
 
-            return $this->redirectToRoute('app_settings');
+            return $this->redirectToRoute('app_settings_credentials');
         }
 
         $password = $this->hasher->hashPassword(
@@ -96,6 +102,6 @@ class SettingsController extends AbstractController
 
         $this->addFlash('success', 'Password changed successfully');
 
-        return $this->redirectToRoute('app_settings');
+        return $this->redirectToRoute('app_settings_credentials');
     }
 }

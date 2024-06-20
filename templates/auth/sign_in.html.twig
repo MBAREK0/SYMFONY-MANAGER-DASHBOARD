@@ -10,12 +10,27 @@
 		<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-image: url('{{ asset('images/png/manager.png') }}');
+            background-size: cover; /* Adjust as necessary: cover, contain, or auto */
+            background-position: center; /* Adjust as necessary: center, top, bottom, left, right */
+            background-repeat: no-repeat; /* Adjust as necessary: no-repeat, repeat, repeat-x, repeat-y */
+        }
+		    .blurry-div {
+        position: relative; /* Ensure the div is not position:static */
+        background-color: rgba(255, 255, 255, 0.2); /* Adjust the opacity as needed */
+        backdrop-filter: blur(4px); /* Adjust the blur radius as needed */
+        border-radius: 8px; /* Optional: Add rounded corners */
+        padding: 20px; /* Optional: Adjust padding as needed */
+    }
+    </style>
 
 	</head>
 	<body class="flex min-h-screen items-center justify-center bg-gray-950 px-4 py-12 sm:px-6 lg:px-8">
-		<div class="w-full max-w-md space-y-8">
+		<div class="blurry-div w-full max-w-md space-y-8 mt-10">
 			<div>
-				<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-50">Sign in to your account</h2>
+				{# <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-50">Sign in to your account</h2> #}
 				
 			</div>
 			<form class="space-y-6" action="{{ path('app_auth_sign_in') }}" method="post">
@@ -46,7 +61,7 @@
 						</label>
 					</div>
 					<div class="text-sm">
-						<a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+						<a href="#" class="font-medium text-gray-100 hover:text-indigo-500">
 							Forgot your password?
 						</a>
 					</div>

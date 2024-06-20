@@ -5,7 +5,9 @@ namespace App\Controller\Portfolio;
 use App\Service\PersonalInformationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -42,6 +44,7 @@ class PersonalInformationController extends AbstractController
      * @throws \Exception
      */
 
+    #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/personal_information', name: 'app_personal_information')]
     public function index(RequestStack $requestStack): Response
     {
@@ -57,7 +60,7 @@ class PersonalInformationController extends AbstractController
         }
 
         return $this->render('portfolio/personal_information/index.html.twig', [
-            'PersonalInformation'  => $PersonalInformation ,
+            'PersonalInformation'   => $PersonalInformation,
             'csrf_token'            => $csrfToken,
             'user'                  => $user,
         ]);
@@ -68,8 +71,10 @@ class PersonalInformationController extends AbstractController
      * @param Request $request
      * @return Response
      * @throws \Exception
+     * @Security("is_granted('ROLE_USER')")
      */
 
+    #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/personal_information/update', name: 'app_update_personal_information')]
     public function update(Request $request): Response
     {

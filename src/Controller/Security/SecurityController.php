@@ -4,7 +4,9 @@ namespace App\Controller\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Repository\UserRepository;
@@ -50,6 +52,7 @@ class SecurityController extends AbstractController
      * @return Response
      */
 
+    #[IsGranted(new Expression('is_granted("ROLE_ADMIN")'))]
     #[Route('/auth/create_new_user', name: 'app_auth_create_user') , methods(['GET']) ]
     public function create_new_user(Request $request): Response
     {
