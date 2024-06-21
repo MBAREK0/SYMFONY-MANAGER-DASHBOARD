@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\User;
-use App\Entity\PersonalInformation;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -19,7 +18,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
         $owner = new User();
         $owner->setEmail($_ENV['OWNER_EMAIL']);
         $owner->setRoles(['ROLE_USER', 'ROLE_ADMIN']);

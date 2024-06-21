@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\MediaRepository;
+use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: MediaRepository::class)]
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[Vich\Uploadable]
-class Media
+class Project
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,11 +22,16 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $github_path = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $path = null;
+    private ?string $host_path = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
 
-    #[Vich\UploadableField(mapping: 'media_image', fileNameProperty: 'imageName')]
+    #[Vich\UploadableField(mapping: 'project_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -33,9 +40,20 @@ class Media
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\ManyToOne(inversedBy: 'projects')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    /**
+     * @var Collection<int, Skill>
+     */
+    #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'projects')]
+    private Collection $technologies;
+
+    public function __construct()
+    {
+        $this->technologies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -54,14 +72,38 @@ class Media
         return $this;
     }
 
-    public function getPath(): ?string
+    public function getGithubPath(): ?string
     {
-        return $this->path;
+        return $this->github_path;
     }
 
-    public function setPath(?string $path): static
+    public function setGithubPath(string $github_path): static
     {
-        $this->path = $path;
+        $this->github_path = $github_path;
+
+        return $this;
+    }
+
+    public function getHostPath(): ?string
+    {
+        return $this->host_path;
+    }
+
+    public function setHostPath(?string $host_path): static
+    {
+        $this->host_path = $host_path;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -101,6 +143,7 @@ class Media
         return $this->imageName;
     }
 
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -109,6 +152,30 @@ class Media
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Skill>
+     */
+    public function getTechnologies(): Collection
+    {
+        return $this->technologies;
+    }
+
+    public function addTechnology(Skill $technology): static
+    {
+        if (!$this->technologies->contains($technology)) {
+            $this->technologies->add($technology);
+        }
+
+        return $this;
+    }
+
+    public function removeTechnology(Skill $technology): static
+    {
+        $this->technologies->removeElement($technology);
 
         return $this;
     }

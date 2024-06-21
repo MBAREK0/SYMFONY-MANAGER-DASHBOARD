@@ -14,7 +14,6 @@ use App\Form\MediaType;
 
 class MediaController extends AbstractController
 {
-
     private $entityManager;
 
 
@@ -23,13 +22,13 @@ class MediaController extends AbstractController
         $this->entityManager = $em;
     }
 
-    
-/**
- * ? in this Function we can add, see all the media
- * ? @Route("/media", name="app_media")
- * @param Request $request
- * @return Response
- */
+
+    /**
+     * ? in this Function we can add, see all the media
+     * ? @Route("/media", name="app_media")
+     * @param Request $request
+     * @return Response
+     */
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/media', name: 'app_media')]
@@ -54,7 +53,7 @@ class MediaController extends AbstractController
 
         return $this->render('portfolio/media/index.html.twig', [
             'form'   => $form->createView(),
-            'media' => $this->getUser()->getMedia(),
+            'media'  => $this->getUser()->getMedia(),
         ]);
     }
 
@@ -83,7 +82,7 @@ class MediaController extends AbstractController
         }
 
         return $this->render('portfolio/media/edit.html.twig', [
-            'form'  => $form->createView(),
+            'form'   => $form->createView(),
             'medium' => $medium,
         ]);
     }
@@ -106,5 +105,4 @@ class MediaController extends AbstractController
 
         return $this->redirectToRoute('app_media');
     }
-
 }

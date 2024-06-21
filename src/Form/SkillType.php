@@ -44,7 +44,7 @@ class SkillType extends AbstractType
         ])
         ->add('submit', SubmitType::class, [
             'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none transition-colors mb-3'],
-            'label' => 'Add Skill',
+            'label' => 'Save',
         ]);
     }
 
