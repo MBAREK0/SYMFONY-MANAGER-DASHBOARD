@@ -11,15 +11,18 @@ use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Project;
 use App\Form\ProjectsType;
+use App\Repository\SkillRepository;
 
 class ProjectsController extends AbstractController
 {
     private $entityManager;
+    private $skillRepository;
 
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, SkillRepository $skillRepository)
     {
         $this->entityManager = $em;
+        $this->skillRepository = $skillRepository;
     }
 
 
@@ -36,8 +39,15 @@ class ProjectsController extends AbstractController
     {
         $Project = new Project();
 
-        $form = $this->createForm(ProjectsType::class, $Project);
+        $currentUser = $this->getUser();
 
+        // Assuming you have a method to fetch skills for the current user
+        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+
+
+        $form = $this->createForm(ProjectsType::class, $Project, [
+            'skills' => $skills,
+        ]);
 
         $form->handleRequest($request);
 
@@ -87,6 +97,7 @@ class ProjectsController extends AbstractController
         return $this->render('portfolio/projects/edit.html.twig', [
             'form'    => $form->createView(),
             'project' => $Project,
+
         ]);
     }
 

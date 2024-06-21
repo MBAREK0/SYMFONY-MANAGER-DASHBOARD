@@ -59,7 +59,6 @@
 						{% if projects|length > 0 %}
 							{% for project in projects %}
 
-					
 
 								<div class="project_card mb-3">
 									<div class="flex flex-col md:flex-row h-full gap-4">
@@ -75,27 +74,37 @@
 												{{ project.description}}
 											</p>
 											<div class="categories flex gap-3 flex-wrap my-3">
-												
+
 												{% for technology in project.technologies %}
 													<span>{{ technology.name }}</span>
 												{% endfor %}
-												
+
 											</div>
 											<div class="flex md:flex-col lg:flex-row items-center md:items-start lg:items-center justify-between">
 												<div class="flex items-center gap-3">
-													<a href="{{ project.getGithubPath }}">
-														<button class="my-3 bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
-															<span class="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-															GitHub
-														</button>
-													</a>
-													<a href="{{ project.getHostPath }}">
-														<button class=" my-3 bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
-															<span class="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-															Demo
 
-														</button>
-													</a>
+													{% if project.getGithubPath %}
+
+														<a href="{{ project.getGithubPath }}">
+															<button class="my-3 bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
+																<span class="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+																GitHub
+															</button>
+														</a>
+
+													{% endif %}
+
+													{% if project.getHostPath %}
+
+
+														<a href="{{ project.getHostPath }}">
+															<button class=" my-3 bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
+																<span class="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+																Demo
+
+															</button>
+														</a>
+													{% endif %}
 
 												</div>
 												<div class="flex items-center gap-4 justify-end ">
