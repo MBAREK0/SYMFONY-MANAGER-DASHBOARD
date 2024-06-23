@@ -42,9 +42,16 @@ class Skill
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'technologies')]
     private Collection $projects;
 
+    /**
+     * @var Collection<int, Education>
+     */
+    #[ORM\ManyToMany(targetEntity: Education::class, mappedBy: 'skills')]
+    private Collection $education;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->education = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -133,6 +140,33 @@ class Skill
     {
         if ($this->projects->removeElement($project)) {
             $project->removeTechnology($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Education>
+     */
+    public function getEducation(): Collection
+    {
+        return $this->education;
+    }
+
+    public function addEducation(Education $education): static
+    {
+        if (!$this->education->contains($education)) {
+            $this->education->add($education);
+            $education->addSkill($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEducation(Education $education): static
+    {
+        if ($this->education->removeElement($education)) {
+            $education->removeSkill($this);
         }
 
         return $this;
