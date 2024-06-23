@@ -43,14 +43,18 @@ class SkillsController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $skill->setUser($this->getUser());
+            try {
+                $skill->setUser($this->getUser());
 
-            $this->entityManager->persist($skill);
-            $this->entityManager->flush();
+                $this->entityManager->persist($skill);
+                $this->entityManager->flush();
 
-            $this->addFlash('success', 'Skill created successfully!');
+                $this->addFlash('success', 'Skill created successfully!');
 
-            return $this->redirectToRoute('app_skills');
+                return $this->redirectToRoute('app_skills');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Skill name is already in use.');
+            }
         }
 
         return $this->render('portfolio/skills/index.html.twig', [

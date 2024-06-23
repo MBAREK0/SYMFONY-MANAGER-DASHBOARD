@@ -12,17 +12,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Project;
 use App\Form\ProjectsType;
 use App\Repository\SkillRepository;
+use App\Repository\ProjectRepository;
 
 class ProjectsController extends AbstractController
 {
     private $entityManager;
     private $skillRepository;
+    private $projectRepository;
 
 
-    public function __construct(EntityManagerInterface $em, SkillRepository $skillRepository)
+    public function __construct(EntityManagerInterface $em, SkillRepository $skillRepository, ProjectRepository $projectRepository)
     {
         $this->entityManager = $em;
         $this->skillRepository = $skillRepository;
+        $this->projectRepository = $projectRepository;
     }
 
 
@@ -66,7 +69,7 @@ class ProjectsController extends AbstractController
 
         return $this->render('portfolio/projects/index.html.twig', [
             'form'      => $form->createView(),
-            'projects'  => $this->getUser()->getProjects(),
+            'projects'  => $this->projectRepository->findProjectsByUserDesc($this->getUser()),
         ]);
     }
 

@@ -73,12 +73,12 @@
 						</li>
 						<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' border-b-2 whiteShadow  border-indigo-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' }}">
 							<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold  text-white ">
-							<div class="px-1   rounded-md">
-								<div class="flex items-center">
-									<img src="{{ asset('images/svg/skills.svg') }}" class="h-5 w-5 text-white mr-2" alt="">
-									Skills
+								<div class="px-1   rounded-md">
+									<div class="flex items-center">
+										<img src="{{ asset('images/svg/skills.svg') }}" class="h-5 w-5 text-white mr-2" alt="">
+										Skills
+									</div>
 								</div>
-							</div>
 							</a>
 						</li>
 					</ul>
@@ -114,24 +114,23 @@
 
 						<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? ' border-b-2  whiteShadow  border-indigo-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' }}">
 							<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold  text-white ">
-							<div class="px-1   rounded-md">
-								<div class="flex items-center">
-									<img src="{{ asset('images/svg/credentials.svg') }}" class="h-4 w-4 text-white mr-2" alt="">
-									Credentials
+								<div class="px-1   rounded-md">
+									<div class="flex items-center">
+										<img src="{{ asset('images/svg/credentials.svg') }}" class="h-4 w-4 text-white mr-2" alt="">
+										Credentials
+									</div>
 								</div>
-							</div>
 							</a>
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
 							<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? ' border-b-2  whiteShadow  border-indigo-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' }}">
 								<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold  text-white ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/add_user.svg') }}" class="h-4 w-4 text-white mr-2" alt="">
-										Create Users
-										
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+											<img src="{{ asset('images/svg/add_user.svg') }}" class="h-4 w-4 text-white mr-2" alt="">
+											Create Users
+										</div>
 									</div>
-								</div>
 								</a>
 							</li>
 						{% endif %}

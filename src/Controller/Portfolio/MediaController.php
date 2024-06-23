@@ -11,15 +11,19 @@ use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Media;
 use App\Form\MediaType;
+use App\Repository\MediaRepository;
 
 class MediaController extends AbstractController
 {
     private $entityManager;
+    private $mediaRepository;
 
 
-    public function __construct(EntityManagerInterface $em)
+
+    public function __construct(EntityManagerInterface $em, MediaRepository $mediaRepository)
     {
         $this->entityManager = $em;
+        $this->mediaRepository = $mediaRepository;
     }
 
 
@@ -41,19 +45,23 @@ class MediaController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $Medium->setUser($this->getUser());
+            try {
+                $Medium->setUser($this->getUser());
 
-            $this->entityManager->persist($Medium);
-            $this->entityManager->flush();
+                $this->entityManager->persist($Medium);
+                $this->entityManager->flush();
 
-            $this->addFlash('success', 'media created successfully!');
+                $this->addFlash('success', 'media created successfully!');
 
-            return $this->redirectToRoute('app_media');
+                return $this->redirectToRoute('app_media');
+            } catch (\Exception $e) {
+                $this->addFlash('error', ' the media path is already in use.');
+            }
         }
 
         return $this->render('portfolio/media/index.html.twig', [
             'form'   => $form->createView(),
-            'media'  => $this->getUser()->getMedia(),
+            'media'  => $this->mediaRepository->findMediaByUserDesc($this->getUser()),
         ]);
     }
 
@@ -74,11 +82,17 @@ class MediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
+            try {
+                $this->entityManager->flush();
 
-            $this->addFlash('success', 'Medium updated successfully!');
+                $this->addFlash('success', 'Medium updated successfully!');
 
-            return $this->redirectToRoute('app_media');
+                return $this->redirectToRoute('app_media');
+            } catch (\Exception $e) {
+                $this->addFlash('error', ' the media path is already in use.');
+
+                return $this->redirectToRoute('app_media');
+            }
         }
 
         return $this->render('portfolio/media/edit.html.twig', [

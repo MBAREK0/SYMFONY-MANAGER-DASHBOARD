@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_PATH', fields: ['path'])]
 #[Vich\Uploadable]
 class Media
 {
@@ -20,9 +21,8 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true, unique: true)]
     private ?string $path = null;
-
 
     #[Vich\UploadableField(mapping: 'media_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
