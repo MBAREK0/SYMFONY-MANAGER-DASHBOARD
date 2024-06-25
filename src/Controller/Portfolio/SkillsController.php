@@ -22,11 +22,8 @@ class SkillsController extends AbstractController
         $this->entityManager = $em;
     }
 
-
-
-
     /**
-     * ? in this Function we can add, edit see all the skills
+     * ? in this Function we can add and see all the skills
      * ? @Route("/skills", name="app_skills")
      * @param Request $request
      * @return Response

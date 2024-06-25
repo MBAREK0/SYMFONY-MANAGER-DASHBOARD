@@ -28,16 +28,20 @@ class MediaType extends AbstractType
             'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
         ])
         ->add('contact', TextType::class, [
+            'required'    => false,
+
             'attr' => [
                 'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                 'placeholder' => 'Enter The Medium contact',
+
             ],
-            
+
             'label'      => 'contact',
             'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
         ])
         ->add('path', TextType::class, [
-            'attr' => [
+            'required'    => false,
+            'attr'        => [
                 'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                 'placeholder' => 'Enter The Medium path',
             ],

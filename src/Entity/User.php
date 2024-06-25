@@ -71,11 +71,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Education::class, mappedBy: 'user')]
     private Collection $education;
 
+
+
     /**
-     * @var Collection<int, Award>
+     * @var Collection<int, LicenseAndCertification>
      */
-    #[ORM\OneToMany(targetEntity: Award::class, mappedBy: 'user')]
-    private Collection $awards;
+    #[ORM\OneToMany(targetEntity: LicenseAndCertification::class, mappedBy: 'user')]
+    private Collection $licenseAndCertifications;
 
     public function __construct()
     {
@@ -84,6 +86,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->projects = new ArrayCollection();
         $this->education = new ArrayCollection();
         $this->awards = new ArrayCollection();
+        $this->licenseAndCertifications = new ArrayCollection();
     }
 
 
@@ -307,30 +310,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
     /**
-     * @return Collection<int, Award>
+     * @return Collection<int, LicenseAndCertification>
      */
-    public function getAwards(): Collection
+    public function getLicenseAndCertifications(): Collection
     {
-        return $this->awards;
+        return $this->licenseAndCertifications;
     }
 
-    public function addAward(Award $award): static
+    public function addLicenseAndCertification(LicenseAndCertification $licenseAndCertification): static
     {
-        if (!$this->awards->contains($award)) {
-            $this->awards->add($award);
-            $award->setUser($this);
+        if (!$this->licenseAndCertifications->contains($licenseAndCertification)) {
+            $this->licenseAndCertifications->add($licenseAndCertification);
+            $licenseAndCertification->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeAward(Award $award): static
+    public function removeLicenseAndCertification(LicenseAndCertification $licenseAndCertification): static
     {
-        if ($this->awards->removeElement($award)) {
+        if ($this->licenseAndCertifications->removeElement($licenseAndCertification)) {
             // set the owning side to null (unless already changed)
-            if ($award->getUser() === $this) {
-                $award->setUser(null);
+            if ($licenseAndCertification->getUser() === $this) {
+                $licenseAndCertification->setUser(null);
             }
         }
 

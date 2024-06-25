@@ -21,7 +21,7 @@ class AwardController extends AbstractController
     private $skillRepository;
 
 
-    public function __construct(EntityManagerInterface $em, AwardRepository $awardRepository , SkillRepository $skillRepository)
+    public function __construct(EntityManagerInterface $em, AwardRepository $awardRepository, SkillRepository $skillRepository)
     {
         $this->entityManager = $em;
         $this->skillRepository = $skillRepository;
@@ -42,38 +42,29 @@ class AwardController extends AbstractController
     {
         $Award = new Award();
 
-        $currentUser = $this->getUser();
-
-        // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
-
-
-        $form = $this->createForm(AwardType::class, $Award, [
-            'skills' => $skills,
-        ]);
+        $form = $this->createForm(AwardType::class, $Award);
 
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-                try {
-                    $Award->setUser($this->getUser());
+            try {
+                $Award->setUser($this->getUser());
 
-                    $this->entityManager->persist($Award);
-                    $this->entityManager->flush();
-        
-                    $this->addFlash('success', ' Award created successfully!');
-        
-                    return $this->redirectToRoute('app_education');
-                }
-                catch (\Exception $e) {
-                   throw new \Exception('Error creating Award');
-                }
+                $this->entityManager->persist($Award);
+                $this->entityManager->flush();
+
+                $this->addFlash('success', ' Award created successfully!');
+
+                return $this->redirectToRoute('app_award');
+            } catch (\Exception $e) {
+                throw new \Exception('Error creating Award');
+            }
         }
 
         return $this->render('portfolio/award/index.html.twig', [
             'form'      => $form->createView(),
-            'Awards'  => $this->awardRepository->findAwardsByUserDesc($this->getUser()),
+            'Awards'    => $this->awardRepository->findAwardsByUserDesc($this->getUser()),
         ]);
     }
 
@@ -89,14 +80,7 @@ class AwardController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function edit(Request $request, Award $award): Response
     {
-        $currentUser = $this->getUser();
-
-        // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
-
-        $form = $this->createForm(AwardType::class, $award, [
-            'skills' => $skills,
-        ]);
+        $form = $this->createForm(AwardType::class, $award);
 
         $form->handleRequest($request);
 
@@ -108,19 +92,18 @@ class AwardController extends AbstractController
                 $this->addFlash('success', 'Award updated successfully!');
 
                 return $this->redirectToRoute('app_award');
-            }
-            catch (\Exception $e) {
+            } catch (\Exception $e) {
                 throw new \Exception('Error updating award');
             }
         }
 
         return $this->render('portfolio/award/edit.html.twig', [
-            'form' => $form->createView(),
+            'form'  => $form->createView(),
             'award' => $award,
         ]);
     }
 
-    
+
 
     /**
      * ? in this Function we can delete the award
@@ -128,6 +111,7 @@ class AwardController extends AbstractController
      * @param Award $award
      * @return Response
      */
+
     #[Route('/award/delete/{id}', name: 'app_award_delete')]
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function delete(Award $award): Response

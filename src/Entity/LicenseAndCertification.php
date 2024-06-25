@@ -2,34 +2,33 @@
 
 namespace App\Entity;
 
-use App\Repository\AwardRepository;
+use App\Repository\LicenseAndCertificationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: AwardRepository::class)]
+#[ORM\Entity(repositoryClass: LicenseAndCertificationRepository::class)]
 #[Vich\Uploadable]
-class Award
+class LicenseAndCertification
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $associated_with = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $issuer = null;
+    private ?string $organization = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
     #[Vich\UploadableField(mapping: 'award_image', fileNameProperty: 'imageName')]
@@ -41,9 +40,19 @@ class Award
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'awards')]
+    /**
+     * @var Collection<int, Skill>
+     */
+    #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'licenseAndCertifications')]
+    private Collection $skills;
+
+    #[ORM\ManyToOne(inversedBy: 'licenseAndCertifications')]
     private ?User $user = null;
 
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -51,42 +60,29 @@ class Award
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getName(): ?string
     {
-        return $this->title;
+        return $this->name;
     }
 
-    public function setTitle(?string $title): static
+    public function setName(?string $name): static
     {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getAssociatedWith(): ?string
+    public function getOrganization(): ?string
     {
-        return $this->associated_with;
+        return $this->organization;
     }
 
-    public function setAssociatedWith(?string $associated_with): static
+    public function setOrganization(?string $organization): static
     {
-        $this->associated_with = $associated_with;
+        $this->organization = $organization;
 
         return $this;
     }
-
-    public function getIssuer(): ?string
-    {
-        return $this->issuer;
-    }
-
-    public function setIssuer(?string $issuer): static
-    {
-        $this->issuer = $issuer;
-
-        return $this;
-    }
-
 
     public function getDescription(): ?string
     {
@@ -145,6 +141,30 @@ class Award
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    /**
+     * @return Collection<int, Skill>
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    public function addSkill(Skill $skill): static
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skill $skill): static
+    {
+        $this->skills->removeElement($skill);
+
+        return $this;
     }
 
     public function getUser(): ?User

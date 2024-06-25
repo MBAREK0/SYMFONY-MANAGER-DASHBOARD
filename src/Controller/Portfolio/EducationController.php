@@ -14,7 +14,6 @@ use App\Form\EducationType;
 use App\Repository\EducationRepository;
 use App\Repository\SkillRepository;
 
-
 class EducationController extends AbstractController
 {
     private $entityManager;
@@ -22,7 +21,7 @@ class EducationController extends AbstractController
     private $skillRepository;
 
 
-    public function __construct(EntityManagerInterface $em, EducationRepository $educationRepository , SkillRepository $skillRepository)
+    public function __construct(EntityManagerInterface $em, EducationRepository $educationRepository, SkillRepository $skillRepository)
     {
         $this->entityManager = $em;
         $this->skillRepository = $skillRepository;
@@ -56,23 +55,22 @@ class EducationController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-                try {
-                    $Education->setUser($this->getUser());
+            try {
+                $Education->setUser($this->getUser());
 
-                    $this->entityManager->persist($Education);
-                    $this->entityManager->flush();
-        
-                    $this->addFlash('success', ' Education created successfully!');
-        
-                    return $this->redirectToRoute('app_education');
-                }
-                catch (\Exception $e) {
-                   throw new \Exception('Error creating education');
-                }
+                $this->entityManager->persist($Education);
+                $this->entityManager->flush();
+
+                $this->addFlash('success', ' Education created successfully!');
+
+                return $this->redirectToRoute('app_education');
+            } catch (\Exception $e) {
+                throw new \Exception('Error creating education');
+            }
         }
 
         return $this->render('portfolio/education/index.html.twig', [
-            'form'      => $form->createView(),
+            'form'        => $form->createView(),
             'Educations'  => $this->educationRepository->findEducationsByUserDesc($this->getUser()),
         ]);
     }
@@ -103,13 +101,12 @@ class EducationController extends AbstractController
             try {
                 $this->entityManager->persist($Education);
                 $this->entityManager->flush();
-    
+
                 $this->addFlash('success', 'Education updated successfully!');
-    
+
                 return $this->redirectToRoute('app_education');
-            }
-            catch (\Exception $e) {
-               throw new \Exception('Error updating education');
+            } catch (\Exception $e) {
+                throw new \Exception('Error updating education');
             }
         }
 
@@ -128,7 +125,6 @@ class EducationController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function delete(Request $request, Education $Education): Response
     {
-
         $this->entityManager->remove($Education);
         $this->entityManager->flush();
 

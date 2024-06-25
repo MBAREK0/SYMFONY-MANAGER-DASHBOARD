@@ -8,7 +8,7 @@
 
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
-				<h1 class="text-xl font-semibold text-white m-0 ">Awards
+				<h1 class="text-xl font-semibold text-white m-0 ">license_and_certifications
 				</h1>
 				<hr class="w-full mb-10 mt-2">
 
@@ -16,7 +16,7 @@
 					<div class="flex justify-end mb-10">
 
 						<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="  text-gray-100 text-center text-sm text-white rounded-lg  block w-full md:w-[48%] lg:w-[32%] p-2 bg-blue-600 " type="button">
-							Add New Award
+							Add New License Or Certification
 						</button>
 					</div>
 
@@ -56,26 +56,26 @@
 
 					<div class="w-full   ">
 
-						{% if Awards|length > 0 %}
-							{% for award in Awards %}
+						{% if LicenseAndCertification|length > 0 %}
+							{% for license_and_certification in LicenseAndCertification %}
 
 
 								<div class="project_card mb-3">
 									<div class="flex flex-col md:flex-row h-full gap-4">
-										{% if award.imageName %}
-											<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(award, 'imageFile') }}')"></div>
+										{% if license_and_certification.imageName %}
+											<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(license_and_certification, 'imageFile') }}')"></div>
 										{% endif %}
 										<div class="main-content ">
 											<div class="w-full flex flex-col md:flex-row justify-between md:items-center items-start">
 												<div class="flex justify-start items-center  mb-2">
-													<span class="text-gray-200 text-sm mr-2">Title :
+													<span class="text-gray-200 text-sm mr-2">Name :
 													</span>
 													<span>
-														{{ award.title }}</span>
+														{{ license_and_certification.name }}</span>
 												</div>
 												<div class=" flex justify-start gap-2 items-center mb-2">
 													<div class="header">
-														<span>{{ award.getDate()|date('Y-m-d') }}
+														<span>{{ license_and_certification.getDate()|date('Y-m-d') }}
 														</span>
 													</div>
 
@@ -83,32 +83,37 @@
 											</div>
 
 											<div class="flex justify-start items-center  mb-2">
-												<span class="text-gray-200 text-sm mr-2">Associated With :
+												<span class="text-gray-200 text-sm mr-2">Organization :
 												</span>
 												<span>
-													{{ award.getAssociatedWith() }}</span>
-											</div>
-
-											<div class="flex justify-start items-center  mb-2">
-												<span class="text-gray-200 text-sm mr-2"> Issuer :
-												</span>
-												<span>
-													{{ award.issuer }}</span>
+													{{ license_and_certification.organization }}</span>
 											</div>
 
 											<div class="flex justify-start items-center  mb-2">
 												<span class="text-gray-200 text-sm mr-2">Description :
 												</span>
 												<span>
-													{{ award.description }}</span>
+													{{ license_and_certification.description }}</span>
 											</div>
 
+											<div class="flex justify-start items-center  mb-1">
+												<span class="text-gray-200 text-sm mr-2">Skills :
+												</span>
+
+											</div>
+											<div class="categories flex gap-3 flex-wrap my-3">
+
+												{% for skill in license_and_certification.skills %}
+													<span>{{ skill.name }}</span>
+												{% endfor %}
+
+											</div>
 											<div class="flex  items-center  justify-end">
 												<div class="flex items-center gap-4 justify-end ">
-													<a href="{{ path('app_award_edit', { id: award.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+													<a href="{{ path('app_license_or_certification_edit', { id: license_and_certification.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 														<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
 													</a>
-													<a href="{{ path('app_award_delete', { id: award.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+													<a href="{{ path('app_license_or_certification_delete', { id: license_and_certification.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 														<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
 													</a>
 												</div>
@@ -121,7 +126,7 @@
 							{% endfor %}
 						{% else %}
 							<div class="w-full text-center text-gray-100">
-								No Awards found
+								No license_and_certifications found
 							</div>
 						{% endif %}
 
@@ -156,28 +161,19 @@
 				</div>
 				{{ form_start(form) }}
 				<div>
-					{{ form_label(form.title) }}
-					{{ form_widget(form.title) }}
+					{{ form_label(form.name) }}
+					{{ form_widget(form.name) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.title) }}
+						{{ form_errors(form.name) }}
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.associated_with) }}
-					{{ form_widget(form.associated_with) }}
+					{{ form_label(form.organization) }}
+					{{ form_widget(form.organization) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.associated_with) }}
+						{{ form_errors(form.organization) }}
 					</div>
 				</div>
-
-				<div>
-					{{ form_label(form.issuer) }}
-					{{ form_widget(form.issuer) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.issuer) }}
-					</div>
-				</div>
-
 				<div>
 					{{ form_label(form.date) }}
 					{{ form_widget(form.date) }}
@@ -201,7 +197,13 @@
 						{{ form_errors(form.imageFile) }}
 					</div>
 				</div>
-
+				<div>
+					{{ form_label(form.skills) }}
+					{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.skills) }}
+					</div>
+				</div>
 
 				<div class="w-full flex items-center justify-end">
 					{{ form_widget(form.submit) }}

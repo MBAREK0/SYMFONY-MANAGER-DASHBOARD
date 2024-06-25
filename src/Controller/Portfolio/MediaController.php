@@ -45,6 +45,12 @@ class MediaController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($Medium->getPath() == null && $Medium->getContact() == null) {
+                $this->addFlash('error', 'Please enter a path Or a contact.');
+
+                return $this->redirectToRoute('app_media');
+            }
+
             try {
                 $Medium->setUser($this->getUser());
 
@@ -82,6 +88,12 @@ class MediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($medium->getPath() == null && $medium->getContact() == null) {
+                $this->addFlash('error', 'Please enter a path Or a contact.');
+
+                return $this->redirectToRoute('app_media');
+            }
+
             try {
                 $this->entityManager->flush();
 
