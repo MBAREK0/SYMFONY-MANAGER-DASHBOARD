@@ -61,11 +61,10 @@
 
 
 								<div class="project_card mb-3">
-									<div
-										class="flex flex-col md:flex-row h-full gap-4">
-										{# {% if project.imageName %}
-																																																																							<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(project, 'imageFile') }}')"></div>
-																																																																						{% endif %} #}
+									<div class="flex flex-col md:flex-row h-full gap-4">
+										{% if education.imageName %}
+											<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(education, 'imageFile') }}')"></div>
+										{% endif %}
 										<div class="main-content ">
 											<div class="w-full flex flex-col md:flex-row justify-between md:items-center items-start">
 												<div class="flex justify-start items-center  mb-2">
@@ -233,13 +232,13 @@
 					</div>
 				</div>
 
-				{# <div>
-																													{{ form_label(form.imageFile) }}
-																													{{ form_widget(form.imageFile) }}
-																													<div class="text-red-600 py-2">
-																														{{ form_errors(form.imageFile) }}
-																													</div>
-																												</div> #}
+				<div>
+					{{ form_label(form.imageFile) }}
+					{{ form_widget(form.imageFile) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.imageFile) }}
+					</div>
+				</div>
 				<div>
 					{{ form_label(form.skills) }}
 					{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}

@@ -20,7 +20,7 @@ class SkillType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'attr' => [
-                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm',
+                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                 'placeholder' => 'Enter The Skill Name',
             ],
             'constraints' => [
@@ -43,7 +43,7 @@ class SkillType extends AbstractType
             'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
         ])
         ->add('submit', SubmitType::class, [
-            'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none transition-colors mb-3'],
+            'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none transition-colors mb-3'],
             'label' => 'Save',
         ]);
     }

@@ -48,10 +48,17 @@ class Skill
     #[ORM\ManyToMany(targetEntity: Education::class, mappedBy: 'skills')]
     private Collection $education;
 
+    /**
+     * @var Collection<int, Award>
+     */
+    #[ORM\ManyToMany(targetEntity: Award::class, mappedBy: 'skills')]
+    private Collection $awards;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->education = new ArrayCollection();
+        $this->awards = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,6 +174,33 @@ class Skill
     {
         if ($this->education->removeElement($education)) {
             $education->removeSkill($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Award>
+     */
+    public function getAwards(): Collection
+    {
+        return $this->awards;
+    }
+
+    public function addAward(Award $award): static
+    {
+        if (!$this->awards->contains($award)) {
+            $this->awards->add($award);
+            $award->addSkill($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAward(Award $award): static
+    {
+        if ($this->awards->removeElement($award)) {
+            $award->removeSkill($this);
         }
 
         return $this;

@@ -24,6 +24,9 @@ class Media
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true, unique: true)]
     private ?string $path = null;
 
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true, unique: true)]
+    private ?string $contact = null;
+
     #[Vich\UploadableField(mapping: 'media_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
@@ -62,6 +65,18 @@ class Media
     public function setPath(?string $path): static
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): static
+    {
+        $this->contact = $contact;
 
         return $this;
     }

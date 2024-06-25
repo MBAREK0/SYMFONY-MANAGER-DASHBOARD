@@ -8,9 +8,7 @@
 
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
-				<h1 class="text-xl font-semibold text-white m-0 ">Update
-										
-										Education</h1>
+				<h1 class="text-xl font-semibold text-white m-0 ">Update Award </h1>
 				<hr class="w-[10%] mb-10 mt-2">
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
 					{% for flashMessage in app.flashes('success') %}
@@ -47,75 +45,56 @@
 					{% endfor %}
 
 					{{ form_start(form) }}
-					<div>
-						{{ form_label(form.school) }}
-						{{ form_widget(form.school) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.school) }}
-						</div>
+				<div>
+					{{ form_label(form.name) }}
+					{{ form_widget(form.name) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.name) }}
 					</div>
-					<div>
-						{{ form_label(form.degree) }}
-						{{ form_widget(form.degree) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.degree) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.specialty) }}
+					{{ form_widget(form.specialty) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.specialty) }}
 					</div>
-					<div>
-						{{ form_label(form.specialty) }}
-						{{ form_widget(form.specialty) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.specialty) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.date) }}
+					{{ form_widget(form.date) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.date) }}
 					</div>
-					<div>
-						{{ form_label(form.start_date) }}
-						{{ form_widget(form.start_date) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.start_date) }}
-						</div>
-					</div>
-					<div>
-						{{ form_label(form.end_date) }}
-						{{ form_widget(form.end_date) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.end_date) }}
-						</div>
-					</div>
-					<div>
-						{{ form_label(form.grade) }}
-						{{ form_widget(form.grade) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.grade) }}
-						</div>
-					</div>
-					<div>
-						{{ form_label(form.description) }}
-						{{ form_widget(form.description) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.description) }}
-						</div>
-					</div>
+				</div>
 
-					<div>
-						{{ form_label(form.imageFile) }}
-						{{ form_widget(form.imageFile) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.imageFile) }}
-						</div>
+				<div>
+					{{ form_label(form.description) }}
+					{{ form_widget(form.description) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.description) }}
 					</div>
-					<div>
-						{{ form_label(form.skills) }}
-						{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.skills) }}
-						</div>
-					</div>
+				</div>
 
-					<div class="w-full flex items-center justify-end">
-						{{ form_widget(form.submit) }}
+				<div>
+					{{ form_label(form.imageFile) }}
+					{{ form_widget(form.imageFile) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.imageFile) }}
 					</div>
-					{{ form_end(form) }}
+				</div>
+				<div>
+					{{ form_label(form.skills) }}
+					{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.skills) }}
+					</div>
+				</div>
+
+				<div class="w-full flex items-center justify-end">
+					{{ form_widget(form.submit) }}
+				</div>
+				{{ form_end(form) }}
+
 					<script>
 						document.addEventListener('DOMContentLoaded', (event) => {
 const deleteLabel = document.querySelector('label[for$="_imageFile_delete"]');

@@ -26,7 +26,7 @@ class ProjectsType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'attr' => [
-                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm',
+                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                 'placeholder' => 'Enter Project Name',
             ],
             'constraints' => [
@@ -37,7 +37,7 @@ class ProjectsType extends AbstractType
         ])
         ->add('github_path', TextType::class, [
             'attr' => [
-                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm',
+                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                 'placeholder' => 'Enter Github Path',
             ],
             'constraints' => [
@@ -49,7 +49,7 @@ class ProjectsType extends AbstractType
         ->add('host_path', TextType::class, [
             'required'    => false,
             'attr'        => [
-                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm',
+                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                 'placeholder' => 'Enter Host Path ',
             ],
             'label'      => 'Host Path',
@@ -58,7 +58,7 @@ class ProjectsType extends AbstractType
         ->add('description', TextareaType::class, [
             'required'    => false,
             'attr'        => [
-                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm',
+                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                 'placeholder' => 'Description',
                 'rows'        => 5, // Optional: set the number of rows
             ],
@@ -89,7 +89,7 @@ class ProjectsType extends AbstractType
 
         ])
         ->add('submit', SubmitType::class, [
-            'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none transition-colors mb-3'],
+            'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none transition-colors mb-3'],
             'label' => 'Save',
         ])
         ;

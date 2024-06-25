@@ -71,12 +71,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Education::class, mappedBy: 'user')]
     private Collection $education;
 
+    /**
+     * @var Collection<int, Award>
+     */
+    #[ORM\OneToMany(targetEntity: Award::class, mappedBy: 'user')]
+    private Collection $awards;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
         $this->media = new ArrayCollection();
         $this->projects = new ArrayCollection();
         $this->education = new ArrayCollection();
+        $this->awards = new ArrayCollection();
     }
 
 
@@ -294,6 +301,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($education->getUser() === $this) {
                 $education->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Award>
+     */
+    public function getAwards(): Collection
+    {
+        return $this->awards;
+    }
+
+    public function addAward(Award $award): static
+    {
+        if (!$this->awards->contains($award)) {
+            $this->awards->add($award);
+            $award->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAward(Award $award): static
+    {
+        if ($this->awards->removeElement($award)) {
+            // set the owning side to null (unless already changed)
+            if ($award->getUser() === $this) {
+                $award->setUser(null);
             }
         }
 
