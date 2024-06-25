@@ -100,6 +100,7 @@ class SkillsController extends AbstractController
     public function delete(Skill $skill): Response
     {
         $this->entityManager->remove($skill);
+
         $this->entityManager->flush();
 
         $this->addFlash('success', 'Skill deleted successfully!');
