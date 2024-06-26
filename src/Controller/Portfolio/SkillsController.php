@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Skill;
 use App\Form\SkillType;
+use Doctrine\DBAL\Connection;
 
 class SkillsController extends AbstractController
 {
@@ -97,14 +98,24 @@ class SkillsController extends AbstractController
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/skills/{id}/delete', name: 'app_skills_delete')]
-    public function delete(Skill $skill): Response
+    public function delete(Skill $skill,Connection $connection): Response
     {
-        $this->entityManager->remove($skill);
+        try {
 
-        $this->entityManager->flush();
+            $sql = "DELETE FROM Skill WHERE id = :skillId";
+          
+            $stmt = $connection->prepare($sql);
+            $stmt->bindValue('skillId', $skill->getId() )   ;
+            $stmt->execute();
 
-        $this->addFlash('success', 'Skill deleted successfully!');
+            $this->addFlash('success', 'Skill deleted successfully!');
+           
+        } catch (\Exception $e) {
+            
+            $this->addFlash('error', 'Error deleting skill please try again later');
 
+        }
         return $this->redirectToRoute('app_skills');
+       
     }
 }
