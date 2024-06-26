@@ -85,7 +85,14 @@ class ProjectsController extends AbstractController
     #[Route('/projects/{id}/edit', name: 'app_projects_edit')]
     public function edit(Request $request, Project $Project): Response
     {
-        $form = $this->createForm(ProjectsType::class, $Project);
+        $currentUser = $this->getUser();
+
+        // Assuming you have a method to fetch skills for the current user
+        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+        
+        $form = $this->createForm(ProjectsType::class, $Project, [
+            'skills' => $skills,
+        ]);
 
         $form->handleRequest($request);
 
