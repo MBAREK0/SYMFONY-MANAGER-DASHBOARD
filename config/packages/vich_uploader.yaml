@@ -30,3 +30,8 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/images/awards'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             
+        experience_image:
+            uri_prefix: /images/experiences
+            upload_destination: '%kernel.project_dir%/public/images/experiences'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            

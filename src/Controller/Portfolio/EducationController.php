@@ -123,8 +123,14 @@ class EducationController extends AbstractController
      */
     #[Route('/education/delete/{id}', name: 'app_education_delete')]
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
-    public function delete(Request $request, Education $Education): Response
+    public function delete(Request $request, Education $Education = null): Response
     {
+
+        if (!$Education) {
+            $this->addFlash('error', 'Education not found');
+            return $this->redirectToRoute('app_education');
+        }
+
         $this->entityManager->remove($Education);
         $this->entityManager->flush();
 

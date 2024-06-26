@@ -132,8 +132,14 @@ class LicenseAndCertificationController extends AbstractController
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/license_or_certification/{id}/delete', name: 'app_license_or_certification_delete')]
-    public function delete(LicenseAndCertification $LicenseAndCertification): Response
+    public function delete(LicenseAndCertification $LicenseAndCertification = null  ): Response
     {
+
+        if (!$LicenseAndCertification) {
+            $this->addFlash('error', 'License or Certification not found');
+            return $this->redirectToRoute('app_license_or_certification');
+        }
+
         $this->entityManager->remove($LicenseAndCertification);
         $this->entityManager->flush();
 

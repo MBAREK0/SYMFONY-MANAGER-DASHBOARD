@@ -89,7 +89,7 @@ class ProjectsController extends AbstractController
 
         // Assuming you have a method to fetch skills for the current user
         $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
-        
+
         $form = $this->createForm(ProjectsType::class, $Project, [
             'skills' => $skills,
         ]);
@@ -121,8 +121,14 @@ class ProjectsController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/projects/{id}/delete', name: 'app_projects_delete')]
 
-    public function delete(Project $Project): Response
+    public function delete(Project $Project = null): Response
     {
+
+        if ($Project === null) {
+            $this->addFlash('error', 'Project not found');
+            return $this->redirectToRoute('app_projects');
+        }
+
         $this->entityManager->remove($Project);
         $this->entityManager->flush();
 

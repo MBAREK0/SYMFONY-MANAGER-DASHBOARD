@@ -60,12 +60,19 @@ class Skill
     #[ORM\ManyToMany(targetEntity: LicenseAndCertification::class, mappedBy: 'skills')]
     private Collection $licenseAndCertifications;
 
+    /**
+     * @var Collection<int, Experience>
+     */
+    #[ORM\ManyToMany(targetEntity: Experience::class, mappedBy: 'technologies_used')]
+    private Collection $experiences;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->education = new ArrayCollection();
         $this->awards = new ArrayCollection();
         $this->licenseAndCertifications = new ArrayCollection();
+        $this->experiences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -235,6 +242,33 @@ class Skill
     {
         if ($this->licenseAndCertifications->removeElement($licenseAndCertification)) {
             $licenseAndCertification->removeSkill($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Experience>
+     */
+    public function getExperiences(): Collection
+    {
+        return $this->experiences;
+    }
+
+    public function addExperience(Experience $experience): static
+    {
+        if (!$this->experiences->contains($experience)) {
+            $this->experiences->add($experience);
+            $experience->addTechnologiesUsed($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experience $experience): static
+    {
+        if ($this->experiences->removeElement($experience)) {
+            $experience->removeTechnologiesUsed($this);
         }
 
         return $this;

@@ -109,148 +109,148 @@
 												</span>
 
 											</div>
-											<div class="flex justify-start items-center text-sm text-gray-300  mb-2">
+											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
 
 												<span>
 													{{ education.description }}</span>
 											</div>
 
-											<div class="flex justify-start items-center  mb-1">
+											<div class="flex justify-start items-center  mb-2">
 												<span class="text-gray-200 text-sm mr-2">Skills :
 												</span>
+												<div class="categories flex gap-3 flex-wrap my-3">
 
-											</div>
-											<div class="categories flex gap-3 flex-wrap my-3">
+													{% for skill in education.skills %}
+														<span>{{ skill.name }}</span>
+													{% endfor %}
 
-												{% for skill in education.skills %}
-													<span>{{ skill.name }}</span>
-												{% endfor %}
-
-											</div>
-											<div class="flex  items-center  justify-end">
-												<div class="flex items-center gap-4 justify-end ">
-													<a href="{{ path('app_education_edit', { id: education.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
-														<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
-													</a>
-													<a href="{{ path('app_education_delete', { id: education.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
-														<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
-													</a>
 												</div>
 											</div>
+
+												<div class="flex  items-center  justify-end">
+													<div class="flex items-center gap-4 justify-end ">
+														<a href="{{ path('app_education_edit', { id: education.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+															<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
+														</a>
+														<a href="{{ path('app_education_delete', { id: education.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+															<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
+														</a>
+													</div>
+												</div>
+											</div>
+
 										</div>
-
 									</div>
+
+								{% endfor %}
+							{% else %}
+								<div class="w-full text-center text-gray-100">
+									No projects found
 								</div>
+							{% endif %}
 
-							{% endfor %}
-						{% else %}
-							<div class="w-full text-center text-gray-100">
-								No projects found
-							</div>
-						{% endif %}
-
+						</div>
 					</div>
+
 				</div>
+
 
 			</div>
 
-
 		</div>
 
-	</div>
-
-	<!-- Main modal -->
-	<div id="crud-modal" tabindex="-1" aria-hidden="true" class="  hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-		<div
-			class="relative p-4 w-full  max-w-2xl max-h-full">
-			<!-- Modal content -->
+		<!-- Main modal -->
+		<div id="crud-modal" tabindex="-1" aria-hidden="true" class="  hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
 			<div
-				class="relative bg-black bg-[#232531] whiteShadow border border-gray-100 border-2 p-3 rounded-lg shadow dark:bg-gray-700">
-				<!-- Modal header -->
-				<div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 mb-2">
-					<h3 class="text-lg font-semibold text-gray-100 dark:text-white">
-						Create New Project
-					</h3>
-					<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
-						<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 14">
-							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-						</svg>
-						<span class="sr-only">Close modal</span>
-					</button>
-				</div>
-				{{ form_start(form) }}
-				<div>
-					{{ form_label(form.school) }}
-					{{ form_widget(form.school) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.school) }}
+				class="relative p-4 w-full  max-w-2xl max-h-full">
+				<!-- Modal content -->
+				<div
+					class="relative bg-black bg-[#232531] whiteShadow border border-gray-100 border-2 p-3 rounded-lg shadow dark:bg-gray-700">
+					<!-- Modal header -->
+					<div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 mb-2">
+						<h3 class="text-lg font-semibold text-gray-100 dark:text-white">
+							Create New Project
+						</h3>
+						<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+							<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 14">
+								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+							</svg>
+							<span class="sr-only">Close modal</span>
+						</button>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.degree) }}
-					{{ form_widget(form.degree) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.degree) }}
+					{{ form_start(form) }}
+					<div>
+						{{ form_label(form.school) }}
+						{{ form_widget(form.school) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.school) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.specialty) }}
-					{{ form_widget(form.specialty) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.specialty) }}
+					<div>
+						{{ form_label(form.degree) }}
+						{{ form_widget(form.degree) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.degree) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.start_date) }}
-					{{ form_widget(form.start_date) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.start_date) }}
+					<div>
+						{{ form_label(form.specialty) }}
+						{{ form_widget(form.specialty) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.specialty) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.end_date) }}
-					{{ form_widget(form.end_date) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.end_date) }}
+					<div>
+						{{ form_label(form.start_date) }}
+						{{ form_widget(form.start_date) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.start_date) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.grade) }}
-					{{ form_widget(form.grade) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.grade) }}
+					<div>
+						{{ form_label(form.end_date) }}
+						{{ form_widget(form.end_date) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.end_date) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.description) }}
-					{{ form_widget(form.description) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.description) }}
+					<div>
+						{{ form_label(form.grade) }}
+						{{ form_widget(form.grade) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.grade) }}
+						</div>
 					</div>
-				</div>
+					<div>
+						{{ form_label(form.description) }}
+						{{ form_widget(form.description) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.description) }}
+						</div>
+					</div>
 
-				<div>
-					{{ form_label(form.imageFile) }}
-					{{ form_widget(form.imageFile) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.imageFile) }}
+					<div>
+						{{ form_label(form.imageFile) }}
+						{{ form_widget(form.imageFile) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.imageFile) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.skills) }}
-					{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.skills) }}
+					<div>
+						{{ form_label(form.skills) }}
+						{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.skills) }}
+						</div>
 					</div>
-				</div>
 
-				<div class="w-full flex items-center justify-end">
-					{{ form_widget(form.submit) }}
-				</div>
-				{{ form_end(form) }}
+					<div class="w-full flex items-center justify-end">
+						{{ form_widget(form.submit) }}
+					</div>
+					{{ form_end(form) }}
 
+				</div>
 			</div>
 		</div>
-	</div>
 
-{% endblock %}
+	{% endblock %}

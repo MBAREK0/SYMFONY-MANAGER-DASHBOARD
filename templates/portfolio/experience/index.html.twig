@@ -9,12 +9,11 @@
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
 
-
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
 					<div class="flex justify-end mb-10">
 
 						<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="  text-gray-100 text-center text-sm text-white rounded-lg  block w-full md:w-[48%] lg:w-[32%] p-2 bg-blue-600 " type="button">
-							Add New Project
+							Add New Experience
 						</button>
 					</div>
 
@@ -54,73 +53,99 @@
 
 					<div class="w-full   ">
 
-						{% if projects|length > 0 %}
-							{% for project in projects %}
+						{% if experiences|length > 0 %}
+							{% for experience in experiences %}
 
 
 								<div class="project_card mb-3">
 									<div class="flex flex-col md:flex-row h-full gap-4">
-										{% if project.imageName %}
-											<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(project, 'imageFile') }}')"></div>
+										{% if experience.imageName %}
+											<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(experience, 'imageFile') }}')"></div>
 										{% endif %}
 										<div class="main-content ">
-											<div class="header mb-2">
-												<span>{{ project.name }}</span>
+											<div class="w-full flex flex-col md:flex-row justify-between md:items-center items-start">
+												<div class="flex justify-start items-center  mb-2">
+													<span class="text-gray-200 text-sm mr-2">Organization :
+													</span>
+													<span>
+														{{ experience.organization }}</span>
+												</div>
+												<div class=" flex justify-start gap-2 items-center mb-2">
+													<div class="header">
+														<span>{{ experience.getStartDate()|date('Y-m-d') }}
+														</span>
+													</div>
+													<div class="header">
+														<span>-</span>
+													</div>
+													<div class="header">
+														<span>{{ experience.getEndDate()|date('Y-m-d') }}</span>
+
+													</div>
+												</div>
+											</div>
+
+											<div class="flex justify-start items-center  mb-2">
+												<span class="text-gray-200 text-sm mr-2">Role :
+												</span>
+												<span>
+													{{ experience.role }}</span>
+											</div>
+
+
+											<div class="flex justify-start items-center  mb-1">
+												<span class="text-gray-200 text-sm mr-2">Responsibilities :
+												</span>
 
 											</div>
-											
 											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
 
 												<span>
-													{{ project.description }}</span>
+													{{ experience.responsibilities }}</span>
 											</div>
-
-										
-											<div class="categories flex gap-3 flex-wrap my-3">
-
-												{% for technology in project.technologies %}
-													<span>{{ technology.name }}</span>
-												{% endfor %}
+											<div class="flex justify-start items-center  mb-1">
+												<span class="text-gray-200 text-sm mr-2">Achievements :
+												</span>
 
 											</div>
-											<div class="flex md:flex-col lg:flex-row items-center md:items-start lg:items-center justify-between">
-												<div class="flex items-center gap-3">
+											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
 
-													{% if project.getGithubPath %}
+												<span>
+													{{ experience.achievements }}</span>
+											</div>
+											<div class="flex justify-start items-center  mb-1">
+												<span class="text-gray-200 text-sm mr-2">Description :
+												</span>
 
-														<a href="{{ project.getGithubPath }}">
-															<button class="my-3 bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
-																<span class="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-																GitHub
-															</button>
-														</a>
+											</div>
+											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
 
-													{% endif %}
+												<span>
+													{{ experience.description }}</span>
+											</div>
 
-													{% if project.getHostPath %}
+											<div class="flex justify-start items-center  mb-2">
+												<span class="text-gray-200 text-sm mr-2">Technologies Used :
+												</span>
+												<div class="categories flex gap-3 flex-wrap my-3">
 
-
-														<a href="{{ project.getHostPath }}">
-															<button class=" my-3 bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
-																<span class="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-																Demo
-
-															</button>
-														</a>
-													{% endif %}
+													{% for skill in experience.getTechnologiesUsed() %}
+														<span>{{ skill.name }}</span>
+													{% endfor %}
 
 												</div>
+											</div>
+
+											<div class="flex  items-center  justify-end">
 												<div class="flex items-center gap-4 justify-end ">
-													<a href="{{ path('app_projects_edit', { id: project.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+													<a href="{{ path('app_experience_edit', { id: experience.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 														<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
 													</a>
-													<a href="{{ path('app_projects_delete', { id: project.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+													<a href="{{ path('app_experience_delete', { id: experience.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 														<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
 													</a>
 												</div>
 											</div>
-
-
 										</div>
 
 									</div>
@@ -129,7 +154,7 @@
 							{% endfor %}
 						{% else %}
 							<div class="w-full text-center text-gray-100">
-								No projects found
+								No Experience found
 							</div>
 						{% endif %}
 
@@ -146,7 +171,7 @@
 	<!-- Main modal -->
 	<div id="crud-modal" tabindex="-1" aria-hidden="true" class="  hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
 		<div
-			class="relative p-4 w-full  max-w-xl max-h-full">
+			class="relative p-4 w-full  max-w-2xl max-h-full">
 			<!-- Modal content -->
 			<div
 				class="relative bg-black bg-[#232531] whiteShadow border border-gray-100 border-2 p-3 rounded-lg shadow dark:bg-gray-700">
@@ -164,24 +189,46 @@
 				</div>
 				{{ form_start(form) }}
 				<div>
-					{{ form_label(form.name) }}
-					{{ form_widget(form.name) }}
+					{{ form_label(form.organization) }}
+					{{ form_widget(form.organization) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.name) }}
+						{{ form_errors(form.organization) }}
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.github_path) }}
-					{{ form_widget(form.github_path) }}
+					{{ form_label(form.role) }}
+					{{ form_widget(form.role) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.github_path) }}
+						{{ form_errors(form.role) }}
+					</div>
+				</div>
+
+				<div>
+					{{ form_label(form.start_date) }}
+					{{ form_widget(form.start_date) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.start_date) }}
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.host_path) }}
-					{{ form_widget(form.host_path) }}
+					{{ form_label(form.end_date) }}
+					{{ form_widget(form.end_date) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.host_path) }}
+						{{ form_errors(form.end_date) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.responsibilities) }}
+					{{ form_widget(form.responsibilities) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.responsibilities) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.achievements) }}
+					{{ form_widget(form.achievements) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.achievements) }}
 					</div>
 				</div>
 				<div>
@@ -193,20 +240,20 @@
 				</div>
 
 				<div>
+					{{ form_label(form.technologies_used) }}
+					{{ form_widget(form.technologies_used, { 'attr': {'class': 'select-multiple'} }) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.technologies_used) }}
+					</div>
+				</div>
+
+				<div>
 					{{ form_label(form.imageFile) }}
 					{{ form_widget(form.imageFile) }}
 					<div class="text-red-600 py-2">
 						{{ form_errors(form.imageFile) }}
 					</div>
 				</div>
-				<div>
-					{{ form_label(form.technologies) }}
-					{{ form_widget(form.technologies, { 'attr': {'class': 'select-multiple'} }) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.technologies) }}
-					</div>
-				</div>
-
 				<div class="w-full flex items-center justify-end">
 					{{ form_widget(form.submit) }}
 				</div>

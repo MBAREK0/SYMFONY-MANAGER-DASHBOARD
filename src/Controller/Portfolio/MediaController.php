@@ -122,8 +122,14 @@ class MediaController extends AbstractController
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/media/{id}/delete', name: 'app_media_delete')]
-    public function delete(Media $medium): Response
+    public function delete(Media $medium = null): Response
     {
+
+        if (!$medium) {
+            $this->addFlash('error', 'Medium not found');
+            return $this->redirectToRoute('app_media');
+        }
+
         $this->entityManager->remove($medium);
         $this->entityManager->flush();
 

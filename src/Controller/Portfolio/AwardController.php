@@ -114,8 +114,14 @@ class AwardController extends AbstractController
 
     #[Route('/award/delete/{id}', name: 'app_award_delete')]
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
-    public function delete(Award $award): Response
+    public function delete(Award $award = null): Response
     {
+
+        if (!$award) {
+            $this->addFlash('error', 'Award not found');
+            return $this->redirectToRoute('app_award');
+        }
+
         $this->entityManager->remove($award);
         $this->entityManager->flush();
 
