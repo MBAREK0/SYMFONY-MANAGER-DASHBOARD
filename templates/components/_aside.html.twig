@@ -4,7 +4,7 @@
 	<div class="text-gray-300">
 		<div class="flex p-2  bg-[#000]">
 			<div class="flex py-3 px-2 items-center">
-				<p class="text-2xl text-blue-600 font-semibold">MY</p>
+				<p class="text-2xl text-blue-600 font-semibold">M2</p>
 			</p<pclass="ml-2font-semibolditalic">
 			MANAGER</p>
 	</div>
@@ -13,25 +13,25 @@
 <div>
 	<ul class="mt-6 leading-10">
 		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_home' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}" href="{{ path('app_home') }}">
-				<img src="{{ asset('images/svg/overview.svg') }}" class="h-5 w-5 text-gray-300 00" alt="">
+			<a class=" {{ app.request.attributes.get('_route') == 'app_home' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="{{ path('app_home') }}">
+				<img src="{{ asset('images/svg/overview.svg') }}" class="h-5 w-5" alt="">
 
 				<span class="ml-4">OVERVIEW</span>
 			</a>
 		</li>
 		<li class="relative px-2 py-1" x-data="{ Open : false  }">
 			{% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience'] %}
-				<div class=" inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 text-gray-300 00  cursor-pointer  bg-blue-600 rounded-md hover:bg-blue-700  p-1" x-on:click="Open = !Open">
+				<div class=" inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150  cursor-pointer  bg-blue-600 rounded-md hover:bg-blue-700  p-1" x-on:click="Open = !Open">
 				{% else %}
-					<div class="p-1 inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 text-gray-300 00  cursor-pointer " x-on:click="Open = !Open">
+					<div class="p-1 inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
 					{% endif %}
-					<span class="inline-flex items-center  text-sm font-semibold text-gray-300  ">
-						<img src="{{ asset('images/svg/portfolio.svg') }}" class="h-5 w-5 text-gray-300 00" alt="portfolio">
+					<span class="inline-flex items-center  text-sm font-semibold text-gray-300 hover:text-blue-100  ">
+						<img src="{{ asset('images/svg/portfolio.svg') }}" class="h-5 w-5 " alt="portfolio">
 						<span class="ml-4">PORTFOLIO MANAGER</span>
 					</span>
 					<span>
-						<img x-show="!Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300" alt="right arrow">
-						<img x-show="Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 transform rotate-90" alt="under arrow">
+						<img x-show="!Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100" alt="right arrow">
+						<img x-show="Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 transform rotate-90" alt="under arrow">
 					</span>
 
 
@@ -40,87 +40,87 @@
 				<div x-show.transition="Open" style="display:none;">
 					<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="  mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_personal_information' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md   inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : ' inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_personal_information') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_personal_information' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md   inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : ' inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_personal_information') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/personal_information.svg') }}" class="h-4 w-4 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/personal_information.svg') }}" class="h-4 w-4 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										personal information
 									</div>
 								</div>
 							</a>
 						</li>
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_projects' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_projects') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_projects' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_projects') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/projects.svg') }}" class="h-5 w-5 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/projects.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										projects
 									</div>
 								</div>
 							</a>
 						</li>
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_education' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_education') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_education' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_education') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/education.svg') }}" class="h-5 w-5 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/education.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										educations
 									</div>
 								</div>
 							</a>
 						</li>
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_experience' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_experience') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_experience' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_experience') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/experience.svg') }}" class="h-5 w-5 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/experience.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										experiences
 									</div>
 								</div>
 							</a>
 						</li>
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_award' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_award') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_award' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_award') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/award.svg') }}" class="h-5 w-5 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/award.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										honors & awards
 									</div>
 								</div>
 							</a>
 						</li>
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_license_or_certification' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_license_or_certification') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_license_or_certification' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_license_or_certification') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/certification.svg') }}" class="h-5 w-5 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/certification.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										license & certification
 									</div>
 								</div>
 							</a>
 						</li>
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_media' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_media') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_media' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_media') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/media.svg') }}" class="h-5 w-5 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/media.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										my contacts
 									</div>
 								</div>
 							</a>
 						</li>
-						<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/skills.svg') }}" class="h-5 w-5 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/skills.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										my skills
 									</div>
 								</div>
@@ -131,49 +131,49 @@
 			</li>
 		</li>
 		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/calendar.svg') }}" class="h-6 w-6 text-gray-300 00" alt="">
+			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
+				<img src="{{ asset('images/svg/calendar.svg') }}" class="h-6 w-6" alt="">
 				<span class="ml-4">CALENDRIER</span>
 			</a>
 		</li>
 		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/translate.svg') }}" class="h-6 w-6 text-gray-300 00" alt="">
+			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
+				<img src="{{ asset('images/svg/translate.svg') }}" class="h-6 w-6 " alt="">
 				<span class="ml-4">TRANSLATE</span>
 			</a>
 		</li>
 		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/chat.svg') }}" class="h-6 w-6 text-gray-300 00" alt="">
+			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
+				<img src="{{ asset('images/svg/chat.svg') }}" class="h-6 w-6" alt="">
 				<span class="ml-4">CHAT</span>
 			</a>
 		</li>
 		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/tasks.svg') }}" class="h-6 w-6 text-gray-300 00" alt="">
+			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
+				<img src="{{ asset('images/svg/tasks.svg') }}" class="h-6 w-6" alt="">
 				<span class="ml-4">TASKS</span>
 			</a>
 		</li>
 		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/notion.svg') }}" class="h-6 w-6 text-gray-300 00" alt="">
+			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
+				<img src="{{ asset('images/svg/notion.svg') }}" class="h-6 w-6" alt="">
 				<span class="ml-4">NOTION</span>
 			</a>
 		</li>
 	
 		<li class="relative px-2 py-1" x-data="{ Open : false  }">
 			{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
-				<div class=" inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 text-gray-300 00  cursor-pointer  bg-blue-600 rounded-md hover:bg-blue-700  p-1" x-on:click="Open = !Open">
+				<div class=" inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150   cursor-pointer  bg-blue-600 rounded-md hover:bg-blue-700  p-1" x-on:click="Open = !Open">
 				{% else %}
-					<div class="p-1 inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 text-gray-300 00  cursor-pointer " x-on:click="Open = !Open">
+					<div class="p-1 inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
 					{% endif %}
-					<span class="inline-flex items-center  text-sm font-semibold text-gray-300  ">
-						<img src="{{ asset('images/svg/settings.svg') }}" class="h-5 w-5 text-gray-300 00" alt="portfolio">
+					<span class="inline-flex items-center  text-sm font-semibold text-gray-300 hover:text-blue-100  ">
+						<img src="{{ asset('images/svg/settings.svg') }}" class="h-5 w-5" alt="portfolio">
 						<span class="ml-4">SETTINGS</span>
 					</span>
 					<span>
-						<img x-show="!Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300" alt="right arrow">
-						<img x-show="Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 transform rotate-90" alt="under arrow">
+						<img x-show="!Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100" alt="right arrow">
+						<img x-show="Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 transform rotate-90" alt="under arrow">
 					</span>
 
 
@@ -182,22 +182,22 @@
 				<div x-show.transition="Open" style="display:none;">
 					<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class=" mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+						<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+							<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 								<div class="px-1   rounded-md">
 									<div class="flex items-center">
-										<img src="{{ asset('images/svg/credentials.svg') }}" class="h-4 w-4 text-gray-300 mr-2" alt="">
+										<img src="{{ asset('images/svg/credentials.svg') }}" class="h-4 w-4 text-gray-300 hover:text-blue-100 mr-2" alt="">
 										credentials
 									</div>
 								</div>
 							</a>
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
-							<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 transition-colors duration-150 cursor-pointer ' }}">
-								<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 ">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
-											<img src="{{ asset('images/svg/add_user.svg') }}" class="h-4 w-4 text-gray-300 mr-2" alt="">
+											<img src="{{ asset('images/svg/add_user.svg') }}" class="h-4 w-4 text-gray-300 hover:text-blue-100 mr-2" alt="">
 											create Users
 										</div>
 									</div>
