@@ -144,3 +144,25 @@ body {
     border-radius: 50em;
   }
   
+
+aside::-webkit-scrollbar {
+    width: 3px; 
+}
+
+/* The scrollbar track */
+aside::-webkit-scrollbar-track {
+    background: #000; 
+}
+
+
+aside::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px; 
+}
+
+/* Optional: Handle hover effect */
+aside::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    cursor:all-scroll;
+    
+}

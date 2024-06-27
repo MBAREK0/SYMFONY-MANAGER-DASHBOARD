@@ -18,7 +18,6 @@ class ExperienceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $skills = $options['skills'];
 
         $builder
@@ -71,7 +70,7 @@ class ExperienceType extends AbstractType
                 'attr'        => [
                     'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                     'placeholder' => 'Responsibilities',
-                    'rows'        => 5, 
+                    'rows'        => 5,
                 ],
                 'constraints' => [
                     new NotBlank(['message' => 'Responsibilities cannot be blank']),
@@ -84,7 +83,7 @@ class ExperienceType extends AbstractType
                 'attr'        => [
                     'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                     'placeholder' => 'Achievements',
-                    'rows'        => 5, 
+                    'rows'        => 5,
                 ],
                 'label'      => 'Achievements',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
@@ -94,7 +93,7 @@ class ExperienceType extends AbstractType
                 'attr'        => [
                     'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
                     'placeholder' => 'Description',
-                    'rows'        => 5, 
+                    'rows'        => 5,
                 ],
                 'label'      => 'Description',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],

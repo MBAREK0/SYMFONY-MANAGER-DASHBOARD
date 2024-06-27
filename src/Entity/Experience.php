@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-
 #[ORM\Entity(repositoryClass: ExperienceRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_S_DATE_E_DATE_ORG_USER', fields: ['start_date', 'end_date', 'organization', 'user'])]
 #[Vich\Uploadable]
 class Experience
 {
@@ -63,7 +63,6 @@ class Experience
     {
         $this->technologies_used = new ArrayCollection();
         $this->skills_developed = new ArrayCollection();
-   
     }
 
     public function getId(): ?int
@@ -143,7 +142,7 @@ class Experience
         return $this;
     }
 
-    
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -155,7 +154,7 @@ class Experience
 
         return $this;
     }
-    
+
     /**
     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
     * of 'UploadedFile' is injected into this setter to trigger the update. If this
@@ -190,7 +189,7 @@ class Experience
     {
         return $this->imageName;
     }
-    
+
     /**
      * @return Collection<int, Skill>
      */
@@ -226,8 +225,4 @@ class Experience
 
         return $this;
     }
-
-
-    
-
 }

@@ -41,10 +41,8 @@ class EducationController extends AbstractController
     {
         $Education = new Education();
 
-        $currentUser = $this->getUser();
-
         // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
 
 
         $form = $this->createForm(EducationType::class, $Education, [
@@ -62,10 +60,8 @@ class EducationController extends AbstractController
                 $this->entityManager->flush();
 
                 $this->addFlash('success', ' Education created successfully!');
-
-                return $this->redirectToRoute('app_education');
             } catch (\Exception $e) {
-                throw new \Exception('Error creating education');
+                $this->addFlash('error', 'Unable to Add Education ');
             }
         }
 
@@ -86,10 +82,13 @@ class EducationController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function edit(Request $request, Education $Education): Response
     {
-        $currentUser = $this->getUser();
+        if ($Education->getUser() !== $this->getUser()) {
+            $this->addFlash('error', 'You are not authorized to edit this Education');
 
-        // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+            return $this->redirectToRoute('app_education');
+        }
+
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
 
         $form = $this->createForm(EducationType::class, $Education, [
             'skills' => $skills,
@@ -106,7 +105,9 @@ class EducationController extends AbstractController
 
                 return $this->redirectToRoute('app_education');
             } catch (\Exception $e) {
-                throw new \Exception('Error updating education');
+                $this->addFlash('error', 'Unable to Update Education ');
+
+                return $this->redirectToRoute('app_education');
             }
         }
 
@@ -125,9 +126,9 @@ class EducationController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function delete(Request $request, Education $Education = null): Response
     {
-
         if (!$Education) {
             $this->addFlash('error', 'Education not found');
+
             return $this->redirectToRoute('app_education');
         }
 

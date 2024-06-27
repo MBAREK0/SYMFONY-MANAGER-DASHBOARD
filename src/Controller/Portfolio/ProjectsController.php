@@ -42,10 +42,8 @@ class ProjectsController extends AbstractController
     {
         $Project = new Project();
 
-        $currentUser = $this->getUser();
 
-        // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
 
 
         $form = $this->createForm(ProjectsType::class, $Project, [
@@ -56,14 +54,16 @@ class ProjectsController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $Project->setUser($this->getUser());
+            try {
+                $Project->setUser($this->getUser());
 
-            $this->entityManager->persist($Project);
-            $this->entityManager->flush();
+                $this->entityManager->persist($Project);
+                $this->entityManager->flush();
 
-            $this->addFlash('success', 'Project created successfully!');
-
-            return $this->redirectToRoute('app_projects');
+                $this->addFlash('success', 'Project created successfully!');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Unable to Add Project ');
+            }
         }
 
 
@@ -85,10 +85,13 @@ class ProjectsController extends AbstractController
     #[Route('/projects/{id}/edit', name: 'app_projects_edit')]
     public function edit(Request $request, Project $Project): Response
     {
-        $currentUser = $this->getUser();
+        if ($Project->getUser() !== $this->getUser()) {
+            $this->addFlash('error', 'You are not authorized to edit this Project');
 
-        // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+            return $this->redirectToRoute('app_projects');
+        }
+
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
 
         $form = $this->createForm(ProjectsType::class, $Project, [
             'skills' => $skills,
@@ -97,11 +100,17 @@ class ProjectsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
+            try {
+                $this->entityManager->flush();
 
-            $this->addFlash('success', 'Project updated successfully!');
+                $this->addFlash('success', 'Project updated successfully!');
 
-            return $this->redirectToRoute('app_projects');
+                return $this->redirectToRoute('app_projects');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Unable to Update Project ');
+
+                return $this->redirectToRoute('app_projects');
+            }
         }
 
         return $this->render('portfolio/projects/edit.html.twig', [
@@ -123,9 +132,9 @@ class ProjectsController extends AbstractController
 
     public function delete(Project $Project = null): Response
     {
-
         if ($Project === null) {
             $this->addFlash('error', 'Project not found');
+
             return $this->redirectToRoute('app_projects');
         }
 

@@ -14,7 +14,6 @@ use App\Form\ExperienceType;
 use App\Repository\ExperienceRepository;
 use App\Repository\SkillRepository;
 
-
 class ExperienceController extends AbstractController
 {
     private $entityManager;
@@ -22,8 +21,11 @@ class ExperienceController extends AbstractController
     private $skillRepository;
 
 
-    public function __construct(EntityManagerInterface $em, ExperienceRepository $experienceRepository, SkillRepository $skillRepository)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        ExperienceRepository $experienceRepository,
+        SkillRepository $skillRepository
+    ) {
         $this->entityManager = $em;
         $this->skillRepository = $skillRepository;
         $this->experienceRepository = $experienceRepository;
@@ -42,11 +44,9 @@ class ExperienceController extends AbstractController
     {
         $experience = new Experience();
 
-        $currentUser = $this->getUser();
-
         // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
-        
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
+
         $form = $this->createForm(ExperienceType::class, $experience, [
             'skills' => $skills,
         ]);
@@ -60,17 +60,15 @@ class ExperienceController extends AbstractController
                 $this->entityManager->persist($experience);
                 $this->entityManager->flush();
                 $this->addFlash('success', 'Experience added successfully');
-                return $this->redirectToRoute('app_experience');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Unable to add experience');
             }
         }
 
         return $this->render('portfolio/experience/index.html.twig', [
-            'form' => $form->createView(),
-            'experiences' => $this->experienceRepository->findExperiencesByUserDesc($currentUser),
+            'form'        => $form->createView(),
+            'experiences' => $this->experienceRepository->findExperiencesByUserDesc($this->getUser()),
         ]);
-
     }
 
     /**
@@ -85,14 +83,13 @@ class ExperienceController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function edit(Request $request, Experience $experience): Response
     {
-        $currentUser = $this->getUser();
-
-        if ($experience->getUser() !== $currentUser) {
+        if ($experience->getUser() !== $this->getUser()) {
             $this->addFlash('error', 'You are not authorized to edit this experience');
+
             return $this->redirectToRoute('app_experience');
         }
 
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
 
         $form = $this->createForm(ExperienceType::class, $experience, [
             'skills' => $skills,
@@ -104,9 +101,12 @@ class ExperienceController extends AbstractController
             try {
                 $this->entityManager->flush();
                 $this->addFlash('success', 'Experience updated successfully');
+
                 return $this->redirectToRoute('app_experience');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Unable to update experience');
+
+                return $this->redirectToRoute('app_experience');
             }
         }
 
@@ -122,19 +122,21 @@ class ExperienceController extends AbstractController
      * @return Response
      */
 
-    
-    
+
+
     #[Route('/experience/delete/{id}', name: 'app_experience_delete')]
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function delete(Experience $experience = null): Response
     {
         if (!$experience) {
             $this->addFlash('error', 'Experience not found');
+
             return $this->redirectToRoute('app_experience');
         }
 
         if ($experience->getUser() !== $this->getUser()) {
             $this->addFlash('error', 'You are not authorized to delete this experience');
+
             return $this->redirectToRoute('app_experience');
         }
 
@@ -148,12 +150,4 @@ class ExperienceController extends AbstractController
 
         return $this->redirectToRoute('app_experience');
     }
-
-
-
-  
-  
-
-
-
 }

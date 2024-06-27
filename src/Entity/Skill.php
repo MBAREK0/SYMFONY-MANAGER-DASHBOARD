@@ -13,6 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
 #[Vich\Uploadable]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_USER', fields: ['name', 'user'])]
 class Skill
 {
     #[ORM\Id]

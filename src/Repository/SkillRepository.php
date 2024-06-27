@@ -26,6 +26,19 @@ class SkillRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function checkSkillCount($userId, $uniqueFild)
+    {
+        return $this->createQueryBuilder('s')
+            ->select('COUNT(s.id)')
+            ->leftJoin('s.user', 'u')
+            ->andWhere('u.id = :userId')
+            ->andWhere('s.name = :uniqueFild')
+            ->setParameter('userId', $userId)
+            ->setParameter('uniqueFild', $uniqueFild)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     //    /**
     //     * @return Skill[] Returns an array of Skill objects
     //     */

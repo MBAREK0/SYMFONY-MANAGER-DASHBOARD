@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: LicenseAndCertificationRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_ORG_DATE_USER', fields: ['name', 'organization', 'date', 'user'])]
 #[Vich\Uploadable]
 class LicenseAndCertification
 {

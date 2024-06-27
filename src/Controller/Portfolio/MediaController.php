@@ -58,10 +58,8 @@ class MediaController extends AbstractController
                 $this->entityManager->flush();
 
                 $this->addFlash('success', 'media created successfully!');
-
-                return $this->redirectToRoute('app_media');
             } catch (\Exception $e) {
-                $this->addFlash('error', ' the media path is already in use.');
+                $this->addFlash('error', ' Unable to Add media ');
             }
         }
 
@@ -101,7 +99,7 @@ class MediaController extends AbstractController
 
                 return $this->redirectToRoute('app_media');
             } catch (\Exception $e) {
-                $this->addFlash('error', ' the media path is already in use.');
+                $this->addFlash('error', '  Unable to Add media ');
 
                 return $this->redirectToRoute('app_media');
             }
@@ -124,9 +122,9 @@ class MediaController extends AbstractController
     #[Route('/media/{id}/delete', name: 'app_media_delete')]
     public function delete(Media $medium = null): Response
     {
-
         if (!$medium) {
             $this->addFlash('error', 'Medium not found');
+
             return $this->redirectToRoute('app_media');
         }
 

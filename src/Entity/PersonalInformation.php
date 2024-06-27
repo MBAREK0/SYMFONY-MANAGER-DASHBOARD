@@ -22,7 +22,7 @@ class PersonalInformation
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nickName = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 1000, nullable: true)]
     private ?string $about = null;
 
     #[ORM\Column(length: 255, nullable: true)]

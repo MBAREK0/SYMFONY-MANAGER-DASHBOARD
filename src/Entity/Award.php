@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: AwardRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_TITLE_ASS_W_DATE_USER', fields: ['title', 'associated_with', 'date', 'user'])]
 #[Vich\Uploadable]
 class Award
 {

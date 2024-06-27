@@ -44,10 +44,7 @@ class LicenseAndCertificationController extends AbstractController
     {
         $LicenseAndCertification = new LicenseAndCertification();
 
-        $currentUser = $this->getUser();
-
-        // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
 
         $form = $this->createForm(LicenseOrCertificationType::class, $LicenseAndCertification, [
             'skills' => $skills,
@@ -63,10 +60,8 @@ class LicenseAndCertificationController extends AbstractController
                 $this->entityManager->flush();
 
                 $this->addFlash('success', 'License or Certification created successfully!');
-
-                return $this->redirectToRoute('app_license_or_certification');
             } catch (\Exception $e) {
-                $this->addFlash('error', 'License or Certification name is already in use.');
+                $this->addFlash('error', 'Unable to Add License Or Certification');
             }
         }
 
@@ -90,10 +85,13 @@ class LicenseAndCertificationController extends AbstractController
     #[Route('/license_or_certification/{id}/edit', name: 'app_license_or_certification_edit')]
     public function edit(Request $request, LicenseAndCertification $LicenseAndCertification): Response
     {
-        $currentUser = $this->getUser();
+        if ($LicenseAndCertification->getUser() !== $this->getUser()) {
+            $this->addFlash('error', 'You are not authorized to edit this License Or Certification');
 
-        // Assuming you have a method to fetch skills for the current user
-        $skills = $this->skillRepository->findSkillsByUser($currentUser->getId());
+            return $this->redirectToRoute('app_license_or_certification');
+        }
+
+        $skills = $this->skillRepository->findSkillsByUser($this->getUser()->getId());
 
         $form = $this->createForm(LicenseOrCertificationType::class, $LicenseAndCertification, [
             'skills' => $skills,
@@ -111,7 +109,9 @@ class LicenseAndCertificationController extends AbstractController
 
                 return $this->redirectToRoute('app_license_or_certification');
             } catch (\Exception $e) {
-                $this->addFlash('error', 'License or Certification name is already in use.');
+                $this->addFlash('error', 'Unable to Update License Or Certification');
+
+                return $this->redirectToRoute('app_license_or_certification');
             }
         }
 
@@ -132,11 +132,11 @@ class LicenseAndCertificationController extends AbstractController
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/license_or_certification/{id}/delete', name: 'app_license_or_certification_delete')]
-    public function delete(LicenseAndCertification $LicenseAndCertification = null  ): Response
+    public function delete(LicenseAndCertification $LicenseAndCertification = null): Response
     {
-
         if (!$LicenseAndCertification) {
             $this->addFlash('error', 'License or Certification not found');
+
             return $this->redirectToRoute('app_license_or_certification');
         }
 

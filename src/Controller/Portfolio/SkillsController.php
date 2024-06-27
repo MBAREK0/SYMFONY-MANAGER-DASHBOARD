@@ -12,15 +12,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Skill;
 use App\Form\SkillType;
 use Doctrine\DBAL\Connection;
+use App\Repository\SkillRepository;
 
 class SkillsController extends AbstractController
 {
     private $entityManager;
+    private $SkillRepository;
 
 
-    public function __construct(EntityManagerInterface $em)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        SkillRepository $SkillRepository
+    ) {
         $this->entityManager = $em;
+        $this->SkillRepository = $SkillRepository;
     }
 
     /**
@@ -51,7 +56,7 @@ class SkillsController extends AbstractController
 
                 return $this->redirectToRoute('app_skills');
             } catch (\Exception $e) {
-                $this->addFlash('error', 'Skill name is already in use.');
+                $this->addFlash('error', 'Unable to Add the skill');
             }
         }
 
@@ -72,16 +77,28 @@ class SkillsController extends AbstractController
     #[Route('/skills/{id}/edit', name: 'app_skills_edit')]
     public function edit(Request $request, Skill $skill): Response
     {
+        if ($skill->getUser() !== $this->getUser()) {
+            $this->addFlash('error', 'You are not authorized to edit this Skill');
+
+            return $this->redirectToRoute('app_skills');
+        }
+
         $form = $this->createForm(SkillType::class, $skill);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
+            try {
+                $this->entityManager->flush();
 
-            $this->addFlash('success', 'Skill updated successfully!');
+                $this->addFlash('success', 'Skill updated successfully!');
 
-            return $this->redirectToRoute('app_skills');
+                return $this->redirectToRoute('app_skills');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Unable to Update the skill');
+
+                return $this->redirectToRoute('app_skills');
+            }
         }
 
         return $this->render('portfolio/skills/edit.html.twig', [
@@ -98,11 +115,11 @@ class SkillsController extends AbstractController
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/skills/{id}/delete', name: 'app_skills_delete')]
-    public function delete(Skill $skill = null , Connection $connection): Response
+    public function delete(Skill $skill = null, Connection $connection): Response
     {
-
         if (!$skill) {
             $this->addFlash('error', 'Skill not found');
+
             return $this->redirectToRoute('app_skills');
         }
 

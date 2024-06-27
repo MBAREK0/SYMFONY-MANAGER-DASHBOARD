@@ -41,7 +41,6 @@ class SecurityController extends AbstractController
     #[Route('/auth/sign_in', name: 'app_auth_sign_in') , methods(['GET']) ]
     public function index(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
-        
         return $this->render('auth/sign_in.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error'         => $authenticationUtils->getLastAuthenticationError(),

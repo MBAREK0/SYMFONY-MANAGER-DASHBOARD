@@ -96,7 +96,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->awards = new ArrayCollection();
         $this->licenseAndCertifications = new ArrayCollection();
         $this->experiences = new ArrayCollection();
-     
     }
 
 
@@ -380,6 +379,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-
 }

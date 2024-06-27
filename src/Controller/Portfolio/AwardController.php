@@ -55,10 +55,8 @@ class AwardController extends AbstractController
                 $this->entityManager->flush();
 
                 $this->addFlash('success', ' Award created successfully!');
-
-                return $this->redirectToRoute('app_award');
             } catch (\Exception $e) {
-                throw new \Exception('Error creating Award');
+                $this->addFlash('error', 'Unable to Add award ');
             }
         }
 
@@ -80,6 +78,12 @@ class AwardController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function edit(Request $request, Award $award): Response
     {
+        if ($award->getUser() !== $this->getUser()) {
+            $this->addFlash('error', 'You are not authorized to edit this Award');
+
+            return $this->redirectToRoute('app_award');
+        }
+
         $form = $this->createForm(AwardType::class, $award);
 
         $form->handleRequest($request);
@@ -93,7 +97,9 @@ class AwardController extends AbstractController
 
                 return $this->redirectToRoute('app_award');
             } catch (\Exception $e) {
-                throw new \Exception('Error updating award');
+                $this->addFlash('error', 'Unable to Update award ');
+
+                return $this->redirectToRoute('app_award');
             }
         }
 
@@ -116,9 +122,9 @@ class AwardController extends AbstractController
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     public function delete(Award $award = null): Response
     {
-
         if (!$award) {
             $this->addFlash('error', 'Award not found');
+
             return $this->redirectToRoute('app_award');
         }
 
