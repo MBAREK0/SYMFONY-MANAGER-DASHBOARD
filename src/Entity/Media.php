@@ -9,7 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_PATH', fields: ['path'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_PATH_USER', fields: ['name','path','user'])]
 #[Vich\Uploadable]
 class Media
 {

@@ -71,6 +71,7 @@ class PortfolioApiControler extends AbstractController
             'projects'                 => $this->getProjects($user),
             'experiences'              => $this->getExperiences($user),
             'awards'                   => $this->getAwards($user),
+            'languages'                => $this->getLanguages($user),     
             
         ]);
     }
@@ -245,5 +246,21 @@ class PortfolioApiControler extends AbstractController
         }
 
         return $educationsArray;
+    }
+
+    public function getLanguages($user)
+    {
+        $languagesArray = [];
+        $languages = $user->getLanguages();
+
+        foreach ($languages as $language) {
+            $languagesArray[] = [
+                'id'          => $language->getId(),
+                'name'        => $language->getName(),
+                'proficiency' => $language->getProficiency(),
+            ];
+        }
+
+        return $languagesArray;
     }
 }

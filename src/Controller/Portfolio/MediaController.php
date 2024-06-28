@@ -128,11 +128,14 @@ class MediaController extends AbstractController
             return $this->redirectToRoute('app_media');
         }
 
-        $this->entityManager->remove($medium);
-        $this->entityManager->flush();
+    try {
+            $this->entityManager->remove($medium);
+            $this->entityManager->flush();
 
-        $this->addFlash('success', 'Medium deleted successfully!');
-
+            $this->addFlash('success', 'Medium deleted successfully!');
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'Error deleting Medium');
+        }
         return $this->redirectToRoute('app_media');
     }
 }

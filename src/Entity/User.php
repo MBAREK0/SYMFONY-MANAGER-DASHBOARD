@@ -85,6 +85,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Experience::class, mappedBy: 'user')]
     private Collection $experiences;
 
+    /**
+     * @var Collection<int, Language>
+     */
+    #[ORM\OneToMany(targetEntity: Language::class, mappedBy: 'user')]
+    private Collection $languages;
+
 
 
     public function __construct()
@@ -96,6 +102,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->awards = new ArrayCollection();
         $this->licenseAndCertifications = new ArrayCollection();
         $this->experiences = new ArrayCollection();
+        $this->languages = new ArrayCollection();
     }
 
 
@@ -374,6 +381,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($experience->getUser() === $this) {
                 $experience->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Language>
+     */
+    public function getLanguages(): Collection
+    {
+        return $this->languages;
+    }
+
+    public function addLanguage(Language $language): static
+    {
+        if (!$this->languages->contains($language)) {
+            $this->languages->add($language);
+            $language->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): static
+    {
+        if ($this->languages->removeElement($language)) {
+            // set the owning side to null (unless already changed)
+            if ($language->getUser() === $this) {
+                $language->setUser(null);
             }
         }
 
