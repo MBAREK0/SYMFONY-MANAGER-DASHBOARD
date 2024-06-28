@@ -54,13 +54,13 @@
 
 						{% if languages|length > 0 %}
 							{% for language in languages %}
-								<div class="flex flex-col gap-2 w-full lg:w-[48%]   text-sm  border border-gray-500 hover:border-white rounded-lg mb-4">
+								<div class="flex flex-col gap-2 w-full lg:w-[48%]   text-sm  border border-gray-600 hover:border-gray-500 rounded-lg mb-4">
 									<div class="text-gray-100  cursor-default flex items-center justify-between w-full h-12 sm:h-14 rounded-lg bg-[#232531] px-[10px] ">
 										<div class="flex gap-2 items-center">
 										
 											
 												<h2 class="text-sm">{{ language.name }}</h2>
-											<small class="text-xs text-gray-300">{{ language.proficiency }}</small>
+											<small class="text-xs text-blue-600">{{ language.proficiency }}</small>
 											
 										</div>
 										<div class="text-gray-600  p-1 rounded-md transition-colors ease-linear flex items-center gap-4">
