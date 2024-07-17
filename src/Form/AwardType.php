@@ -19,7 +19,7 @@ class AwardType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'attr' => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Title',
                 ],
                 'constraints' => [
@@ -30,7 +30,7 @@ class AwardType extends AbstractType
             ])
             ->add('associated_with', TextType::class, [
                 'attr' => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Associated With ',
                 ],
                 'constraints' => [
@@ -42,7 +42,7 @@ class AwardType extends AbstractType
 
             ->add('issuer', TextType::class, [
                 'attr' => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
 
                 ],
                 'label'      => 'Issuer',
@@ -52,7 +52,7 @@ class AwardType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
                 'attr'   => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
 
                 ],
                 'label'      => 'Issue date',
@@ -63,7 +63,7 @@ class AwardType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required'    => false,
                 'attr'        => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Description',
                     'rows'        => 5,
                 ],

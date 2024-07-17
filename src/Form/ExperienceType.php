@@ -23,7 +23,7 @@ class ExperienceType extends AbstractType
         $builder
             ->add('organization', TextType::class, [
                 'attr' => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Organization Name',
                 ],
                 'constraints' => [
@@ -34,7 +34,7 @@ class ExperienceType extends AbstractType
             ])
             ->add('role', TextType::class, [
                 'attr' => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Role Name Or Title',
                 ],
                 'constraints' => [
@@ -46,7 +46,7 @@ class ExperienceType extends AbstractType
             ->add('start_date', null, [
                 'widget' => 'single_text',
                 'attr'   => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
 
                 ],
                 'label'      => 'Start Date',
@@ -57,7 +57,7 @@ class ExperienceType extends AbstractType
             ->add('end_date', null, [
                 'widget' => 'single_text',
                 'attr'   => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
 
                 ],
                 'label'      => 'End Date',
@@ -68,7 +68,7 @@ class ExperienceType extends AbstractType
             ->add('responsibilities', TextareaType::class, [
                 'required'    => true,
                 'attr'        => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Responsibilities',
                     'rows'        => 5,
                 ],
@@ -81,7 +81,7 @@ class ExperienceType extends AbstractType
             ->add('achievements', TextareaType::class, [
                 'required'    => false,
                 'attr'        => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Achievements',
                     'rows'        => 5,
                 ],
@@ -91,7 +91,7 @@ class ExperienceType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required'    => false,
                 'attr'        => [
-                    'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                     'placeholder' => 'Description',
                     'rows'        => 5,
                 ],

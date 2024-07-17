@@ -19,7 +19,7 @@ class DocumentType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'attr' => [
-                'class'       => 'form-control relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm',
+                'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
                 'placeholder' => 'Document Name',
             ],
             'constraints' => [
