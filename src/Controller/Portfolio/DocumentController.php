@@ -82,13 +82,14 @@ class DocumentController extends AbstractController
      * @return Response
      */
 
-    #[Route('/document/download/{id}', name: 'app_document_download')]
-    public function download(Document $document): Response
-    {
-        $file = $this->getParameter('document_directory').'/'.$document->getFileName();
-
-        return $this->file($file);
-    }
+     #[Route('/document/download/{name}', name: 'app_document_download')]
+     public function download(Document $document, string $name): Response
+     {
+     
+         $file = $this->getParameter('document_directory').'/'.$document->getFileName();
+     
+         return $this->file($file);
+     }
 
     /**
      * ? in the function we are deleting a document

@@ -60,7 +60,7 @@
 
 										</div>
 										<div class="text-gray-600  p-1 rounded-md transition-colors ease-linear flex items-center gap-4">
-											<a href="{{ path('app_document_download', { id: document.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+											<a href="{{ path('app_document_download', { name: document.name }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 												<img src="{{ asset('images/svg/download.svg') }}" class="h-4 w-4   " alt="">
 											</a>
 											<a href="{{ path('app_document_edit', { id: document.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">

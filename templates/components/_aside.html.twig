@@ -38,7 +38,8 @@
 							<svg class="h-5 w-5 " {% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience','app_language','app_document'] %} fill="#ffffff" {% else %} fill="#757575" {% endif %} width="800px" height="800px" viewbox="0 0 846.66 846.66" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 								<path class="fil0" d="M149.09 50.95l668.58 0c11.46,0 20.76,9.29 20.76,20.76l0 612.86c0,6.73 -3.2,12.71 -8.17,16.5l-95.05 88.97c-3.99,3.72 -9.05,5.56 -14.11,5.56l-572.01 0.11c-11.46,0 -20.76,-9.29 -20.76,-20.76l0 -61.42 -113.24 -123.75c-4.21,-3.79 -6.86,-9.29 -6.86,-15.41l0 -344.2c0,-11.46 9.3,-20.76 20.76,-20.76l99.34 0 0 -137.7c0,-11.47 9.3,-20.76 20.76,-20.76zm-20.76 601.37l0 -401.39 -78.58 0 0 315.52 78.58 85.87zm111.14 -369.19c-27.3,0 -27.3,-41.52 0,-41.52l487.82 0c27.31,0 27.31,41.52 0,41.52l-487.82 0zm0 -84.2c-27.3,0 -27.3,-41.51 0,-41.51l487.82 0c27.31,0 27.31,41.51 0,41.51l-487.82 0zm281.05 271.15c-27.3,0 -27.3,-41.51 0,-41.51l212.96 0c27.3,0 27.3,41.51 0,41.51l-212.96 0zm0 113.91c-27.3,0 -27.3,-41.52 0,-41.52l212.96 0c27.3,0 27.3,41.52 0,41.52l-212.96 0zm-287.24 -208.66l220.39 0c11.46,0 20.76,9.29 20.76,20.76l0 220.38c0,11.46 -9.3,20.76 -20.76,20.76l-220.39 0c-11.46,0 -20.76,-9.3 -20.76,-20.76l0 -220.38c0,-11.47 9.3,-20.76 20.76,-20.76zm199.63 41.52l-178.87 0 0 178.86 178.87 0 0 -178.86zm364 -324.39l-627.06 0 0 661.74 543.21 0 83.85 -78.49 0 -583.25z"/>
 							</svg>
-							<span class="ml-4">PORTFOLIO MANAGER</span>
+							<span class="ml-4">PORTFOLIO
+							</span>
 						</span>
 						{% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience','app_language','app_document'] %}
 
@@ -192,146 +193,195 @@
 								<a href="{{ path('app_media') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
-											<img src="{{ asset('images/svg/media.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
-												my contacts
-											</div>
+
+											<svg class="h-4 w-4 mr-2" {% if app.request.attributes.get('_route') == 'app_media' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %} viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink">
+												<path d="M16,2c-7.727,0 -14,6.273 -14,14c0,7.727 6.273,14 14,14c7.727,0 14,-6.273 14,-14c-0,-7.727 -6.273,-14 -14,-14Zm-6.729,10.345l0.15,0.259l6.23,10.792l0.866,0.5c0,0 -0.861,-0.493 -0.861,-0.493l0.15,0.26c0.475,0.824 1.378,1.386 2.555,1.483c0.993,0.082 2.117,-0.184 3.119,-0.763c1.121,-0.647 2.118,-1.223 2.118,-1.223c0.478,-0.276 0.642,-0.887 0.366,-1.366l-2.077,-3.597c-0.276,-0.478 -0.888,-0.642 -1.366,-0.366l-0.866,0.5c0,-0 -3.846,-6.662 -3.846,-6.662c-0,0 0.866,-0.5 0.866,-0.5c0.478,-0.276 0.642,-0.888 0.366,-1.366l-2.077,-3.597c-0.276,-0.479 -0.888,-0.642 -1.366,-0.366c0,-0 -0.997,0.575 -2.118,1.223c-1.002,0.578 -1.795,1.419 -2.22,2.319c-0.505,1.068 -0.469,2.131 0.006,2.955l0.005,0.008Zm8.117,10.058l-6.39,-11.066c-0.177,-0.307 -0.118,-0.702 0.07,-1.1c0.267,-0.566 0.782,-1.079 1.412,-1.442c0,-0 1.252,-0.723 1.252,-0.723c0,-0 1.077,1.865 1.077,1.865c-0,0 -0.866,0.5 -0.866,0.5c-0.478,0.276 -0.642,0.888 -0.366,1.366l4.846,8.394c0.276,0.478 0.888,0.642 1.366,0.366l0.866,-0.5c0,-0 1.077,1.865 1.077,1.865c0,0 -1.252,0.723 -1.252,0.723c-0.63,0.364 -1.331,0.553 -1.955,0.502c-0.43,-0.035 -0.794,-0.176 -0.976,-0.47l-0.161,-0.28Z"/>
+											</svg>
+											my contacts
 										</div>
-									</a>
-								</li>
-								<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
-									<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
-										<div class="px-1   rounded-md">
-											<div class="flex items-center">
-												<img src="{{ asset('images/svg/skills.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
-													my skills
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class=" {{ app.request.attributes.get('_route') == 'app_language' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
-										<a href="{{ path('app_language') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
-											<div class="px-1   rounded-md">
-												<div class="flex items-center">
-													<img src="{{ asset('images/svg/language.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
-														my languages
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class=" {{ app.request.attributes.get('_route') == 'app_document' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
-											<a href="{{ path('app_document') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
-												<div class="px-1   rounded-md">
-													<div class="flex items-center">
-														<img src="{{ asset('images/svg/documents.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
-															documents
-														</div>
-													</div>
-												</a>
-											</li>
-										</ul>
 									</div>
-								</li>
+								</a>
+							</li>
+							<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+
+											<svg class="h-4 w-4 mr-2" {% if app.request.attributes.get('_route') == 'app_skills' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve">
+												<g>
+													<path d="M195.234,357.719L260.313,245l-65.078-112.719H65.078L0,245l65.078,112.719H195.234z M82.76,162.906h94.794L224.95,245
+																																																																																																																																l-47.396,82.094H82.76L35.362,245L82.76,162.906z"/>
+													<path d="M294.766,0l-65.078,112.718l65.078,112.718h130.156L490,112.718L424.922,0H294.766z M407.241,194.812h-94.794
+																																																																																																																																l-47.397-82.093l47.397-82.093h94.794l47.396,82.093L407.241,194.812z"/>
+													<path d="M294.766,264.563l-65.078,112.718L294.766,490h130.156L490,377.281l-65.078-112.718H294.766z M407.241,459.375h-94.794
+																																																																																																																							l-47.397-82.094l47.397-82.093h94.794l47.396,82.093L407.241,459.375z"/>
+												</g>
+											</svg>
+											skills
+										</div>
+									</div>
+								</a>
+							</li>
+							<li class=" {{ app.request.attributes.get('_route') == 'app_language' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_language') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+
+											<svg class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M20.58 19.37L17.59 11.01C17.38 10.46 16.91 10.12 16.37 10.12C15.83 10.12 15.37 10.46 15.14 11.03L12.16 19.37C12.02 19.76 12.22 20.19 12.61 20.33C13 20.47 13.43 20.27 13.57 19.88L14.19 18.15H18.54L19.16 19.88C19.27 20.19 19.56 20.38 19.87 20.38C19.95 20.38 20.04 20.37 20.12 20.34C20.51 20.2 20.71 19.77 20.57 19.38L20.58 19.37ZM14.74 16.64L16.38 12.05L18.02 16.64H14.74ZM12.19 7.85C9.92999 11.42 7.89 13.58 5.41 15.02C5.29 15.09 5.16 15.12 5.04 15.12C4.78 15.12 4.53 14.99 4.39 14.75C4.18 14.39 4.3 13.93 4.66 13.73C6.75999 12.51 8.48 10.76 10.41 7.86H4.12C3.71 7.86 3.37 7.52 3.37 7.11C3.37 6.7 3.71 6.36 4.12 6.36H7.87V4.38C7.87 3.97 8.21 3.63 8.62 3.63C9.02999 3.63 9.37 3.97 9.37 4.38V6.36H13.12C13.53 6.36 13.87 6.7 13.87 7.11C13.87 7.52 13.53 7.86 13.12 7.86H12.18L12.19 7.85ZM12.23 15.12C12.1 15.12 11.97 15.09 11.85 15.02C11.2 14.64 10.57 14.22 9.97999 13.78C9.64999 13.53 9.58 13.06 9.83 12.73C10.08 12.4 10.55 12.33 10.88 12.58C11.42 12.99 12.01 13.37 12.61 13.72C12.97 13.93 13.09 14.39 12.88 14.75C12.74 14.99 12.49 15.12 12.23 15.12Z" {% if app.request.attributes.get('_route') == 'app_language' %} fill="#ffffff" {% else %} fill="#757575" {% endif %}/>
+											</svg>
+											languages
+										</div>
+									</div>
+								</a>
+							</li>
+							<li class=" {{ app.request.attributes.get('_route') == 'app_document' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_document') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+											<svg class="h-5 w-5 mr-2" {% if app.request.attributes.get('_route') == 'app_document' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %} viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><path d="M 11.5050 56 L 32.9045 56 C 37.4664 56 39.6262 53.6859 39.6262 49.0799 L 39.6262 45.0027 L 43.9237 45.0027 C 48.4638 45.0027 50.7337 42.6887 50.7337 38.0826 L 50.7337 19.6364 C 50.7337 16.9256 50.2047 15.2066 48.5518 13.5096 L 37.4224 2.1818 C 35.8356 .5730 34.0064 0 31.6483 0 L 22.6345 0 C 18.0945 0 15.8025 2.3141 15.8025 6.9201 L 15.8025 10.9972 L 11.5050 10.9972 C 6.9651 10.9972 4.6731 13.3113 4.6731 17.9174 L 4.6731 49.0799 C 4.6731 53.7080 6.9651 56 11.5050 56 Z M 39.6262 31.3168 C 39.6262 28.4959 39.2957 27.2617 37.5325 25.4545 L 25.3893 13.0909 C 23.7144 11.3719 22.3259 10.9972 19.8356 10.9972 L 19.3507 10.9972 L 19.3507 6.9642 C 19.3507 4.8044 20.5408 3.5482 22.8108 3.5482 L 32.1111 3.5482 L 32.1111 15.0744 C 32.1111 17.6088 33.3673 18.8429 35.8797 18.8429 L 47.1856 18.8429 L 47.1856 38.0385 C 47.1856 40.2204 46.0175 41.4545 43.7254 41.4545 L 39.6262 41.4545 Z M 36.4086 15.6474 C 35.6152 15.6474 35.3067 15.3168 35.3067 14.5455 L 35.3067 4.2534 L 46.5023 15.6474 Z M 11.6813 52.4518 C 9.4113 52.4518 8.2213 51.2176 8.2213 49.0138 L 8.2213 17.9614 C 8.2213 15.8017 9.4113 14.5455 11.7033 14.5455 L 19.3507 14.5455 L 19.3507 27.3278 C 19.3507 30.1047 20.7612 31.4711 23.4940 31.4711 L 36.0780 31.4711 L 36.0780 49.0138 C 36.0780 51.2176 34.8879 52.4518 32.5959 52.4518 Z M 23.9127 28.1432 C 23.0312 28.1432 22.6786 27.7906 22.6786 26.9311 L 22.6786 15.2286 L 35.3948 28.1432 Z"/></svg>
+											documents
+										</div>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</li>
+			<li class="relative px-2 py-1 ">
+				<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+					<img src="{{ asset('images/svg/calendar.svg') }}" class="h-6 w-6" alt="">
+						<span class="ml-4">CALENDRIER</span>
+					</a>
+				</li>
+				<li class="relative px-2 py-1 ">
+					<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+						<img src="{{ asset('images/svg/translate.svg') }}" class="h-6 w-6 " alt="">
+							<span class="ml-4">TRANSLATE</span>
+						</a>
+					</li>
+					<li class="relative px-2 py-1 ">
+						<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+							<img src="{{ asset('images/svg/chat.svg') }}" class="h-6 w-6" alt="">
+								<span class="ml-4">CHAT</span>
+							</a>
+						</li>
+						<li class="relative px-2 py-1 ">
+							<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+								<img src="{{ asset('images/svg/tasks.svg') }}" class="h-6 w-6" alt="">
+									<span class="ml-4">TASKS</span>
+								</a>
 							</li>
 							<li class="relative px-2 py-1 ">
 								<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-									<img src="{{ asset('images/svg/calendar.svg') }}" class="h-6 w-6" alt="">
-										<span class="ml-4">CALENDRIER</span>
+									<img src="{{ asset('images/svg/notion.svg') }}" class="h-6 w-6" alt="">
+										<span class="ml-4">NOTION</span>
 									</a>
 								</li>
-								<li class="relative px-2 py-1 ">
-									<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-										<img src="{{ asset('images/svg/translate.svg') }}" class="h-6 w-6 " alt="">
-											<span class="ml-4">TRANSLATE</span>
-										</a>
-									</li>
-									<li class="relative px-2 py-1 ">
-										<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-											<img src="{{ asset('images/svg/chat.svg') }}" class="h-6 w-6" alt="">
-												<span class="ml-4">CHAT</span>
-											</a>
-										</li>
-										<li class="relative px-2 py-1 ">
-											<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-												<img src="{{ asset('images/svg/tasks.svg') }}" class="h-6 w-6" alt="">
-													<span class="ml-4">TASKS</span>
-												</a>
-											</li>
-											<li class="relative px-2 py-1 ">
-												<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-													<img src="{{ asset('images/svg/notion.svg') }}" class="h-6 w-6" alt="">
-														<span class="ml-4">NOTION</span>
-													</a>
-												</li>
 
-												{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
-													<li class="relative px-2 py-1" x-data="{ Open : true  }">
+								{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
+									<li class="relative px-2 py-1" x-data="{ Open : true  }">
+									{% else %}
+										<li class="relative px-2 py-1" x-data="{ Open : false  }">
+										{% endif %}
+										{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
+											<div class=" inline-flex items-center justify-between w-full text-white font-semibold transition-colors duration-150   cursor-pointer p-1" x-on:click="Open = !Open">
+											{% else %}
+												<div class="p-1 inline-flex items-center justify-between w-full text-gray-400 font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
+												{% endif %}
+												<span class="inline-flex items-center  text-sm font-semibold  Open : false  ">
+													{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
+														<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M6 12L6 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M12 8L12 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M6 19L6 16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M18 19L18 17" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M12 19L12 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M10 8L14 8" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M4 16L8 16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M16 17H20" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+															<path d="M18 13L18 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+														</svg>
 													{% else %}
-														<li class="relative px-2 py-1" x-data="{ Open : false  }">
-														{% endif %}
-														{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
-															<div class=" inline-flex items-center justify-between w-full text-white font-semibold transition-colors duration-150   cursor-pointer p-1" x-on:click="Open = !Open">
-															{% else %}
-																<div class="p-1 inline-flex items-center justify-between w-full text-gray-400 font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
-																{% endif %}
-																<span class="inline-flex items-center  text-sm font-semibold  Open : false  ">
-																	<img src="{{ asset('images/svg/settings.svg') }}" class="h-5 w-5" alt="portfolio">
-																		<span class="ml-4">SETTINGS</span>
-																	</span>
-																	{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
-																		<span>
-																			<svg x-show="!Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
-																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
-																			</svg>
+														<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M6 12L6 5" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M12 8L12 5" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M6 19L6 16" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M18 19L18 17" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M12 19L12 12" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M10 8L14 8" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M4 16L8 16" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M16 17H20" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+															<path d="M18 13L18 5" stroke="#757575" stroke-width="2" stroke-linecap="round"/>
+														</svg>
+													{% endif %}
+													<span class="ml-4">SETTINGS</span>
+												</span>
+												{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
+													<span>
+														<svg x-show="!Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
+															<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
+														</svg>
 
-																			<svg x-show="Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
-																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
-																			</svg>
-																		</span>
-																	{% else %}
+														<svg x-show="Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
+															<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
+														</svg>
+													</span>
+												{% else %}
 
-																		<span>
-																			<svg x-show="!Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
-																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
-																			</svg>
+													<span>
+														<svg x-show="!Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
+															<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
+														</svg>
 
-																			<svg x-show="Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
-																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
-																			</svg>
-																		</span>
-																	{% endif %}
+														<svg x-show="Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
+															<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
+														</svg>
+													</span>
+												{% endif %}
 
 
+											</div>
+
+											<div x-show.transition="Open" style="display:none;">
+												<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class=" mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
+
+													<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+														<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+															<div class="px-1   rounded-md">
+																<div class="flex items-center">
+																	<svg class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<path fill-rule="evenodd" clip-rule="evenodd" d="M11.9426 1.25H12.0574C14.3658 1.24999 16.1748 1.24998 17.5863 1.43975C19.031 1.63399 20.1711 2.03933 21.0659 2.93414C21.9607 3.82895 22.366 4.96897 22.5603 6.41371C22.75 7.82519 22.75 9.63423 22.75 11.9426V12.0574C22.75 14.3658 22.75 16.1748 22.5603 17.5863C22.366 19.031 21.9607 20.1711 21.0659 21.0659C20.1711 21.9607 19.031 22.366 17.5863 22.5603C16.1748 22.75 14.3658 22.75 12.0574 22.75H11.9426C9.63423 22.75 7.82519 22.75 6.41371 22.5603C4.96897 22.366 3.82895 21.9607 2.93414 21.0659C2.03933 20.1711 1.63399 19.031 1.43975 17.5863C1.24998 16.1748 1.24999 14.3658 1.25 12.0574V11.9426C1.24999 9.63423 1.24998 7.82519 1.43975 6.41371C1.63399 4.96897 2.03933 3.82895 2.93414 2.93414C3.82895 2.03933 4.96897 1.63399 6.41371 1.43975C7.82519 1.24998 9.63423 1.24999 11.9426 1.25ZM6.61358 2.92637C5.33517 3.09825 4.56445 3.42514 3.9948 3.9948C3.42514 4.56445 3.09825 5.33517 2.92637 6.61358C2.75159 7.91356 2.75 9.62177 2.75 12C2.75 14.3782 2.75159 16.0864 2.92637 17.3864C3.09825 18.6648 3.42514 19.4355 3.9948 20.0052C4.56445 20.5749 5.33517 20.9018 6.61358 21.0736C7.91356 21.2484 9.62177 21.25 12 21.25C14.3782 21.25 16.0864 21.2484 17.3864 21.0736C18.6648 20.9018 19.4355 20.5749 20.0052 20.0052C20.5749 19.4355 20.9018 18.6648 21.0736 17.3864C21.2484 16.0864 21.25 14.3782 21.25 12C21.25 9.62177 21.2484 7.91356 21.0736 6.61358C20.9018 5.33517 20.5749 4.56445 20.0052 3.9948C19.4355 3.42514 18.6648 3.09825 17.3864 2.92637C16.0864 2.75159 14.3782 2.75 12 2.75C9.62177 2.75 7.91356 2.75159 6.61358 2.92637ZM8.5 10.25C7.5335 10.25 6.75 11.0335 6.75 12C6.75 12.9665 7.5335 13.75 8.5 13.75C9.4665 13.75 10.25 12.9665 10.25 12C10.25 11.0335 9.4665 10.25 8.5 10.25ZM5.25 12C5.25 10.2051 6.70507 8.75 8.5 8.75C10.0368 8.75 11.3245 9.81665 11.663 11.25H17C17.9665 11.25 18.75 12.0335 18.75 13V14C18.75 14.4142 18.4142 14.75 18 14.75C17.5858 14.75 17.25 14.4142 17.25 14V13C17.25 12.8619 17.1381 12.75 17 12.75H16.25V13.5C16.25 13.9142 15.9142 14.25 15.5 14.25C15.0858 14.25 14.75 13.9142 14.75 13.5V12.75H11.663C11.3245 14.1834 10.0368 15.25 8.5 15.25C6.70507 15.25 5.25 13.7949 5.25 12Z" {% if app.request.attributes.get('_route') == 'app_settings_credentials' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %}/>
+																	</svg>
+																	credentials
 																</div>
+															</div>
+														</a>
+													</li>
+													{% if is_granted('ROLE_ADMIN') %}
+														<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+															<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+																<div class="px-1   rounded-md">
+																	<div class="flex items-center">
+																		<svg class="h-4 w-4 mr-2" viewBox="0 0 24 24" {% if app.request.attributes.get('_route') == 'app_auth_create_user' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %} xmlns="http://www.w3.org/2000/svg">
+																			<path d="M20 18L14 18M17 15V21M7.68213 14C8.63244 14.6318 9.77319 15 10.9999 15C11.7012 15 12.3744 14.8797 13 14.6586M10.5 21H5.6C5.03995 21 4.75992 21 4.54601 20.891C4.35785 20.7951 4.20487 20.6422 4.10899 20.454C4 20.2401 4 19.9601 4 19.4V17C4 15.3431 5.34315 14 7 14H7.5M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z" {% if app.request.attributes.get('_route') == 'app_auth_create_user' %} stroke="#FFFFFF" {% else %} stroke="#757575" {% endif %} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
 
-																<div x-show.transition="Open" style="display:none;">
-																	<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class=" mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
+																		create Users
+																	</div>
+																</div>
+															</a>
+														</li>
+													{% endif %}
 
-																		<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
-																			<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
-																				<div class="px-1   rounded-md">
-																					<div class="flex items-center">
-																						<img src="{{ asset('images/svg/credentials.svg') }}" class="h-4 w-4 text-gray-400 Open : false mr-2" alt="">
-																							credentials
-																						</div>
-																					</div>
-																				</a>
-																			</li>
-																			{% if is_granted('ROLE_ADMIN') %}
-																				<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
-																					<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
-																						<div class="px-1   rounded-md">
-																							<div class="flex items-center">
-																								<img src="{{ asset('images/svg/add_user.svg') }}" class="h-4 w-4 text-gray-400 Open : false mr-2" alt="">
-																									create Users
-																								</div>
-																							</div>
-																						</a>
-																					</li>
-																				{% endif %}
-
-																			</ul>
-																		</div>
-																	</li>
-																</li>
-															</ul>
-														</div>
+												</ul>
+											</div>
+										</li>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</li>
+				</li>
+			</li>
