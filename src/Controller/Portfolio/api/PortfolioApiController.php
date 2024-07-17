@@ -17,7 +17,7 @@ use App\Repository\EducationRepository;
 use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 
-class PortfolioApiControler extends AbstractController
+class PortfolioApiController extends AbstractController
 {
     private $personalInformationRepository;
     private $awardRepository;

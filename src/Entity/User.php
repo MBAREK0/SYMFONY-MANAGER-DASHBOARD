@@ -91,6 +91,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Language::class, mappedBy: 'user')]
     private Collection $languages;
 
+    /**
+     * @var Collection<int, Document>
+     */
+    #[ORM\OneToMany(targetEntity: Document::class, mappedBy: 'user')]
+    private Collection $documents;
+
 
 
     public function __construct()
@@ -103,6 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->licenseAndCertifications = new ArrayCollection();
         $this->experiences = new ArrayCollection();
         $this->languages = new ArrayCollection();
+        $this->documents = new ArrayCollection();
     }
 
 
@@ -411,6 +418,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($language->getUser() === $this) {
                 $language->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Document>
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Document $document): static
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents->add($document);
+            $document->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Document $document): static
+    {
+        if ($this->documents->removeElement($document)) {
+            // set the owning side to null (unless already changed)
+            if ($document->getUser() === $this) {
+                $document->setUser(null);
             }
         }
 

@@ -66,6 +66,10 @@ class ProjectsController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+
 
         return $this->render('portfolio/projects/index.html.twig', [
             'form'      => $form->createView(),
@@ -113,6 +117,10 @@ class ProjectsController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+         
         return $this->render('portfolio/projects/edit.html.twig', [
             'form'    => $form->createView(),
             'project' => $Project,

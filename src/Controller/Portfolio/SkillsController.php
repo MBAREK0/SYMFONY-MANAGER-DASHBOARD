@@ -60,6 +60,10 @@ class SkillsController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+
         return $this->render('portfolio/skills/index.html.twig', [
             'form'   => $form->createView(),
             'skills' => $this->getUser()->getSkills(),
@@ -100,6 +104,10 @@ class SkillsController extends AbstractController
                 return $this->redirectToRoute('app_skills');
             }
         }
+
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
 
         return $this->render('portfolio/skills/edit.html.twig', [
             'form'  => $form->createView(),

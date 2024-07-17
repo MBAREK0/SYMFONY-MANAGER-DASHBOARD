@@ -65,6 +65,10 @@ class ExperienceController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+
         return $this->render('portfolio/experience/index.html.twig', [
             'form'        => $form->createView(),
             'experiences' => $this->experienceRepository->findExperiencesByUserDesc($this->getUser()),
@@ -109,6 +113,10 @@ class ExperienceController extends AbstractController
                 return $this->redirectToRoute('app_experience');
             }
         }
+
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
 
         return $this->render('portfolio/experience/edit.html.twig', [
             'form' => $form->createView(),

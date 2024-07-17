@@ -65,6 +65,10 @@ class EducationController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+
         return $this->render('portfolio/education/index.html.twig', [
             'form'        => $form->createView(),
             'Educations'  => $this->educationRepository->findEducationsByUserDesc($this->getUser()),
@@ -110,6 +114,10 @@ class EducationController extends AbstractController
                 return $this->redirectToRoute('app_education');
             }
         }
+
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
 
         return $this->render('portfolio/education/edit.html.twig', [
             'form' => $form->createView(),

@@ -63,6 +63,10 @@ class LanguageController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+
         return $this->render('portfolio/language/index.html.twig', [
             'form'   => $form->createView(),
             'languages'  => $this->getUser()->getLanguages(),
@@ -109,6 +113,10 @@ class LanguageController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+         
         return $this->render('portfolio/language/edit.html.twig', [
             'form'   => $form->createView(),
             'language'  => $Language,

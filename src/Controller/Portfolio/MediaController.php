@@ -63,6 +63,10 @@ class MediaController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+
         return $this->render('portfolio/media/index.html.twig', [
             'form'   => $form->createView(),
             'media'  => $this->mediaRepository->findMediaByUserDesc($this->getUser()),
@@ -105,6 +109,10 @@ class MediaController extends AbstractController
             }
         }
 
+        foreach ($form->getErrors(true) as $error) {
+            $this->addFlash('error', $error->getMessage());
+         }
+         
         return $this->render('portfolio/media/edit.html.twig', [
             'form'   => $form->createView(),
             'medium' => $medium,

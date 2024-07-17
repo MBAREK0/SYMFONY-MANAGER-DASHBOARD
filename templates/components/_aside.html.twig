@@ -1,8 +1,9 @@
 {# templates/components/_aside.html.twig #}
 
 <div>
-	<div class="text-gray-300">
-	{# <img src="https://rorrevision.gumlet.io/wp-content/uploads/2022/03/technology-1-300x300-1.png" class="w-10 h-10 bg-white p-2 rounded-full" alt=""> #}
+	<div
+		class="text-gray-400">
+		{# <img src="https://rorrevision.gumlet.io/wp-content/uploads/2022/03/technology-1-300x300-1.png" class="w-10 h-10 bg-white p-2 rounded-full" alt=""> #}
 		<div class="flex p-2  bg-[#000]">
 			<div class="flex py-3 px-2 items-center">
 				<p class="text-2xl text-blue-600 font-semibold">M2</p>
@@ -14,211 +15,323 @@
 <div>
 	<ul class="mt-6 leading-10">
 		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_home' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="{{ path('app_home') }}">
-				<img src="{{ asset('images/svg/overview.svg') }}" class="h-5 w-5" alt="">
-
+			<a class=" {{ app.request.attributes.get('_route') == 'app_home' ? '    inline-flex items-center w-full text-sm font-semibold text-white  transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="{{ path('app_home') }}">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-5 w-5 " viewbox="0 0 24 24" {% if app.request.attributes.get('_route') == 'app_home' %} stroke="#ffffff" {% else %} stroke="#757575" {% endif %}>
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+				</svg>
 				<span class="ml-4">OVERVIEW</span>
 			</a>
 		</li>
-		<li class="relative px-2 py-1" x-data="{ Open : false  }">
-			{% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience','app_language'] %}
-				<div class=" inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150  cursor-pointer  bg-blue-600 rounded-md hover:bg-blue-700  p-1" x-on:click="Open = !Open">
-				{% else %}
-					<div class="p-1 inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
-					{% endif %}
-					<span class="inline-flex items-center  text-sm font-semibold text-gray-300 hover:text-blue-100  ">
-						<img src="{{ asset('images/svg/portfolio.svg') }}" class="h-5 w-5 " alt="portfolio">
-						<span class="ml-4">PORTFOLIO MANAGER</span>
-					</span>
-					<span>
-						<img x-show="!Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100" alt="right arrow">
-						<img x-show="Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 transform rotate-90" alt="under arrow">
-					</span>
+		{% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience','app_language','app_document'] %}
+
+			<li class="relative px-2 py-1" x-data="{ Open : true  }">
+			{% else %}
+				<li class="relative px-2 py-1" x-data="{ Open : false  }">
+				{% endif %}
+
+				{% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience','app_language','app_document'] %}
+					<div class=" inline-flex items-center justify-between w-full text-white font-semibold transition-colors duration-150  cursor-pointer    p-1" x-on:click="Open = !Open">
+					{% else %}
+						<div class="p-1 inline-flex items-center justify-between w-full text-gray-400 font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
+						{% endif %}
+						<span class="inline-flex items-center  text-sm font-semibold  Open : false  ">
+							<svg class="h-5 w-5 " {% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience','app_language','app_document'] %} fill="#ffffff" {% else %} fill="#757575" {% endif %} width="800px" height="800px" viewbox="0 0 846.66 846.66" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<path class="fil0" d="M149.09 50.95l668.58 0c11.46,0 20.76,9.29 20.76,20.76l0 612.86c0,6.73 -3.2,12.71 -8.17,16.5l-95.05 88.97c-3.99,3.72 -9.05,5.56 -14.11,5.56l-572.01 0.11c-11.46,0 -20.76,-9.29 -20.76,-20.76l0 -61.42 -113.24 -123.75c-4.21,-3.79 -6.86,-9.29 -6.86,-15.41l0 -344.2c0,-11.46 9.3,-20.76 20.76,-20.76l99.34 0 0 -137.7c0,-11.47 9.3,-20.76 20.76,-20.76zm-20.76 601.37l0 -401.39 -78.58 0 0 315.52 78.58 85.87zm111.14 -369.19c-27.3,0 -27.3,-41.52 0,-41.52l487.82 0c27.31,0 27.31,41.52 0,41.52l-487.82 0zm0 -84.2c-27.3,0 -27.3,-41.51 0,-41.51l487.82 0c27.31,0 27.31,41.51 0,41.51l-487.82 0zm281.05 271.15c-27.3,0 -27.3,-41.51 0,-41.51l212.96 0c27.3,0 27.3,41.51 0,41.51l-212.96 0zm0 113.91c-27.3,0 -27.3,-41.52 0,-41.52l212.96 0c27.3,0 27.3,41.52 0,41.52l-212.96 0zm-287.24 -208.66l220.39 0c11.46,0 20.76,9.29 20.76,20.76l0 220.38c0,11.46 -9.3,20.76 -20.76,20.76l-220.39 0c-11.46,0 -20.76,-9.3 -20.76,-20.76l0 -220.38c0,-11.47 9.3,-20.76 20.76,-20.76zm199.63 41.52l-178.87 0 0 178.86 178.87 0 0 -178.86zm364 -324.39l-627.06 0 0 661.74 543.21 0 83.85 -78.49 0 -583.25z"/>
+							</svg>
+							<span class="ml-4">PORTFOLIO MANAGER</span>
+						</span>
+						{% if app.request.attributes.get('_route') in ['app_personal_information', 'app_projects','app_skills','app_media','app_education','app_award','app_license_or_certification','app_experience','app_language','app_document'] %}
+
+							<span>
+								<svg x-show="!Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
+								</svg>
+
+								<svg x-show="Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
+								</svg>
+							</span>
+						{% else %}
+
+							<span>
+								<svg x-show="!Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
+								</svg>
+
+								<svg x-show="Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
+								</svg>
+							</span>
+						{% endif %}
 
 
-				</div>
+					</div>
 
-				<div x-show.transition="Open" style="display:none;">
-					<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="  mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
+					<div x-show.transition="Open" style="display:none;">
+						<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="  mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
 
-						<li class=" {{ app.request.attributes.get('_route') == 'app_personal_information' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md   inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : ' inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_personal_information') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/personal_information.svg') }}" class="h-4 w-4 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										personal information
-									</div>
-								</div>
-							</a>
-						</li>
-
-						<li class=" {{ app.request.attributes.get('_route') == 'app_projects' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_projects') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/projects.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										projects
-									</div>
-								</div>
-							</a>
-						</li>
-
-						<li class=" {{ app.request.attributes.get('_route') == 'app_education' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_education') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/education.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										educations
-									</div>
-								</div>
-							</a>
-						</li>
-
-						<li class=" {{ app.request.attributes.get('_route') == 'app_experience' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_experience') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/experience.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										experiences
-									</div>
-								</div>
-							</a>
-						</li>
-
-						<li class=" {{ app.request.attributes.get('_route') == 'app_award' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_award') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/award.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										honors & awards
-									</div>
-								</div>
-							</a>
-						</li>
-
-						<li class=" {{ app.request.attributes.get('_route') == 'app_license_or_certification' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_license_or_certification') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/certification.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										license & certification
-									</div>
-								</div>
-							</a>
-						</li>
-
-						<li class=" {{ app.request.attributes.get('_route') == 'app_media' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_media') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/media.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										my contacts
-									</div>
-								</div>
-							</a>
-						</li>
-						<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/skills.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										my skills
-									</div>
-								</div>
-							</a>
-						</li>
-						<li class=" {{ app.request.attributes.get('_route') == 'app_language' ? ' border-b-2 whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_language') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/language.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										my languages
-									</div>
-								</div>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</li>
-		</li>
-		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/calendar.svg') }}" class="h-6 w-6" alt="">
-				<span class="ml-4">CALENDRIER</span>
-			</a>
-		</li>
-		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/translate.svg') }}" class="h-6 w-6 " alt="">
-				<span class="ml-4">TRANSLATE</span>
-			</a>
-		</li>
-		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/chat.svg') }}" class="h-6 w-6" alt="">
-				<span class="ml-4">CHAT</span>
-			</a>
-		</li>
-		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/tasks.svg') }}" class="h-6 w-6" alt="">
-				<span class="ml-4">TASKS</span>
-			</a>
-		</li>
-		<li class="relative px-2 py-1 ">
-			<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}" href="#">
-				<img src="{{ asset('images/svg/notion.svg') }}" class="h-6 w-6" alt="">
-				<span class="ml-4">NOTION</span>
-			</a>
-		</li>
-	
-		<li class="relative px-2 py-1" x-data="{ Open : false  }">
-			{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
-				<div class=" inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150   cursor-pointer  bg-blue-600 rounded-md hover:bg-blue-700  p-1" x-on:click="Open = !Open">
-				{% else %}
-					<div class="p-1 inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
-					{% endif %}
-					<span class="inline-flex items-center  text-sm font-semibold text-gray-300 hover:text-blue-100  ">
-						<img src="{{ asset('images/svg/settings.svg') }}" class="h-5 w-5" alt="portfolio">
-						<span class="ml-4">SETTINGS</span>
-					</span>
-					<span>
-						<img x-show="!Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100" alt="right arrow">
-						<img x-show="Open" src="{{ asset('images/svg/right_arrow.svg') }}" class="h-5 w-5 text-gray-300 hover:text-blue-100 transform rotate-90" alt="under arrow">
-					</span>
-
-
-				</div>
-
-				<div x-show.transition="Open" style="display:none;">
-					<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class=" mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
-
-						<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-							<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
-								<div class="px-1   rounded-md">
-									<div class="flex items-center">
-										<img src="{{ asset('images/svg/credentials.svg') }}" class="h-4 w-4 text-gray-300 hover:text-blue-100 mr-2" alt="">
-										credentials
-									</div>
-								</div>
-							</a>
-						</li>
-						{% if is_granted('ROLE_ADMIN') %}
-							<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? ' border-b-2  whiteShadow  border-blue-600 rounded-md py-1  inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-300 hover:text-blue-100 transition-colors duration-150 cursor-pointer ' }}">
-								<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold  text-gray-300 hover:text-blue-100 ">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_personal_information' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : ' inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_personal_information') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
-											<img src="{{ asset('images/svg/add_user.svg') }}" class="h-4 w-4 text-gray-300 hover:text-blue-100 mr-2" alt="">
-											create Users
+											<svg class="h-4 w-4 mr-2" {% if app.request.attributes.get('_route') == 'app_personal_information' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %} width="10px" height="10px" viewbox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+												<path d="M960 0c530.193 0 960 429.807 960 960s-429.807 960-960 960S0 1490.193 0 960 429.807 0 960 0Zm0 101.053c-474.384 0-858.947 384.563-858.947 858.947S485.616 1818.947 960 1818.947 1818.947 1434.384 1818.947 960 1434.384 101.053 960 101.053Zm-42.074 626.795c-85.075 39.632-157.432 107.975-229.844 207.898-10.327 14.249-10.744 22.907-.135 30.565 7.458 5.384 11.792 3.662 22.656-7.928 1.453-1.562 1.453-1.562 2.94-3.174 9.391-10.17 16.956-18.8 33.115-37.565 53.392-62.005 79.472-87.526 120.003-110.867 35.075-20.198 65.9 9.485 60.03 47.471-1.647 10.664-4.483 18.534-11.791 35.432-2.907 6.722-4.133 9.646-5.496 13.23-13.173 34.63-24.269 63.518-47.519 123.85l-1.112 2.886c-7.03 18.242-7.03 18.242-14.053 36.48-30.45 79.138-48.927 127.666-67.991 178.988l-1.118 3.008a10180.575 10180.575 0 0 0-10.189 27.469c-21.844 59.238-34.337 97.729-43.838 138.668-1.484 6.37-1.484 6.37-2.988 12.845-5.353 23.158-8.218 38.081-9.82 53.42-2.77 26.522-.543 48.24 7.792 66.493 9.432 20.655 29.697 35.43 52.819 38.786 38.518 5.592 75.683 5.194 107.515-2.048 17.914-4.073 35.638-9.405 53.03-15.942 50.352-18.932 98.861-48.472 145.846-87.52 41.11-34.26 80.008-76 120.788-127.872 3.555-4.492 3.555-4.492 7.098-8.976 12.318-15.707 18.352-25.908 20.605-36.683 2.45-11.698-7.439-23.554-15.343-19.587-3.907 1.96-7.993 6.018-14.22 13.872-4.454 5.715-6.875 8.77-9.298 11.514-9.671 10.95-19.883 22.157-30.947 33.998-18.241 19.513-36.775 38.608-63.656 65.789-13.69 13.844-30.908 25.947-49.42 35.046-29.63 14.559-56.358-3.792-53.148-36.635 2.118-21.681 7.37-44.096 15.224-65.767 17.156-47.367 31.183-85.659 62.216-170.048 13.459-36.6 19.27-52.41 26.528-72.201 21.518-58.652 38.696-105.868 55.04-151.425 20.19-56.275 31.596-98.224 36.877-141.543 3.987-32.673-5.103-63.922-25.834-85.405-22.986-23.816-55.68-34.787-96.399-34.305-45.053.535-97.607 15.256-145.963 37.783Zm308.381-388.422c-80.963-31.5-178.114 22.616-194.382 108.33-11.795 62.124 11.412 115.76 58.78 138.225 93.898 44.531 206.587-26.823 206.592-130.826.005-57.855-24.705-97.718-70.99-115.729Z" fill-rule="evenodd"/>
+											</svg>
+											personal information
 										</div>
 									</div>
 								</a>
 							</li>
-						{% endif %}
 
-					</ul>
-				</div>
-			</li>
-		</li>
-	</ul>
-</div>
+							<li class=" {{ app.request.attributes.get('_route') == 'app_projects' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_projects') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+
+											<svg class="h-4 w-4 mr-2" stroke-width="3" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													{% if  app.request.attributes.get('_route') == 'app_projects' %}
+														<style>
+															.a {
+																fill: none;
+																stroke: #FFFFFF;
+																stroke-linecap: round;
+																stroke-linejoin: round;
+															}
+														</style>
+													{% else %}
+														<style>
+															.a {
+																fill: none;
+																stroke: #757575;
+																stroke-linecap: round;
+																stroke-linejoin: round;
+															}
+														</style>
+													{% endif %}
+												</defs>
+												<path class="a" d="M37.67,6.09,42.5,11,21.59,31.89,11,21.31l4.82-4.82,5.75,5.74ZM28.48,25H38.82A1.24,1.24,0,0,1,40,26.14v4.6a1.24,1.24,0,0,1-1.15,1.15H6.65A1.15,1.15,0,0,1,5.5,30.74v-4.6A1.24,1.24,0,0,1,6.65,25h8m-8,10H38.82A1.23,1.23,0,0,1,40,36.17v4.59a1.23,1.23,0,0,1-1.15,1.15H6.65A1.15,1.15,0,0,1,5.5,40.76V36.17A1.23,1.23,0,0,1,6.65,35Z"/>
+											</svg>
+
+
+											projects
+										</div>
+									</div>
+								</a>
+							</li>
+
+							<li class=" {{ app.request.attributes.get('_route') == 'app_education' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_education') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+											<svg class="h-4 w-4 mr-2" {% if app.request.attributes.get('_route') == 'app_education' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %} viewbox="0 0 14 14" role="img" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="m 12.499079,12.25525 c 0.0968,0 0.188377,-0.0436 0.249339,-0.11884 0.06096,-0.0752 0.08473,-0.17385 0.06473,-0.26853 l -0.202146,-0.95662 c 0.115125,-0.11137 0.187491,-0.26686 0.187491,-0.43975 0,-0.182 -0.08106,-0.34343 -0.206876,-0.45558 l 0,-3.32202 -0.810333,0.50146 0,2.82056 c -0.125815,0.11215 -0.2069,0.27358 -0.2069,0.45558 0,0.17291 0.07239,0.32841 0.187515,0.43975 l -0.20217,0.95662 c -0.02,0.0947 0.0038,0.19335 0.06473,0.26853 0.06096,0.0752 0.152539,0.11884 0.249339,0.11884 l 0.625281,0 z M 12.773741,4.75539 7.5021019,1.49209 C 7.3477151,1.39699 7.1736728,1.34925 6.9996305,1.34925 c -0.1740423,0 -0.3482077,0.0477 -0.5016586,0.14284 l -5.271713,3.2633 C 1.0854931,4.84249 0.99999905,4.99633 0.99999905,5.1619 c 0,0.1656 0.085494,0.31949 0.22625985,0.40673 l 5.2716883,3.26333 c 0.153451,0.0952 0.3276163,0.14284 0.5016586,0.14284 0.1740423,0 0.3481092,-0.0477 0.5024714,-0.14284 L 12.773741,5.56863 c 0.140766,-0.0872 0.22626,-0.24113 0.22626,-0.40673 0,-0.16557 -0.08549,-0.31946 -0.22626,-0.40651 z M 6.9996059,9.78508 c -0.3283798,0 -0.6488777,-0.0912 -0.928242,-0.26411 l -3.0750017,-1.90368 0,3.27796 c 0,0.97016 1.7931578,1.7555 4.0032436,1.7555 2.2108742,0 4.0038842,-0.78536 4.0038842,-1.7555 l 0,-3.27796 -3.0748786,1.90368 C 7.6492472,9.69388 7.3279857,9.78508 6.9996059,9.78508 Z"/></svg>
+											educations
+										</div>
+									</div>
+								</a>
+							</li>
+
+							<li class=" {{ app.request.attributes.get('_route') == 'app_experience' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_experience') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+											<svg class="h-4 w-4 mr-2" {% if app.request.attributes.get('_route') == 'app_experience' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %} width="800px" height="800px" viewbox="0 0 14 14" role="img" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="m 2.9322778,4.864557 c 1.0654586,0 1.9322786,-0.8668286 1.9322786,-1.9322743 0,-1.0654628 -0.86682,-1.93228278 -1.9322786,-1.93228278 -1.0654362,0 -1.9322777,0.86681998 -1.9322777,1.93228278 0,1.0654457 0.8668312,1.9322743 1.9322777,1.9322743 z m 0,-2.6499771 c 0.3957643,0 0.7177037,0.3219514 0.7177037,0.7177028 0,0.3957429 -0.3219394,0.7177029 -0.7177037,0.7177029 -0.3957411,0 -0.7177028,-0.32196 -0.7177028,-0.7177029 0,-0.3957514 0.3219617,-0.7177028 0.7177028,-0.7177028 z m 6.9427363,10.3104071 0.3747519,0.37476 c 0.133669,0.133671 0.350394,0.133671 0.484074,0 l 0.653541,-0.653529 0.653541,0.653529 c 0.13368,0.133671 0.350393,0.133671 0.484074,0 l 0.374741,-0.37476 c 0.133669,-0.133672 0.133669,-0.350391 0,-0.484071 l -0.65353,-0.653538 0.653541,-0.653546 c 0.133669,-0.133672 0.133669,-0.3504 0,-0.48408 L 12.525007,9.8749998 c -0.13368,-0.133662 -0.350394,-0.133662 -0.484074,0 L 11.387381,10.528547 10.73384,9.8749998 c -0.133669,-0.133662 -0.350394,-0.133662 -0.484074,0 L 9.8750141,10.249752 c -0.1336689,0.133671 -0.1336689,0.350401 0,0.484081 l 0.6535419,0.653537 -0.6535419,0.653528 c -0.13368,0.133698 -0.13368,0.350418 0,0.484089 z m -6.1753137,-0.38213 0.5520798,0 c 0.2439197,0 0.4416634,-0.197743 0.4416634,-0.44166 l 0,-1.9496142 c 0,-1.0147544 0.8302508,-1.8336772 1.8450283,-1.8360944 C 6.9771104,7.9146313 7.4029956,7.827837 7.8044342,7.6580456 8.1941916,7.4931913 8.5440773,7.2573399 8.844409,6.9570399 9.144685,6.6567399 9.3805664,6.306837 9.5453839,5.9170856 9.7162524,5.5131913 9.802841,5.0845599 9.802841,4.643097 l 0,-0.6265886 0.654722,0 c 0.242915,0 0.373603,-0.2852571 0.21498,-0.4692171 L 9.3001176,1.9556284 c -0.113232,-0.1313142 -0.3167169,-0.1313142 -0.4299377,0 L 7.497721,3.5472742 C 7.3391196,3.7312427 7.4698039,4.0164999 7.7127233,4.0164999 l 0.6547106,0 0,0.6274971 c 0,1.0147714 -0.83025,1.8336857 -1.8450386,1.8360943 C 6.0837679,6.4809484 5.6578827,6.5677342 5.2564433,6.7375427 4.8666867,6.902397 4.516801,7.1382484 4.2164804,7.4385313 3.9161822,7.7388227 3.680323,8.0887342 3.5154722,8.4784942 3.3446367,8.882397 3.2580259,9.3110118 3.2580259,9.7524828 l 0,1.9487142 c 1.11e-5,0.243917 0.1977548,0.44166 0.4416745,0.44166 z"/></svg>
+											experiences
+										</div>
+									</div>
+								</a>
+							</li>
+
+							<li class=" {{ app.request.attributes.get('_route') == 'app_award' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_award') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+
+											<svg class="h-4 w-4 mr-2" viewbox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+												<g fill-rule="evenodd" clip-rule="evenodd" stroke="none" stroke-width="0.5">
+													<path d="M1034.59 564.21L959.198 320L885.413 562.527H640L838.898 714.104L761.906 960L960.801 808.422L1159.7 960L1081.1 715.79L1280 564.21H1034.59Z" {% if app.request.attributes.get('_route') == 'app_award' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %}/>
+													<path fill-rule="evenodd" clip-rule="evenodd" d="M357.542 0H1562.46V119.181H1920V542.868C1920 655.236 1875.36 763.003 1795.91 842.46C1731.12 907.242 1647.52 948.879 1557.95 962.049C1544.78 1051.62 1503.15 1135.22 1438.36 1200C1360.45 1277.91 1255.32 1322.35 1145.33 1324.05V1496.31C1145.33 1510.38 1150.91 1523.87 1160.86 1533.81C1170.81 1543.76 1184.3 1549.35 1198.36 1549.35C1263.32 1549.35 1325.61 1575.15 1371.54 1621.08C1417.47 1667.01 1443.28 1729.31 1443.28 1794.26V1920H476.723V1794.26C476.723 1729.31 502.528 1667.01 548.458 1621.08C594.388 1575.15 656.682 1549.35 721.639 1549.35C735.705 1549.35 749.195 1543.76 759.14 1533.81C769.086 1523.87 774.674 1510.38 774.674 1496.31V1324.05C664.677 1322.35 559.547 1277.91 481.637 1200C416.854 1135.22 375.218 1051.62 362.048 962.049C272.477 948.879 188.877 907.242 124.095 842.46C44.6379 763.003 0 655.236 0 542.868V119.181H357.542V0ZM489.832 132.29V900.41C489.832 977.693 520.533 1051.81 575.18 1106.46C629.828 1161.11 703.946 1191.81 781.229 1191.81H906.964V1496.31C906.964 1545.46 887.439 1592.6 852.684 1627.36C817.928 1662.11 770.79 1681.64 721.639 1681.64C691.77 1681.64 663.123 1693.5 642.001 1714.63C622.429 1734.2 610.805 1760.23 609.204 1787.71H1310.8C1309.2 1760.23 1297.57 1734.2 1278 1714.63C1256.88 1693.5 1228.23 1681.64 1198.36 1681.64C1149.21 1681.64 1102.07 1662.11 1067.32 1627.36C1032.56 1592.6 1013.04 1545.46 1013.04 1496.31V1191.81H1138.77C1216.05 1191.81 1290.17 1161.11 1344.82 1106.46C1399.47 1051.81 1430.17 977.693 1430.17 900.41V132.29H489.832ZM357.542 251.471H132.29V542.868C132.29 620.151 162.991 694.269 217.638 748.917C256.412 787.69 304.988 814.409 357.542 826.659V251.471ZM1562.46 826.659V251.471H1787.71V542.868C1787.71 620.151 1757.01 694.269 1702.36 748.917C1663.59 787.69 1615.01 814.409 1562.46 826.659Z" {% if app.request.attributes.get('_route') == 'app_award' %} fill="#FFFFFF" {% else %} fill="#757575" {% endif %}/>
+												</g>
+											</svg>
+											honors & awards
+										</div>
+									</div>
+								</a>
+							</li>
+
+							<li class=" {{ app.request.attributes.get('_route') == 'app_license_or_certification' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_license_or_certification') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+											<?xml
+											version="1.0"?>
+											<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+											<svg class="h-4 w-4 mr-2" viewBox="0 0 32 32" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													{% if app.request.attributes.get('_route') == 'app_license_or_certification'  %}
+														<style>
+															.cls-1 {
+																fill: #FFFFFF;
+															}
+														</style>
+													{% else %}
+														<style>
+															.cls-1 {
+																fill: #757575;
+															}
+														</style>
+													{% endif %}
+												</defs><title/><path class="cls-1" d="M28,5H4A2,2,0,0,0,2,7V24a2,2,0,0,0,2,2H18v3a1,1,0,0,0,.53.88,1,1,0,0,0,1-.05L22,28.2l2.45,1.63A1,1,0,0,0,26,29V26h2a2,2,0,0,0,2-2V7A2,2,0,0,0,28,5ZM22.59,21.94a3,3,0,1,1,2.35-2.35A3,3,0,0,1,22.59,21.94ZM24,27.13l-1.45-1a1,1,0,0,0-1.1,0l-1.45,1V23.58a5,5,0,0,0,4,0ZM28,24H26V22s0,0,0,0a4.93,4.93,0,0,0,.88-4.1A5,5,0,0,0,17,19a4.93,4.93,0,0,0,1,3s0,0,0,0v2H4V7H28Z"/><path class="cls-1" d="M7,12H25a1,1,0,0,0,0-2H7a1,1,0,0,0,0,2Z"/><path class="cls-1" d="M7,16h8a1,1,0,0,0,0-2H7a1,1,0,0,0,0,2Z"/><path class="cls-1" d="M7,20h8a1,1,0,0,0,0-2H7a1,1,0,0,0,0,2Z"/></svg>
+											license & certification
+										</div>
+									</div>
+								</a>
+							</li>
+
+							<li class=" {{ app.request.attributes.get('_route') == 'app_media' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+								<a href="{{ path('app_media') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+									<div class="px-1   rounded-md">
+										<div class="flex items-center">
+											<img src="{{ asset('images/svg/media.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
+												my contacts
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+									<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+										<div class="px-1   rounded-md">
+											<div class="flex items-center">
+												<img src="{{ asset('images/svg/skills.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
+													my skills
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class=" {{ app.request.attributes.get('_route') == 'app_language' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+										<a href="{{ path('app_language') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+											<div class="px-1   rounded-md">
+												<div class="flex items-center">
+													<img src="{{ asset('images/svg/language.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
+														my languages
+													</div>
+												</div>
+											</a>
+										</li>
+										<li class=" {{ app.request.attributes.get('_route') == 'app_document' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+											<a href="{{ path('app_document') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+												<div class="px-1   rounded-md">
+													<div class="flex items-center">
+														<img src="{{ asset('images/svg/documents.svg') }}" class="h-5 w-5 text-gray-400 Open : false mr-2" alt="">
+															documents
+														</div>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</li>
+							<li class="relative px-2 py-1 ">
+								<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+									<img src="{{ asset('images/svg/calendar.svg') }}" class="h-6 w-6" alt="">
+										<span class="ml-4">CALENDRIER</span>
+									</a>
+								</li>
+								<li class="relative px-2 py-1 ">
+									<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+										<img src="{{ asset('images/svg/translate.svg') }}" class="h-6 w-6 " alt="">
+											<span class="ml-4">TRANSLATE</span>
+										</a>
+									</li>
+									<li class="relative px-2 py-1 ">
+										<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+											<img src="{{ asset('images/svg/chat.svg') }}" class="h-6 w-6" alt="">
+												<span class="ml-4">CHAT</span>
+											</a>
+										</li>
+										<li class="relative px-2 py-1 ">
+											<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+												<img src="{{ asset('images/svg/tasks.svg') }}" class="h-6 w-6" alt="">
+													<span class="ml-4">TASKS</span>
+												</a>
+											</li>
+											<li class="relative px-2 py-1 ">
+												<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
+													<img src="{{ asset('images/svg/notion.svg') }}" class="h-6 w-6" alt="">
+														<span class="ml-4">NOTION</span>
+													</a>
+												</li>
+
+												{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
+													<li class="relative px-2 py-1" x-data="{ Open : true  }">
+													{% else %}
+														<li class="relative px-2 py-1" x-data="{ Open : false  }">
+														{% endif %}
+														{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
+															<div class=" inline-flex items-center justify-between w-full text-white font-semibold transition-colors duration-150   cursor-pointer p-1" x-on:click="Open = !Open">
+															{% else %}
+																<div class="p-1 inline-flex items-center justify-between w-full text-gray-400 font-semibold transition-colors duration-150  cursor-pointer " x-on:click="Open = !Open">
+																{% endif %}
+																<span class="inline-flex items-center  text-sm font-semibold  Open : false  ">
+																	<img src="{{ asset('images/svg/settings.svg') }}" class="h-5 w-5" alt="portfolio">
+																		<span class="ml-4">SETTINGS</span>
+																	</span>
+																	{% if app.request.attributes.get('_route') in ['app_settings_credentials','app_auth_create_user'] %}
+																		<span>
+																			<svg x-show="!Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
+																			</svg>
+
+																			<svg x-show="Open" viewbox="0 0 24 24" fill="#FFFFFF" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#FFFFFF"/>
+																			</svg>
+																		</span>
+																	{% else %}
+
+																		<span>
+																			<svg x-show="!Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 hover:text-blue-100" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
+																			</svg>
+
+																			<svg x-show="Open" viewbox="0 0 24 24" fill="#757575" class="h-5 w-5 text-gray-400 Open : false transform rotate-90" xmlns="http://www.w3.org/2000/svg">
+																				<path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#757575"/>
+																			</svg>
+																		</span>
+																	{% endif %}
+
+
+																</div>
+
+																<div x-show.transition="Open" style="display:none;">
+																	<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class=" mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
+
+																		<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+																			<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+																				<div class="px-1   rounded-md">
+																					<div class="flex items-center">
+																						<img src="{{ asset('images/svg/credentials.svg') }}" class="h-4 w-4 text-gray-400 Open : false mr-2" alt="">
+																							credentials
+																						</div>
+																					</div>
+																				</a>
+																			</li>
+																			{% if is_granted('ROLE_ADMIN') %}
+																				<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+																					<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
+																						<div class="px-1   rounded-md">
+																							<div class="flex items-center">
+																								<img src="{{ asset('images/svg/add_user.svg') }}" class="h-4 w-4 text-gray-400 Open : false mr-2" alt="">
+																									create Users
+																								</div>
+																							</div>
+																						</a>
+																					</li>
+																				{% endif %}
+
+																			</ul>
+																		</div>
+																	</li>
+																</li>
+															</ul>
+														</div>
