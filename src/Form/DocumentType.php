@@ -32,12 +32,12 @@ class DocumentType extends AbstractType
             'attr'           => [
                 'class' => 'form-control bg-gray-600 block text-sm px-2 font-medium text-gray-100 mb-2',
             ],
-            'label' => 'Upload File (PDF or Excel)',
-            'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
-            'required' => false,
-            'mapped' => false,
+            'label'       => 'Upload File (PDF or Excel)',
+            'label_attr'  => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+            'required'    => false,
+            'mapped'      => false,
             'constraints' => [
-                new File()
+                new File(),
             ],
         ])
 
@@ -46,7 +46,7 @@ class DocumentType extends AbstractType
             'label' => 'Save',
         ])
 
-    ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

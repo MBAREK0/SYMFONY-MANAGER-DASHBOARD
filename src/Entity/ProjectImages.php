@@ -29,7 +29,7 @@ class ProjectImages
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'projectImages')]
-    #[ORM\JoinColumn(onDelete: "CASCADE")]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Project $project = null;
 
     public function __construct()

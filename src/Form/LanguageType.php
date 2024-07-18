@@ -29,21 +29,21 @@ class LanguageType extends AbstractType
             ])
             ->add('proficiency', ChoiceType::class, [
                 'choices' => [
-                    'A1 (Beginner)' => 'Beginner',
-                    'A2 (Elementary)' => 'Elementary',
-                    'B1 (Intermediate)' => 'Intermediate',
+                    'A1 (Beginner)'           => 'Beginner',
+                    'A2 (Elementary)'         => 'Elementary',
+                    'B1 (Intermediate)'       => 'Intermediate',
                     'B2 (Upper-Intermediate)' => 'Upper-Intermediate',
-                    'C1 (Advanced)' => 'Advanced',
-                    'C2 (Proficient)' => 'Proficient',
+                    'C1 (Advanced)'           => 'Advanced',
+                    'C2 (Proficient)'         => 'Proficient',
                 ],
                 'attr' => [
-                    'class' => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Select Proficiency Level',
                 ],
                 'constraints' => [
                     new NotBlank(['message' => 'Proficiency level cannot be blank']),
                 ],
-                'label' => 'Proficiency Level',
+                'label'      => 'Proficiency Level',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
             ])
             ->add('submit', SubmitType::class, [

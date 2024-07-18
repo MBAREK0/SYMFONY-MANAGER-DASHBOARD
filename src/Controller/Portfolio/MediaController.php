@@ -65,7 +65,7 @@ class MediaController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/media/index.html.twig', [
             'form'   => $form->createView(),
@@ -111,8 +111,8 @@ class MediaController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
-         
+        }
+
         return $this->render('portfolio/media/edit.html.twig', [
             'form'   => $form->createView(),
             'medium' => $medium,
@@ -136,7 +136,7 @@ class MediaController extends AbstractController
             return $this->redirectToRoute('app_media');
         }
 
-    try {
+        try {
             $this->entityManager->remove($medium);
             $this->entityManager->flush();
 
@@ -144,6 +144,7 @@ class MediaController extends AbstractController
         } catch (\Exception $e) {
             $this->addFlash('error', 'Error deleting Medium');
         }
+
         return $this->redirectToRoute('app_media');
     }
 }

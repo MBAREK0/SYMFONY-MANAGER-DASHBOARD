@@ -40,7 +40,6 @@ class ProjectsController extends AbstractController
     #[Route('/projects', name: 'app_projects')]
     public function index(Request $request): Response
     {
-
         $Project = new Project();
 
 
@@ -56,13 +55,13 @@ class ProjectsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // try {
-                
-                $Project->setUser($this->getUser());
 
-                $this->entityManager->persist($Project);
-                $this->entityManager->flush();
+            $Project->setUser($this->getUser());
 
-                $this->addFlash('success', 'Project created successfully!');
+            $this->entityManager->persist($Project);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Project created successfully!');
             // } catch (\Exception $e) {
             //     $this->addFlash('error', 'Unable to Add Project ');
             // }
@@ -70,7 +69,7 @@ class ProjectsController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
 
         return $this->render('portfolio/projects/index.html.twig', [
@@ -121,8 +120,8 @@ class ProjectsController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
-         
+        }
+
         return $this->render('portfolio/projects/edit.html.twig', [
             'form'    => $form->createView(),
             'project' => $Project,

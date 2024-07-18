@@ -62,7 +62,7 @@ class SkillsController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/skills/index.html.twig', [
             'form'   => $form->createView(),
@@ -107,7 +107,7 @@ class SkillsController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/skills/edit.html.twig', [
             'form'  => $form->createView(),

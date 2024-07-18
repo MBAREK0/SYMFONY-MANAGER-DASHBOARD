@@ -19,6 +19,5 @@ class LoginRequestSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(RequestEvent $event)
     {
-            
     }
 }

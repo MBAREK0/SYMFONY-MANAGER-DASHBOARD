@@ -67,7 +67,7 @@
 											<a href="{{ path('app_language_edit', { id: language.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 												<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
 											</a>
-											<a href="{{ path('app_language_delete', { id: language.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
+											<a href="{{ path('app_language_delete', { id: language.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal"  onclick="showDeleteConfirmation(event)" >
 												<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
 											</a>
 										</div>

@@ -15,7 +15,6 @@ use App\Repository\LanguageRepository;
 
 class LanguageController extends AbstractController
 {
-
     private $entityManager;
     private $LanguageRepository;
 
@@ -65,10 +64,10 @@ class LanguageController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/language/index.html.twig', [
-            'form'   => $form->createView(),
+            'form'       => $form->createView(),
             'languages'  => $this->getUser()->getLanguages(),
         ]);
     }
@@ -105,7 +104,6 @@ class LanguageController extends AbstractController
                 $this->addFlash('success', 'Language updated successfully!');
 
                 return $this->redirectToRoute('app_language');
-
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Error updating Language');
 
@@ -115,10 +113,10 @@ class LanguageController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
-         
+        }
+
         return $this->render('portfolio/language/edit.html.twig', [
-            'form'   => $form->createView(),
+            'form'      => $form->createView(),
             'language'  => $Language,
         ]);
     }

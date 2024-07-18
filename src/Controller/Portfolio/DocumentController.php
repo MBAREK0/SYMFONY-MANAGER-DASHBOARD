@@ -13,7 +13,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class DocumentController extends AbstractController
 {
-
     private $em;
 
     public function __construct(EntityManagerInterface $em)
@@ -33,7 +32,6 @@ class DocumentController extends AbstractController
     #[Route('/document', name: 'app_document')]
     public function index(Request $request, SluggerInterface $slugger): Response
     {
-
         $document = new Document();
         $form = $this->createForm(DocumentType::class, $document);
         $form->handleRequest($request);
@@ -44,7 +42,7 @@ class DocumentController extends AbstractController
             if ($file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
 
                 try {
                     $file->move(
@@ -65,13 +63,13 @@ class DocumentController extends AbstractController
         }
 
         foreach ($form->getErrors(true) as $error) {
-           $this->addFlash('error', $error->getMessage());
+            $this->addFlash('error', $error->getMessage());
         }
 
 
         return $this->render('portfolio/document/index.html.twig', [
-            'documents' =>  $documents =$this->getUser()->getDocuments(),
-            'form' => $form->createView(),
+            'documents' => $documents = $this->getUser()->getDocuments(),
+            'form'      => $form->createView(),
         ]);
     }
 
@@ -82,14 +80,13 @@ class DocumentController extends AbstractController
      * @return Response
      */
 
-     #[Route('/document/download/{name}', name: 'app_document_download')]
-     public function download(Document $document, string $name): Response
-     {
-     
-         $file = $this->getParameter('document_directory').'/'.$document->getFileName();
-     
-         return $this->file($file);
-     }
+    #[Route('/document/download/{name}', name: 'app_document_download')]
+    public function download(Document $document, string $name): Response
+    {
+        $file = $this->getParameter('document_directory') . '/' . $document->getFileName();
+
+        return $this->file($file);
+    }
 
     /**
      * ? in the function we are deleting a document
@@ -102,7 +99,7 @@ class DocumentController extends AbstractController
     #[Route('/document/delete/{id}', name: 'app_document_delete')]
     public function delete(Document $document): Response
     {
-       try {
+        try {
             $this->em->remove($document);
             $this->em->flush();
             $this->addFlash('success', 'Document deleted successfully!');
@@ -134,7 +131,7 @@ class DocumentController extends AbstractController
             if ($file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
 
                 try {
                     $file->move(
@@ -157,10 +154,8 @@ class DocumentController extends AbstractController
         }
 
         return $this->render('portfolio/document/edit.html.twig', [
-            'form' => $form->createView(),
+            'form'     => $form->createView(),
             'document' => $document,
         ]);
     }
-
-
 }

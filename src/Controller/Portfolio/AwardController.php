@@ -62,7 +62,7 @@ class AwardController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/award/index.html.twig', [
             'form'      => $form->createView(),
@@ -109,7 +109,7 @@ class AwardController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/award/edit.html.twig', [
             'form'  => $form->createView(),

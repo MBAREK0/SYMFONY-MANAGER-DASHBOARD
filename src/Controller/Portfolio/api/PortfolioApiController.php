@@ -55,7 +55,7 @@ class PortfolioApiController extends AbstractController
     public function index(string $email): Response
     {
         $user = $this->userRepository->findOneBy(['email' => $email]);
-        
+
 
         if (!$user) {
             return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
@@ -71,8 +71,8 @@ class PortfolioApiController extends AbstractController
             'projects'                 => $this->getProjects($user),
             'experiences'              => $this->getExperiences($user),
             'awards'                   => $this->getAwards($user),
-            'languages'                => $this->getLanguages($user),     
-            
+            'languages'                => $this->getLanguages($user),
+
         ]);
     }
 

@@ -67,7 +67,7 @@ class ExperienceController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/experience/index.html.twig', [
             'form'        => $form->createView(),
@@ -116,7 +116,7 @@ class ExperienceController extends AbstractController
 
         foreach ($form->getErrors(true) as $error) {
             $this->addFlash('error', $error->getMessage());
-         }
+        }
 
         return $this->render('portfolio/experience/edit.html.twig', [
             'form' => $form->createView(),
