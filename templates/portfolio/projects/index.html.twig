@@ -18,7 +18,7 @@
 						</button>
 					</div>
 
-										{% for flashMessage in app.flashes('success') %}
+					{% for flashMessage in app.flashes('success') %}
 						<div id="alert-3" class="flex items-center p-4 mb-4  rounded-lg bg-gray-800 text-green-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
 								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -60,22 +60,32 @@
 
 								<div class="project_card mb-3">
 									<div class="flex flex-col md:flex-row h-full gap-4">
-										{% if project.imageName %}
-											<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(project, 'imageFile') }}')"></div>
-										{% endif %}
+										<div class = "flex flex-col  items-start justify-start gap-2">
+											{% if project.imageName %}
+												<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[280px] " style="background-image:url('{{ vich_uploader_asset(project, 'imageFile') }}')"></div>
+											{% endif %}
+											<div class=" flex items-center justify-between md:justify-start gap-2 w-full">
+												{% for screenshot in project.ProjectImages %}
+													{% if screenshot.imageName %}
+														<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat max-h-5 max-w-5 md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(screenshot, 'imageFile') }}')"></div>
+													{% endif %}
+
+												{% endfor %}
+											</div>
+										</div>
 										<div class="main-content ">
 											<div class="header mb-2">
-												<span >{{ project.name }}</span>
+												<span>{{ project.name }}</span>
 
 											</div>
-											
+
 											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
 
 												<span>
 													{{ project.description }}</span>
 											</div>
 
-										
+
 											<div class="categories flex gap-3 flex-wrap my-3">
 
 												{% for technology in project.technologies %}
@@ -88,7 +98,7 @@
 
 													{% if project.getGithubPath %}
 
-														<a href="{{ project.getGithubPath }}" target="_blank" >
+														<a href="{{ project.getGithubPath }}" target="_blank">
 															<button class="my-3 bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
 																<span class="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
 																GitHub
@@ -100,7 +110,7 @@
 													{% if project.getHostPath %}
 
 
-														<a href="{{ project.getHostPath }}" target="_blank" >
+														<a href="{{ project.getHostPath }}" target="_blank">
 															<button class=" my-3 bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
 																<span class="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
 																Demo
@@ -199,6 +209,14 @@
 						{{ form_errors(form.imageFile) }}
 					</div>
 				</div>
+
+				<div>
+					{{ form_label(form.projectImages) }}
+					{{ form_widget(form.projectImages) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.projectImages) }}
+					</div>
+				</div>
 				<div>
 					{{ form_label(form.technologies) }}
 					{{ form_widget(form.technologies, { 'attr': {'class': 'select-multiple'} }) }}
@@ -216,4 +234,61 @@
 		</div>
 	</div>
 
+{% endblock %}
+
+
+
+
+
+{% block javascripts %}
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const handleAddField = (collectionHolder, addButtonClass, addButtonText, fieldType) => {
+				let addButton = document.createElement('button');
+				addButton.type = 'button';
+				addButton.classList.add(addButtonClass, 'w-full', 'px-4', 'py-2', 'rounded', 'bg-blue-600', 'text-white', 'hover:bg-blue-700', 'focus:outline-none', 'transition-colors', 'my-2');
+				addButton.innerText = addButtonText;
+
+				let newLinkLi = document.createElement('div');
+				newLinkLi.appendChild(addButton);
+
+				collectionHolder.appendChild(newLinkLi);
+
+				let addFormToCollection = (e) => {
+					let currentInputs = collectionHolder.querySelectorAll('input').length;
+					if (currentInputs >= 4) {
+						addButton.disabled = true;
+						addButton.classList.add('opacity-50', 'cursor-not-allowed');
+						return;
+					}
+
+					let prototype = collectionHolder.dataset.prototype;
+					let index = collectionHolder.dataset.index;
+					let newForm = prototype.replace(/__name__/g, index);
+					collectionHolder.dataset.index = parseInt(index) + 1;
+
+					let newFormLi = document.createElement('div');
+					newFormLi.innerHTML = newForm;
+					newLinkLi.parentNode.insertBefore(newFormLi, newLinkLi);
+
+					// Update button state after adding a new form
+					currentInputs = collectionHolder.querySelectorAll('input').length;
+					if (currentInputs >= 4) {
+						addButton.disabled = true;
+						addButton.classList.add('opacity-50', 'cursor-not-allowed');
+					}
+				};
+
+				addButton.addEventListener('click', addFormToCollection);
+
+				collectionHolder.dataset.index = collectionHolder.querySelectorAll('input').length;
+			};
+
+			// ScreenShots Collection
+			let screenShotsCollectionHolder = document.querySelector('.screenShots-collection');
+			if (screenShotsCollectionHolder) {
+				handleAddField(screenShotsCollectionHolder, 'add_screenShot_link', 'Add a screen shot for the project', 'screenshot');
+			}
+		});
+	</script>
 {% endblock %}

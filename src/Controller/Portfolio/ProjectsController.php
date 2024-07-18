@@ -40,6 +40,7 @@ class ProjectsController extends AbstractController
     #[Route('/projects', name: 'app_projects')]
     public function index(Request $request): Response
     {
+
         $Project = new Project();
 
 
@@ -54,16 +55,17 @@ class ProjectsController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            try {
+            // try {
+                
                 $Project->setUser($this->getUser());
 
                 $this->entityManager->persist($Project);
                 $this->entityManager->flush();
 
                 $this->addFlash('success', 'Project created successfully!');
-            } catch (\Exception $e) {
-                $this->addFlash('error', 'Unable to Add Project ');
-            }
+            // } catch (\Exception $e) {
+            //     $this->addFlash('error', 'Unable to Add Project ');
+            // }
         }
 
         foreach ($form->getErrors(true) as $error) {

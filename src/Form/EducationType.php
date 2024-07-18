@@ -23,7 +23,7 @@ class EducationType extends AbstractType
         $builder
             ->add('school', TextType::class, [
                 'attr' => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'School Name',
                 ],
                 'constraints' => [
@@ -34,7 +34,7 @@ class EducationType extends AbstractType
             ])
             ->add('degree', TextType::class, [
                 'attr' => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Degree Name',
                 ],
                 'label'      => 'Degree',
@@ -42,7 +42,7 @@ class EducationType extends AbstractType
             ])
             ->add('specialty', TextType::class, [
                 'attr' => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Specialty Name',
                 ],
                 'label'      => 'Specialty',
@@ -51,7 +51,7 @@ class EducationType extends AbstractType
             ->add('start_date', null, [
                 'widget' => 'single_text',
                 'attr'   => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
 
                 ],
                 'label'      => 'Start Date',
@@ -62,7 +62,7 @@ class EducationType extends AbstractType
             ->add('end_date', null, [
                 'widget' => 'single_text',
                 'attr'   => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
 
                 ],
                 'label'      => 'End Date',
@@ -72,7 +72,7 @@ class EducationType extends AbstractType
             ])
             ->add('grade', TextType::class, [
                 'attr' => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Grade Name',
                 ],
 
@@ -82,7 +82,7 @@ class EducationType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required'    => false,
                 'attr'        => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Description',
                     'rows'        => 5, // Optional: set the number of rows
                 ],

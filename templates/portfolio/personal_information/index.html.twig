@@ -45,20 +45,20 @@
 						{% if PersonalInformation is defined and PersonalInformation.id is defined %}
 							<div>
 								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									<input type="hidden" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="id" value="{{ PersonalInformation.id }}">
-									<input type="hidden" name="csrf_token" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="csrf_token" value="{{ csrf_token }}">
+									<input type="hidden" name="id"  name="id" value="{{ PersonalInformation.id }}">
+									<input type="hidden" name="csrf_token" name="csrf_token" value="{{ csrf_token }}">
 								</div>
 								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-									<input type="text" placeholder="First name" class=" border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500" name="firstName" value="{{ PersonalInformation.firstName }}">
-									<input type="text" placeholder="Last name"  class=" border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500" name="lastName" value="{{ PersonalInformation.lastName }}">
-									<input type="text" placeholder="nick name"  class=" border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500" name="nickName" value="{{ PersonalInformation.nickName }}">
+									<input type="text" placeholder="First name" class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="firstName" value="{{ PersonalInformation.firstName }}">
+									<input type="text" placeholder="Last name"  class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="lastName" value="{{ PersonalInformation.lastName }}">
+									<input type="text" placeholder="nick name"  class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="nickName" value="{{ PersonalInformation.nickName }}">
 								</div>
 
 								<div class="mb-4">
-									<textarea placeholder="about" name="about" class=" h-[250px] border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400     focus:ring-blue-500   focus:border-blue-500">{{ PersonalInformation.about }}</textarea>
+									<textarea placeholder="about" name="about" class=" h-[250px] border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs">{{ PersonalInformation.about }}</textarea>
 								</div>
 								<div class="mb-4">
-									<input type="text" placeholder="position" class=" border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400    focus:ring-blue-500   focus:border-blue-500" name="position" value="{{ PersonalInformation.position }}">
+									<input type="text" placeholder="position" class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position" value="{{ PersonalInformation.position }}">
 								</div>
 							</div>
 							<div class=" w-full flex items-center justify-end">
@@ -68,22 +68,20 @@
 							</div>
 						{% else %}
 							<div>
-								<div
-									class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									{# <input type="hidden" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="id" value="6"> #}
-									<input type="hidden" name="csrf_token" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="csrf_token" value="{{ csrf_token }}">
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+									<input type="hidden" name="csrf_token"  name="csrf_token" value="{{ csrf_token }}">
 								</div>
 								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-									<input type="text" placeholder="First name" class="border focus:border-blue-600 p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="firstName" value="">
-									<input type="text" placeholder="Last name" class="border focus:border-blue-600 p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="lastName" value="">
-									<input type="text" placeholder="nick name" class="border focus:border-blue-600 p-2 rounded w-fullbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="nickName" value="">
+									<input type="text" placeholder="First name" class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="firstName" value="">
+									<input type="text" placeholder="Last name"  class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="lastName" value="">
+									<input type="text" placeholder="nick name"  class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="nickName" value="">
 								</div>
 
 								<div class="mb-4">
-									<textarea placeholder="about" name="about" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500"></textarea>
+									<textarea placeholder="about" name="about" class="h-[250px] border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs"></textarea>
 								</div>
 								<div class="mb-4">
-									<input type="text" placeholder="position" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5   bg-gray-700   border-gray-600   placeholder-gray-400   text-white   focus:ring-blue-500   focus:border-blue-500" name="position" value="">
+									<input type="text" placeholder="position" class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position" value="">
 								</div>
 							</div>
 							<div class=" w-full flex items-center justify-end">

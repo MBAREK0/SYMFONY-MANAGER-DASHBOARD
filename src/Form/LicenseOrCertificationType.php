@@ -23,7 +23,7 @@ class LicenseOrCertificationType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Name',
                 ],
                 'constraints' => [
@@ -34,7 +34,7 @@ class LicenseOrCertificationType extends AbstractType
             ])
             ->add('organization', TextType::class, [
                 'attr' => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Organization Name',
                 ],
                 'constraints' => [
@@ -46,7 +46,7 @@ class LicenseOrCertificationType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
                 'attr'   => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
 
                 ],
                 'label'      => 'Start Date',
@@ -57,7 +57,7 @@ class LicenseOrCertificationType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required'    => false,
                 'attr'        => [
-                    'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                     'placeholder' => 'Description',
                     'rows'        => 5,
                 ],
@@ -82,7 +82,7 @@ class LicenseOrCertificationType extends AbstractType
                 'choices'      => $skills,
                 'choice_label' => 'name',
                 'multiple'     => true,
-                'attr'         => ['class' => 'select-multiple'],
+                'attr'         => ['class' => 'select-skills'],
                 'label'        => 'Skills',
                 'label_attr'   => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
 

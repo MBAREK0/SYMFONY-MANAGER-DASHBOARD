@@ -37,7 +37,7 @@ class SettingsController extends AbstractController
 
     #[IsGranted(new Expression('is_granted("ROLE_USER")'))]
     #[Route('/settings/credentials', name: 'app_settings_credentials')]
-    public function index(RequestStack $requestStack): Response
+    public function credentials(RequestStack $requestStack): Response
     {
         $csrfToken = bin2hex(openssl_random_pseudo_bytes(16));
 
@@ -49,7 +49,7 @@ class SettingsController extends AbstractController
             return $this->redirectToRoute('app_auth_sign_in');
         }
 
-        return $this->render('settings/index.html.twig', [
+        return $this->render('settings/credentials.html.twig', [
             'user'       => $user,
             'csrf_token' => $csrfToken,
 

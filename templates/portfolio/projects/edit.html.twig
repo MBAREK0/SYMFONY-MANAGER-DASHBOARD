@@ -11,7 +11,7 @@
 				<h1 class="text-xl font-semibold text-white m-0 ">Update Project</h1>
 				<hr class="w-[10%] mb-10 mt-2">
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
-										{% for flashMessage in app.flashes('success') %}
+					{% for flashMessage in app.flashes('success') %}
 						<div id="alert-3" class="flex items-center p-4 mb-4  rounded-lg bg-gray-800 text-green-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
 								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -82,6 +82,13 @@
 						</div>
 					</div>
 					<div>
+						{{ form_label(form.projectImages) }}
+						{{ form_widget(form.projectImages) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.projectImages) }}
+						</div>
+					</div>
+					<div>
 						{{ form_label(form.technologies) }}
 						{{ form_widget(form.technologies, { 'attr': {'class': 'select-multiple'} }) }}
 						<div class="text-red-600 py-2">
@@ -96,12 +103,12 @@
 
 					<script>
 						document.addEventListener('DOMContentLoaded', (event) => {
-						const deleteLabel = document.querySelector('label[for$="_imageFile_delete"]');
-						if (deleteLabel) {
-						deleteLabel.textContent = 'Delete image';
-						deleteLabel.classList.add('custom-delete-label', 'text-gray-100');
-						}
-						});
+const deleteLabel = document.querySelector('label[for$="_imageFile_delete"]');
+if (deleteLabel) {
+deleteLabel.textContent = 'Delete image';
+deleteLabel.classList.add('custom-delete-label', 'text-gray-100');
+}
+});
 					</script>
 
 
@@ -115,4 +122,47 @@
 	</div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+
+
+		document.addEventListener('DOMContentLoaded', () => { // Function to handle adding new fields to a collection
+const handleAddField = (collectionHolder, addButtonClass, addButtonText, fieldType) => {
+let addButton = document.createElement('button');
+addButton.type = 'button';
+addButton.classList.add(addButtonClass, 'w-full', 'px-4', 'py-2', 'rounded', 'bg-blue-600', 'text-white', 'hover:bg-blue-700', 'focus:outline-none', 'transition-colors', 'my-2');
+addButton.innerText = addButtonText;
+
+let newLinkLi = document.createElement('div');
+newLinkLi.appendChild(addButton);
+
+collectionHolder.appendChild(newLinkLi);
+
+let addFormToCollection = (e) => {
+let prototype = collectionHolder.dataset.prototype;
+let index = collectionHolder.dataset.index;
+let newForm = prototype.replace(/__name__/g, index);
+collectionHolder.dataset.index = parseInt(index) + 1;
+
+let newFormLi = document.createElement('div');
+newFormLi.innerHTML = newForm;
+newLinkLi.parentNode.insertBefore(newFormLi, newLinkLi);
+};
+
+addButton.addEventListener('click', addFormToCollection);
+
+collectionHolder.dataset.index = collectionHolder.querySelectorAll('input').length;
+};
+
+// ScreenShots Collection
+let screenShotsCollectionHolder = document.querySelector('.screenShots-collection');
+if (screenShotsCollectionHolder) {
+handleAddField(screenShotsCollectionHolder, 'add_screenShot_link', 'Add a screen shot for the project', 'screenshot');
+}
+
+
+});
+	</script>
 {% endblock %}

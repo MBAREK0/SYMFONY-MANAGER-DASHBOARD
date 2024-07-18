@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Project;
 use App\Entity\Skill;
+use App\Form\ProjectImagesType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class ProjectsType extends AbstractType
 {
@@ -26,7 +29,7 @@ class ProjectsType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'attr' => [
-                'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                 'placeholder' => 'Enter Project Name',
             ],
             'constraints' => [
@@ -37,7 +40,7 @@ class ProjectsType extends AbstractType
         ])
         ->add('github_path', TextType::class, [
             'attr' => [
-                'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                 'placeholder' => 'Enter Github Path',
             ],
             'constraints' => [
@@ -49,7 +52,7 @@ class ProjectsType extends AbstractType
         ->add('host_path', TextType::class, [
             'required'    => false,
             'attr'        => [
-                'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                 'placeholder' => 'Enter Host Path ',
             ],
             'label'      => 'Host Path',
@@ -58,7 +61,7 @@ class ProjectsType extends AbstractType
         ->add('description', TextareaType::class, [
             'required'    => false,
             'attr'        => [
-                'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                 'placeholder' => 'Description',
                 'rows'        => 5, // Optional: set the number of rows
             ],
@@ -83,10 +86,19 @@ class ProjectsType extends AbstractType
             'choices'      => $skills,
             'choice_label' => 'name',
             'multiple'     => true,
-            'attr'         => ['class' => 'select-multiple'],
             'label'        => 'technologies',
-            'label_attr'   => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
-
+            'label_attr'   => ['class' => ' block text-sm font-medium text-gray-100 mb-2'],
+        ])
+        ->add('projectImages', CollectionType::class, [
+            'entry_type'    => ProjectImagesType::class,
+            'entry_options' => ['label' => false],
+            'allow_add'     => true,
+            'allow_delete'  => true,
+            'by_reference'  => false,
+            'prototype'     => true,
+            'label'         => 'Screen Shots',
+            'label_attr'    => ['class' => 'block text-lg font-medium text-gray-100 mb-2'],
+            'attr'          => ['class' => 'screenShots-collection'],
         ])
         ->add('submit', SubmitType::class, [
             'attr'  => ['class' => 'w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none transition-colors mb-3'],

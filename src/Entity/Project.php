@@ -51,9 +51,16 @@ class Project
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'projects')]
     private Collection $technologies;
 
+    /**
+     * @var Collection<int, ProjectImages>
+     */
+    #[ORM\OneToMany(targetEntity: ProjectImages::class, mappedBy: 'project', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $projectImages;
+
     public function __construct()
     {
         $this->technologies = new ArrayCollection();
+        $this->projectImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,7 +151,6 @@ class Project
         return $this->imageName;
     }
 
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -177,6 +183,36 @@ class Project
     public function removeTechnology(Skill $technology): static
     {
         $this->technologies->removeElement($technology);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProjectImages>
+     */
+    public function getProjectImages(): Collection
+    {
+        return $this->projectImages;
+    }
+
+    public function addProjectImage(ProjectImages $projectImage): static
+    {
+        if (!$this->projectImages->contains($projectImage)) {
+            $this->projectImages->add($projectImage);
+            $projectImage->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectImage(ProjectImages $projectImage): static
+    {
+        if ($this->projectImages->removeElement($projectImage)) {
+            // set the owning side to null (unless already changed)
+            if ($projectImage->getProject() === $this) {
+                $projectImage->setProject(null);
+            }
+        }
 
         return $this;
     }

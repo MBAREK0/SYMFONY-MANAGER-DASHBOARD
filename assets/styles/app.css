@@ -2,6 +2,21 @@ body {
     background-color: black !important;
 }
 
+.select2  {
+    width: 100% !important;
+   
+}
+
+.select2-selection {
+    border: 1px solid rgb(55, 65, 81) !important;
+    border-radius: 4px !important;
+    padding: 10px !important;
+    background-color: rgb(55, 65, 81) !important;
+    color: #686868 !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+}
+
 
 .dataTables_filter {
     /* margin: 10px !important; */
@@ -165,4 +180,17 @@ aside::-webkit-scrollbar-thumb:hover {
     background: #555; 
     cursor:all-scroll;
     
+}
+.inputs {
+    outline: none !important;
+
+    box-shadow: none !important;
+    
+}
+
+.inputs:focus {
+    outline: none !important;
+
+    box-shadow: none !important;
+
 }

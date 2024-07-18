@@ -71,7 +71,7 @@
 					<div x-show.transition="Open" style="display:none;">
 						<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="  mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
 
-							<li class=" {{ app.request.attributes.get('_route') == 'app_personal_information' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : ' inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_personal_information' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : '  py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_personal_information') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -83,8 +83,8 @@
 									</div>
 								</a>
 							</li>
-
-							<li class=" {{ app.request.attributes.get('_route') == 'app_projects' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							
+							<li class=" {{ app.request.attributes.get('_route') == 'app_projects' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_projects') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -121,7 +121,7 @@
 								</a>
 							</li>
 
-							<li class=" {{ app.request.attributes.get('_route') == 'app_education' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_education' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_education') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -132,7 +132,7 @@
 								</a>
 							</li>
 
-							<li class=" {{ app.request.attributes.get('_route') == 'app_experience' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_experience' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_experience') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -143,7 +143,7 @@
 								</a>
 							</li>
 
-							<li class=" {{ app.request.attributes.get('_route') == 'app_award' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_award' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_award') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -160,7 +160,7 @@
 								</a>
 							</li>
 
-							<li class=" {{ app.request.attributes.get('_route') == 'app_license_or_certification' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_license_or_certification' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_license_or_certification') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -189,7 +189,7 @@
 								</a>
 							</li>
 
-							<li class=" {{ app.request.attributes.get('_route') == 'app_media' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_media' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_media') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -202,7 +202,7 @@
 									</div>
 								</a>
 							</li>
-							<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_skills' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_skills') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -222,7 +222,7 @@
 									</div>
 								</a>
 							</li>
-							<li class=" {{ app.request.attributes.get('_route') == 'app_language' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_language' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_language') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -235,7 +235,7 @@
 									</div>
 								</a>
 							</li>
-							<li class=" {{ app.request.attributes.get('_route') == 'app_document' ? ' py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+							<li class=" {{ app.request.attributes.get('_route') == 'app_document' ? ' bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 								<a href="{{ path('app_document') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 									<div class="px-1   rounded-md">
 										<div class="flex items-center">
@@ -251,31 +251,31 @@
 			</li>
 			<li class="relative px-2 py-1 ">
 				<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-					<img src="{{ asset('images/svg/calendar.svg') }}" class="h-6 w-6" alt="">
+					<img src="{{ asset('images/svg/calendar.svg') }}" class="h-5 w-5" alt="">
 						<span class="ml-4">CALENDRIER</span>
 					</a>
 				</li>
 				<li class="relative px-2 py-1 ">
 					<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-						<img src="{{ asset('images/svg/translate.svg') }}" class="h-6 w-6 " alt="">
+						<img src="{{ asset('images/svg/translate.svg') }}" class="h-5 w-5 " alt="">
 							<span class="ml-4">TRANSLATE</span>
 						</a>
 					</li>
 					<li class="relative px-2 py-1 ">
 						<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-							<img src="{{ asset('images/svg/chat.svg') }}" class="h-6 w-6" alt="">
+							<img src="{{ asset('images/svg/chat.svg') }}" class="h-5 w-5" alt="">
 								<span class="ml-4">CHAT</span>
 							</a>
 						</li>
 						<li class="relative px-2 py-1 ">
 							<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-								<img src="{{ asset('images/svg/tasks.svg') }}" class="h-6 w-6" alt="">
+								<img src="{{ asset('images/svg/tasks.svg') }}" class="h-5 w-5" alt="">
 									<span class="ml-4">TASKS</span>
 								</a>
 							</li>
 							<li class="relative px-2 py-1 ">
 								<a class=" {{ app.request.attributes.get('_route') == 'app_calendar' ? ' bg-blue-600 rounded-md hover:bg-blue-700    inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  p-1' : 'p-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}" href="#">
-									<img src="{{ asset('images/svg/notion.svg') }}" class="h-6 w-6" alt="">
+									<img src="{{ asset('images/svg/notion.svg') }}" class="h-5 w-5" alt="">
 										<span class="ml-4">NOTION</span>
 									</a>
 								</li>
@@ -347,7 +347,7 @@
 											<div x-show.transition="Open" style="display:none;">
 												<ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class=" mt-2 px-2 space-y-2 overflow-hidden text-sm font-medium  rounded-md  " aria-label="submenu">
 
-													<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+													<li class=" {{ app.request.attributes.get('_route') == 'app_settings_credentials' ? '  bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  ' }}">
 														<a href="{{ path('app_settings_credentials') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 															<div class="px-1   rounded-md">
 																<div class="flex items-center">
@@ -360,7 +360,7 @@
 														</a>
 													</li>
 													{% if is_granted('ROLE_ADMIN') %}
-														<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? '  py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
+														<li class=" {{ app.request.attributes.get('_route') == 'app_auth_create_user' ? '  bg-gray-600 opacity-90 py-1  inline-flex items-center w-full text-sm font-semibold text-white transition-colors duration-150 cursor-pointer ' : 'py-1 inline-flex items-center w-full text-sm font-semibold text-gray-400 Open : false transition-colors duration-150 cursor-pointer  hover:bg-gray-600 hover:opacity-90  text-gray-400 Open : false transition-colors duration-150 cursor-pointer ' }}">
 															<a href="{{ path('app_auth_create_user') }}" class="w-full ml-2  text-sm font-semibold   Open : false ">
 																<div class="px-1   rounded-md">
 																	<div class="flex items-center">

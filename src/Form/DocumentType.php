@@ -19,7 +19,7 @@ class DocumentType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'attr' => [
-                'class'       => 'border border-gray-300 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  bg-gray-700   border-gray-600   placeholder-gray-400  focus:ring-blue-500   focus:border-blue-500',
+                'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
                 'placeholder' => 'Document Name',
             ],
             'constraints' => [
@@ -37,15 +37,7 @@ class DocumentType extends AbstractType
             'required' => false,
             'mapped' => false,
             'constraints' => [
-                new File([
-                    'maxSize' => '1024k',
-                    'mimeTypes' => [
-                        'application/pdf',
-                        'application/vnd.ms-excel',
-                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                    ],
-                    'mimeTypesMessage' => 'Please upload a valid PDF or Excel file',
-                ])
+                new File()
             ],
         ])
 
