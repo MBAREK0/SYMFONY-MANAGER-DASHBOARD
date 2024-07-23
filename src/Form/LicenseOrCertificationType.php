@@ -21,15 +21,46 @@ class LicenseOrCertificationType extends AbstractType
         $skills = $options['skills'];
 
         $builder
-            ->add('name', TextType::class, [
+            ->add('name_en', TextType::class, [
                 'attr' => [
                     'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
-                    'placeholder' => 'Name',
+                    'placeholder' => 'Name (English)',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'School Name cannot be blank']),
+                    new NotBlank(['message' => 'Name (English) cannot be blank']),
                 ],
-                'label'      => 'Name',
+                'label'      => 'Name (English)',
+                'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+            ])
+            ->add('name_fr', TextType::class, [
+                'attr' => [
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
+                    'placeholder' => 'Name (French)',
+                ],
+                'constraints' => [
+                    new NotBlank(['message' => 'Name (French) cannot be blank']),
+                ],
+                'label'      => 'Name (French)',
+                'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+            ])
+            ->add('description_en', TextareaType::class, [
+                'required'    => false,
+                'attr'        => [
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
+                    'placeholder' => 'Description (English)',
+                    'rows'        => 5,
+                ],
+                'label'      => 'Description (English)',
+                'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+            ])
+            ->add('description_fr', TextareaType::class, [
+                'required'    => false,
+                'attr'        => [
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
+                    'placeholder' => 'Description (French)',
+                    'rows'        => 5,
+                ],
+                'label'      => 'Description (French)',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
             ])
             ->add('organization', TextType::class, [
@@ -53,16 +84,6 @@ class LicenseOrCertificationType extends AbstractType
                 'label_attr' => [
                     'class' => 'block text-sm font-medium text-gray-100 mb-2',
                 ],
-            ])
-            ->add('description', TextareaType::class, [
-                'required'    => false,
-                'attr'        => [
-                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
-                    'placeholder' => 'Description',
-                    'rows'        => 5,
-                ],
-                'label'      => 'Description',
-                'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
             ])
             ->add('imageFile', VichImageType::class, [
                 'required'       => false,

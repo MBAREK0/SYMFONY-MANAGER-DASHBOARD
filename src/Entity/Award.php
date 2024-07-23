@@ -19,16 +19,22 @@ class Award
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    private ?string $title_en = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $associated_with = null;
+    private ?string $title_fr = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $issuer = null;
+    #[ORM\Column(length: 255)]
+    private ?string $issuingOrganization_en = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $issuingOrganization_fr = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
+    private ?string $description_en = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_fr = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
@@ -52,53 +58,64 @@ class Award
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitleEn(): ?string
     {
-        return $this->title;
+        return $this->title_en;
     }
 
-    public function setTitle(?string $title): static
+    public function setTitleEn(?string $title_en): void
     {
-        $this->title = $title;
-
-        return $this;
+        $this->title_en = $title_en;
     }
 
-    public function getAssociatedWith(): ?string
+    public function getTitleFr(): ?string
     {
-        return $this->associated_with;
+        return $this->title_fr;
     }
 
-    public function setAssociatedWith(?string $associated_with): static
+    public function setTitleFr(?string $title_fr): void
     {
-        $this->associated_with = $associated_with;
-
-        return $this;
+        $this->title_fr = $title_fr;
     }
 
-    public function getIssuer(): ?string
+    public function getIssuingOrganizationEn(): ?string
     {
-        return $this->issuer;
+        return $this->issuingOrganization_en;
     }
 
-    public function setIssuer(?string $issuer): static
+    public function setIssuingOrganizationEn(?string $issuingOrganization_en): void
     {
-        $this->issuer = $issuer;
-
-        return $this;
+        $this->issuingOrganization_en = $issuingOrganization_en;
     }
 
-
-    public function getDescription(): ?string
+    public function getIssuingOrganizationFr(): ?string
     {
-        return $this->description;
+        return $this->issuingOrganization_fr;
     }
 
-    public function setDescription(?string $description): static
+    public function setIssuingOrganizationFr(?string $issuingOrganization_fr): void
     {
-        $this->description = $description;
+        $this->issuingOrganization_fr = $issuingOrganization_fr;
+    }
 
-        return $this;
+    public function getDescriptionEn(): ?string
+    {
+        return $this->description_en;
+    }
+
+    public function setDescriptionEn(?string $description_en): void
+    {
+        $this->description_en = $description_en;
+    }
+
+    public function getDescriptionFr(): ?string
+    {
+        return $this->description_fr;
+    }
+
+    public function setDescriptionFr(?string $description_fr): void
+    {
+        $this->description_fr = $description_fr;
     }
 
     public function getDate(): ?\DateTimeInterface

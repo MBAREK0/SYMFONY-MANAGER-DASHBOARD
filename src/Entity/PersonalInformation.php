@@ -23,15 +23,25 @@ class PersonalInformation
     private ?string $nickName = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
-    private ?string $about = null;
+    private ?string $about_en = null;
+
+    #[ORM\Column(length: 1000, nullable: true)]
+    private ?string $about_fr = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $position = null;
+    private ?string $position_en = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $position_fr = null;
 
     #[ORM\OneToOne(mappedBy: 'PersonalInformation', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $current_role_en = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $current_role_fr = null;
 
     public function getId(): ?int
     {
@@ -74,25 +84,50 @@ class PersonalInformation
         return $this;
     }
 
-    public function getAbout(): ?string
+    public function getAboutEn(): ?string
     {
-        return $this->about;
+        return $this->about_en;
     }
 
-    public function setAbout(?string $about): static
+    public function setAboutEn(?string $about_en): static
     {
-        $this->about = $about;
+        $this->about_en = $about_en;
 
         return $this;
     }
 
-
-    public function getPosition(): ?string // Getter for 'position'
-    {return $this->position;
+    public function getAboutFr(): ?string
+    {
+        return $this->about_fr;
     }
 
-    public function setPosition(?string $position): static // Setter for 'position'
-    {$this->position = $position;
+    public function setAboutFr(?string $about_fr): static
+    {
+        $this->about_fr = $about_fr;
+
+        return $this;
+    }
+
+    public function getPositionEn(): ?string
+    {
+        return $this->position_en;
+    }
+
+    public function setPositionEn(?string $position_en): static
+    {
+        $this->position_en = $position_en;
+
+        return $this;
+    }
+
+    public function getPositionFr(): ?string
+    {
+        return $this->position_fr;
+    }
+
+    public function setPositionFr(?string $position_fr): static
+    {
+        $this->position_fr = $position_fr;
 
         return $this;
     }
@@ -113,4 +148,43 @@ class PersonalInformation
 
         return $this;
     }
+
+
+    public function getCurrentRoleEn(): ?string
+    {
+        return $this->current_role_en;
+    }
+
+    public function setCurrentRoleEn(?string $current_role_en): static
+    {
+        $this->current_role_en = $current_role_en;
+
+        return $this;
+    }
+
+    public function getCurrentRoleFr(): ?string
+    {
+        return $this->current_role_fr;
+    }
+
+    public function setCurrentRoleFr(?string $current_role_fr): static
+    {
+        $this->current_role_fr = $current_role_fr;
+
+        return $this;
+    }
+
+    // public function __toString(): string
+    // {
+    //     return $this->getFirstName() . ' ' . $this->getLastName();
+    // }
+    // public function generatePresentation(): string
+    // {
+    //     $presentation = "My name is {$this->getFirstName()} {$this->getLastName()}.\n";
+    //     $presentation .= "I am currently working as {$this->getCurrentRoleEn()}.\n";
+    //     $presentation .= "Here is a little bit about me:\n";
+    //     $presentation .= "{$this->getAboutEn()}\n";
+    //     $presentation .= "My position is {$this->getPositionEn()}.\n";
+    //     return $presentation;
+    // }
 }

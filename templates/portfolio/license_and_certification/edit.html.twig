@@ -8,10 +8,11 @@
 
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
-				<h1 class="text-xl font-semibold text-white m-0 ">Update License Or Certification </h1>
+				<h1 class="text-xl font-semibold text-white m-0 ">Update License Or Certification
+				</h1>
 				<hr class="w-[10%] mb-10 mt-2">
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
-										{% for flashMessage in app.flashes('success') %}
+					{% for flashMessage in app.flashes('success') %}
 						<div id="alert-3" class="flex items-center p-4 mb-4  rounded-lg bg-gray-800 text-green-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
 								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -43,57 +44,72 @@
 							</button>
 						</div>
 					{% endfor %}
-
 					{{ form_start(form) }}
-				<div>
-					{{ form_label(form.name) }}
-					{{ form_widget(form.name) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.name) }}
+					<div>
+						{{ form_label(form.name_en) }}
+						{{ form_widget(form.name_en) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.name_en) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.organization) }}
-					{{ form_widget(form.organization) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.organization) }}
+					<div>
+						{{ form_label(form.name_fr) }}
+						{{ form_widget(form.name_fr) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.name_fr) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.date) }}
-					{{ form_widget(form.date) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.date) }}
+					<div>
+						{{ form_label(form.organization) }}
+						{{ form_widget(form.organization) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.organization) }}
+						</div>
 					</div>
-				</div>
 
-				<div>
-					{{ form_label(form.description) }}
-					{{ form_widget(form.description) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.description) }}
-					</div>
-				</div>
 
-				<div>
-					{{ form_label(form.imageFile) }}
-					{{ form_widget(form.imageFile) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.imageFile) }}
+					<div>
+						{{ form_label(form.description_en) }}
+						{{ form_widget(form.description_en) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.description_en) }}
+						</div>
 					</div>
-				</div>
-				<div>
-					{{ form_label(form.skills) }}
-					{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.skills) }}
-					</div>
-				</div>
 
-				<div class="w-full flex items-center justify-end">
-					{{ form_widget(form.submit) }}
-				</div>
-				{{ form_end(form) }}
+					<div>
+						{{ form_label(form.description_fr) }}
+						{{ form_widget(form.description_fr) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.description_fr) }}
+						</div>
+					</div>
+					<div>
+						{{ form_label(form.date) }}
+						{{ form_widget(form.date) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.date) }}
+						</div>
+					</div>
+					<div>
+						{{ form_label(form.imageFile) }}
+						{{ form_widget(form.imageFile) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.imageFile) }}
+						</div>
+					</div>
+					<div>
+						{{ form_label(form.skills) }}
+						{{ form_widget(form.skills, { 'attr': {'class': 'select-multiple'} }) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.skills) }}
+						</div>
+					</div>
+
+					<div class="w-full flex items-center justify-end">
+						{{ form_widget(form.submit) }}
+					</div>
+					{{ form_end(form) }}
+
 
 					<script>
 						document.addEventListener('DOMContentLoaded', (event) => {

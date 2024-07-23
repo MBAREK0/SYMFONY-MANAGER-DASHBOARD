@@ -30,7 +30,10 @@ class Project
     private ?string $host_path = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
+    private ?string $description_en = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_fr = null;
 
     #[Vich\UploadableField(mapping: 'project_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
@@ -104,14 +107,26 @@ class Project
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescriptionEn(): ?string
     {
-        return $this->description;
+        return $this->description_en;
     }
 
-    public function setDescription(?string $description): static
+    public function setDescriptionEn(?string $description_en): static
     {
-        $this->description = $description;
+        $this->description_en = $description_en;
+
+        return $this;
+    }
+
+    public function getDescriptionFr(): ?string
+    {
+        return $this->description_fr;
+    }
+
+    public function setDescriptionFr(?string $description_fr): static
+    {
+        $this->description_fr = $description_fr;
 
         return $this;
     }

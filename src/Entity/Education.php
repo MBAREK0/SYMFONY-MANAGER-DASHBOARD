@@ -24,22 +24,29 @@ class Education
     private ?string $school = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $degree = null;
+    private ?string $degree_fr = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $degree_en = null;
 
     #[ORM\Column(length: 500, nullable: true)]
-    private ?string $specialty = null;
+    private ?string $specialty_fr = null;
+
+    #[ORM\Column(length: 500, nullable: true)]
+    private ?string $specialty_en = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_fr = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_en = null;
+
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $start_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $end_date = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $grade = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
 
     #[Vich\UploadableField(mapping: 'education_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
@@ -82,26 +89,75 @@ class Education
         return $this;
     }
 
-    public function getDegree(): ?string
+
+    public function getDegreeFr(): ?string
     {
-        return $this->degree;
+        return $this->degree_fr;
     }
 
-    public function setDegree(?string $degree): static
+    public function setDegreeFr(?string $degree_fr): static
     {
-        $this->degree = $degree;
+        $this->degree_fr = $degree_fr;
 
         return $this;
     }
 
-    public function getSpecialty(): ?string
+    public function getDegreeEn(): ?string
     {
-        return $this->specialty;
+        return $this->degree_en;
     }
 
-    public function setSpecialty(?string $specialty): static
+    public function setDegreeEn(?string $degree_en): static
     {
-        $this->specialty = $specialty;
+        $this->degree_en = $degree_en;
+
+        return $this;
+    }
+
+    public function getSpecialtyFr(): ?string
+    {
+        return $this->specialty_fr;
+    }
+
+    public function setSpecialtyFr(?string $specialty_fr): static
+    {
+        $this->specialty_fr = $specialty_fr;
+
+        return $this;
+    }
+
+    public function getSpecialtyEn(): ?string
+    {
+        return $this->specialty_en;
+    }
+
+    public function setSpecialtyEn(?string $specialty_en): static
+    {
+        $this->specialty_en = $specialty_en;
+
+        return $this;
+    }
+
+    public function getDescriptionFr(): ?string
+    {
+        return $this->description_fr;
+    }
+
+    public function setDescriptionFr(?string $description_fr): static
+    {
+        $this->description_fr = $description_fr;
+
+        return $this;
+    }
+
+    public function getDescriptionEn(): ?string
+    {
+        return $this->description_en;
+    }
+
+    public function setDescriptionEn(?string $description_en): static
+    {
+        $this->description_en = $description_en;
 
         return $this;
     }
@@ -126,30 +182,6 @@ class Education
     public function setEndDate(?\DateTimeInterface $end_date): static
     {
         $this->end_date = $end_date;
-
-        return $this;
-    }
-
-    public function getGrade(): ?string
-    {
-        return $this->grade;
-    }
-
-    public function setGrade(?string $grade): static
-    {
-        $this->grade = $grade;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): static
-    {
-        $this->description = $description;
 
         return $this;
     }

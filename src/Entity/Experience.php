@@ -24,22 +24,34 @@ class Experience
     private ?string $organization = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    private ?string $role_en = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $role_fr = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $responsibilities_en = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $responsibilities_fr = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $achievements_en = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $achievements_fr = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_en = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_fr = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $start_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_date = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $responsibilities = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $achievements = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
 
     #[Vich\UploadableField(mapping: 'experience_image', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
@@ -82,17 +94,102 @@ class Experience
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRoleEn(): ?string
     {
-        return $this->role;
+        return $this->role_en;
     }
 
-    public function setRole(string $role): static
+    public function setRoleEn(?string $role_en): static
     {
-        $this->role = $role;
+        $this->role_en = $role_en;
 
         return $this;
     }
+
+    public function getRoleFr(): ?string
+    {
+        return $this->role_fr;
+    }
+
+    public function setRoleFr(?string $role_fr): static
+    {
+        $this->role_fr = $role_fr;
+
+        return $this;
+    }
+
+    public function getResponsibilitiesEn(): ?string
+    {
+        return $this->responsibilities_en;
+    }
+
+    public function setResponsibilitiesEn(?string $responsibilities_en): static
+    {
+        $this->responsibilities_en = $responsibilities_en;
+
+        return $this;
+    }
+
+    public function getResponsibilitiesFr(): ?string
+    {
+        return $this->responsibilities_fr;
+    }
+
+    public function setResponsibilitiesFr(?string $responsibilities_fr): static
+    {
+        $this->responsibilities_fr = $responsibilities_fr;
+
+        return $this;
+    }
+
+    public function getAchievementsEn(): ?string
+    {
+        return $this->achievements_en;
+    }
+
+    public function setAchievementsEn(?string $achievements_en): static
+    {
+        $this->achievements_en = $achievements_en;
+
+        return $this;
+    }
+
+    public function getAchievementsFr(): ?string
+    {
+        return $this->achievements_fr;
+    }
+
+    public function setAchievementsFr(?string $achievements_fr): static
+    {
+        $this->achievements_fr = $achievements_fr;
+
+        return $this;
+    }
+
+    public function getDescriptionEn(): ?string
+    {
+        return $this->description_en;
+    }
+
+    public function setDescriptionEn(?string $description_en): static
+    {
+        $this->description_en = $description_en;
+
+        return $this;
+    }
+
+    public function getDescriptionFr(): ?string
+    {
+        return $this->description_fr;
+    }
+
+    public function setDescriptionFr(?string $description_fr): static
+    {
+        $this->description_fr = $description_fr;
+
+        return $this;
+    }
+
 
     public function getStartDate(): ?\DateTimeInterface
     {
@@ -118,42 +215,6 @@ class Experience
         return $this;
     }
 
-    public function getResponsibilities(): ?string
-    {
-        return $this->responsibilities;
-    }
-
-    public function setResponsibilities(string $responsibilities): static
-    {
-        $this->responsibilities = $responsibilities;
-
-        return $this;
-    }
-
-    public function getAchievements(): ?string
-    {
-        return $this->achievements;
-    }
-
-    public function setAchievements(?string $achievements): static
-    {
-        $this->achievements = $achievements;
-
-        return $this;
-    }
-
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
 
     /**
     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

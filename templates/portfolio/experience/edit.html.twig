@@ -45,76 +45,101 @@
 					{% endfor %}
 
 					{{ form_start(form) }}
-					<div>
-						{{ form_label(form.organization) }}
-						{{ form_widget(form.organization) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.organization) }}
-						</div>
+				<div>
+					{{ form_label(form.organization) }}
+					{{ form_widget(form.organization) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.organization) }}
 					</div>
-					<div>
-						{{ form_label(form.role) }}
-						{{ form_widget(form.role) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.role) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.role_en) }}
+					{{ form_widget(form.role_en) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.role_en) }}
 					</div>
-
-					<div>
-						{{ form_label(form.start_date) }}
-						{{ form_widget(form.start_date) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.start_date) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.role_fr) }}
+					{{ form_widget(form.role_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.role_fr) }}
 					</div>
-					<div>
-						{{ form_label(form.end_date) }}
-						{{ form_widget(form.end_date) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.end_date) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.start_date) }}
+					{{ form_widget(form.start_date) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.start_date) }}
 					</div>
-					<div>
-						{{ form_label(form.responsibilities) }}
-						{{ form_widget(form.responsibilities) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.responsibilities) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.end_date) }}
+					{{ form_widget(form.end_date) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.end_date) }}
 					</div>
-					<div>
-						{{ form_label(form.achievements) }}
-						{{ form_widget(form.achievements) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.achievements) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.responsibilities_en) }}
+					{{ form_widget(form.responsibilities_en) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.responsibilities_en) }}
 					</div>
-					<div>
-						{{ form_label(form.description) }}
-						{{ form_widget(form.description) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.description) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.responsibilities_fr) }}
+					{{ form_widget(form.responsibilities_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.responsibilities_fr) }}
 					</div>
-
-					<div>
-						{{ form_label(form.technologies_used) }}
-						{{ form_widget(form.technologies_used, { 'attr': {'class': 'select-multiple'} }) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.technologies_used) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.achievements_en) }}
+					{{ form_widget(form.achievements_en) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.achievements_en) }}
 					</div>
-
-					<div>
-						{{ form_label(form.imageFile) }}
-						{{ form_widget(form.imageFile) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.imageFile) }}
-						</div>
+				</div>
+				<div>
+					{{ form_label(form.achievements_fr) }}
+					{{ form_widget(form.achievements_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.achievements_fr) }}
 					</div>
-					<div class="w-full flex items-center justify-end">
-						{{ form_widget(form.submit) }}
+				</div>
+				<div>
+					{{ form_label(form.description_en) }}
+					{{ form_widget(form.description_en) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.description_en) }}
 					</div>
-					{{ form_end(form) }}
+				</div>
+				<div>
+					{{ form_label(form.description_fr) }}
+					{{ form_widget(form.description_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.description_fr) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.technologies_used) }}
+					{{ form_widget(form.technologies_used, { 'attr': {'class': 'select-multiple'} }) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.technologies_used) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.imageFile) }}
+					{{ form_widget(form.imageFile) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.imageFile) }}
+					</div>
+				</div>
+				<div class="w-full flex items-center justify-end">
+					{{ form_widget(form.submit) }}
+				</div>
+				{{ form_end(form) }}
 
 
 					<script>

@@ -56,14 +56,24 @@ class ProjectsType extends AbstractType
             'label'      => 'Host Path',
             'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
         ])
-        ->add('description', TextareaType::class, [
+        ->add('description_en', TextareaType::class, [
             'required'    => false,
             'attr'        => [
                 'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
-                'placeholder' => 'Description',
+                'placeholder' => 'Description (English)',
                 'rows'        => 5, // Optional: set the number of rows
             ],
-            'label'      => 'Description',
+            'label'      => 'Description (English)',
+            'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+        ])
+        ->add('description_fr', TextareaType::class, [
+            'required'    => false,
+            'attr'        => [
+                'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
+                'placeholder' => 'Description (French)',
+                'rows'        => 5, // Optional: set the number of rows
+            ],
+            'label'      => 'Description (French)',
             'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
         ])
         ->add('imageFile', VichImageType::class, [

@@ -12,7 +12,7 @@
 				</h1>
 				<hr class="w-[10%] mb-10 mt-2">
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
-										{% for flashMessage in app.flashes('success') %}
+					{% for flashMessage in app.flashes('success') %}
 						<div id="alert-3" class="flex items-center p-4 mb-4  rounded-lg bg-gray-800 text-green-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
 								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -47,28 +47,51 @@
 
 					{{ form_start(form) }}
 					<div>
-						{{ form_label(form.title) }}
-						{{ form_widget(form.title) }}
+						{{ form_label(form.title_en) }}
+						{{ form_widget(form.title_en) }}
 						<div class="text-red-600 py-2">
-							{{ form_errors(form.title) }}
+							{{ form_errors(form.title_en) }}
 						</div>
 					</div>
 					<div>
-						{{ form_label(form.associated_with) }}
-						{{ form_widget(form.associated_with) }}
+						{{ form_label(form.title_fr) }}
+						{{ form_widget(form.title_fr) }}
 						<div class="text-red-600 py-2">
-							{{ form_errors(form.associated_with) }}
+							{{ form_errors(form.title_fr) }}
 						</div>
 					</div>
 
 					<div>
-						{{ form_label(form.issuer) }}
-						{{ form_widget(form.issuer) }}
+						{{ form_label(form.issuingOrganization_en) }}
+						{{ form_widget(form.issuingOrganization_en) }}
 						<div class="text-red-600 py-2">
-							{{ form_errors(form.issuer) }}
+							{{ form_errors(form.issuingOrganization_en) }}
 						</div>
 					</div>
 
+					<div>
+						{{ form_label(form.issuingOrganization_fr) }}
+						{{ form_widget(form.issuingOrganization_fr) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.issuingOrganization_fr) }}
+						</div>
+					</div>
+
+					<div>
+						{{ form_label(form.description_en) }}
+						{{ form_widget(form.description_en) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.description_en) }}
+						</div>
+					</div>
+
+					<div>
+						{{ form_label(form.description_fr) }}
+						{{ form_widget(form.description_fr) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.description_fr) }}
+						</div>
+					</div>
 					<div>
 						{{ form_label(form.date) }}
 						{{ form_widget(form.date) }}
@@ -76,15 +99,6 @@
 							{{ form_errors(form.date) }}
 						</div>
 					</div>
-
-					<div>
-						{{ form_label(form.description) }}
-						{{ form_widget(form.description) }}
-						<div class="text-red-600 py-2">
-							{{ form_errors(form.description) }}
-						</div>
-					</div>
-
 					<div>
 						{{ form_label(form.imageFile) }}
 						{{ form_widget(form.imageFile) }}

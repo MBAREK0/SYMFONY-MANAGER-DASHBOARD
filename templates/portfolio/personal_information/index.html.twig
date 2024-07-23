@@ -42,54 +42,109 @@
 					{% endfor %}
 					<h1 class="text-3xl font-bold text-white mb-6">Update Your Personal Information</h1>
 					<form action="{{ path('app_update_personal_information') }}" method="post">
-						{% if PersonalInformation is defined and PersonalInformation.id is defined %}
-							<div>
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									<input type="hidden" name="id"  name="id" value="{{ PersonalInformation.id }}">
-									<input type="hidden" name="csrf_token" name="csrf_token" value="{{ csrf_token }}">
-								</div>
-								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-									<input type="text" placeholder="First name" class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="firstName" value="{{ PersonalInformation.firstName }}">
-									<input type="text" placeholder="Last name"  class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="lastName" value="{{ PersonalInformation.lastName }}">
-									<input type="text" placeholder="nick name"  class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="nickName" value="{{ PersonalInformation.nickName }}">
-								</div>
+	{% if PersonalInformation is defined and PersonalInformation.id is defined %}
+    <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <input type="hidden" name="id" value="{{ PersonalInformation.id }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+                <label for="firstName" class="block text-gray-300 mb-1">First name</label>
+                <input id="firstName" type="text" placeholder="First name" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="firstName" value="{{ PersonalInformation.firstName }}">
+            </div>
+            <div>
+                <label for="lastName" class="block text-gray-300 mb-1">Last name</label>
+                <input id="lastName" type="text" placeholder="Last name" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="lastName" value="{{ PersonalInformation.lastName }}">
+            </div>
+            <div>
+                <label for="nickName" class="block text-gray-300 mb-1">Nick name</label>
+                <input id="nickName" type="text" placeholder="Nick name" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="nickName" value="{{ PersonalInformation.nickName }}">
+            </div>
+        </div>
 
-								<div class="mb-4">
-									<textarea placeholder="about" name="about" class=" h-[250px] border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs">{{ PersonalInformation.about }}</textarea>
-								</div>
-								<div class="mb-4">
-									<input type="text" placeholder="position" class=" border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position" value="{{ PersonalInformation.position }}">
-								</div>
-							</div>
-							<div class=" w-full flex items-center justify-end">
-								<button type="submit" class=" w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-blue-600 text-white hover:bg-blue-700 focus:outline-none transition-colors">
-									update information
-								</button>
-							</div>
-						{% else %}
-							<div>
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-									<input type="hidden" name="csrf_token"  name="csrf_token" value="{{ csrf_token }}">
-								</div>
-								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-									<input type="text" placeholder="First name" class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="firstName" value="">
-									<input type="text" placeholder="Last name"  class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="lastName" value="">
-									<input type="text" placeholder="nick name"  class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="nickName" value="">
-								</div>
+        <div class="mb-4">
+            <label for="about_en" class="block text-gray-300 mb-1">About (English)</label>
+            <textarea id="about_en" placeholder="About (English)" name="about_en" class="h-[150px] border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs">{{ PersonalInformation.AboutEn }}</textarea>
+        </div>
+        <div class="mb-4">
+            <label for="about_fr" class="block text-gray-300 mb-1">About (French)</label>
+            <textarea id="about_fr" placeholder="About (French)" name="about_fr" class="h-[150px] border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs">{{ PersonalInformation.AboutFr }}</textarea>
+        </div>
+        <div class="mb-4">
+            <label for="position_en" class="block text-gray-300 mb-1">Position (English)</label>
+            <input id="position_en" type="text" placeholder="Position (English)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position_en" value="{{ PersonalInformation.PositionEn }}">
+        </div>
+        <div class="mb-4">
+            <label for="position_fr" class="block text-gray-300 mb-1">Position (French)</label>
+            <input id="position_fr" type="text" placeholder="Position (French)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position_fr" value="{{ PersonalInformation.PositionFr }}">
+        </div>
+        <div class="mb-4">
+            <label for="current_role_en" class="block text-gray-300 mb-1">Current role (English)</label>
+            <input id="current_role" type="text" placeholder="Current role (English)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="current_role_en" value="{{ PersonalInformation.CurrentRoleEn }}">
+        </div>
+        <div class="mb-4">
+            <label for="current_role_fr" class="block text-gray-300 mb-1">Current role (French)</label>
+            <input id="current_role_fr" type="text" placeholder="Current role (French)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="current_role_fr" value="{{ PersonalInformation.CurrentRoleFr }}">
+        </div>
+    </div>
+    <div class="w-full flex items-center justify-end">
+        <button type="submit" class="w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none transition-colors">
+            Update Information
+        </button>
+    </div>
+{% else %}
+    <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div>
+                <label for="firstName" class="block text-gray-300 mb-1">First name</label>
+                <input id="firstName" type="text" placeholder="First name" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="firstName" value="">
+            </div>
+            <div>
+                <label for="lastName" class="block text-gray-300 mb-1">Last name</label>
+                <input id="lastName" type="text" placeholder="Last name" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="lastName" value="">
+            </div>
+            <div>
+                <label for="nickName" class="block text-gray-300 mb-1">Nick name</label>
+                <input id="nickName" type="text" placeholder="Nick name" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="nickName" value="">
+            </div>
+        </div>
 
-								<div class="mb-4">
-									<textarea placeholder="about" name="about" class="h-[250px] border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs"></textarea>
-								</div>
-								<div class="mb-4">
-									<input type="text" placeholder="position" class="border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position" value="">
-								</div>
-							</div>
-							<div class=" w-full flex items-center justify-end">
-								<button type="submit" class=" w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded  bg-blue-600 text-white hover:bg-blue-700 focus:outline-none transition-colors">
-									create information
-								</button>
-							</div>
-						{% endif %}
+        <div class="mb-4">
+            <label for="about_en" class="block text-gray-300 mb-1">About (English)</label>
+            <textarea id="about_en" placeholder="About (English)" name="about_en" class="h-[150px] border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs"></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="about_fr" class="block text-gray-300 mb-1">About (French)</label>
+            <textarea id="about_fr" placeholder="About (French)" name="about_fr" class="h-[150px] border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs"></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="position_en" class="block text-gray-300 mb-1">Position (English)</label>
+            <input id="position_en" type="text" placeholder="Position (English)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position_en" value="">
+        </div>
+        <div class="mb-4">
+            <label for="position_fr" class="block text-gray-300 mb-1">Position (French)</label>
+            <input id="position_fr" type="text" placeholder="Position (French)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="position_fr" value="">
+        </div>
+        <div class="mb-4">
+            <label for="current_role_en" class="block text-gray-300 mb-1">Current role (English)</label>
+            <input id="current_role" type="text" placeholder="Current role (English)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="current_role_en" value="">
+        </div>
+        <div class="mb-4">
+            <label for="current_role_fr" class="block text-gray-300 mb-1">Current role (French)</label>
+            <input id="current_role_fr" type="text" placeholder="Current role (French)" class="border text-gray-100 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs" name="current_role_fr" value="">
+        </div>
+    </div>
+    <div class="w-full flex items-center justify-end">
+        <button type="submit" class="w-full md:w-1/2 xl:w-1/4 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none transition-colors">
+            Create Information
+        </button>
+    </div>
+{% endif %}
+
 
 					</form>
 				</div>

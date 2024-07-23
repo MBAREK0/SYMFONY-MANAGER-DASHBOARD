@@ -89,20 +89,14 @@
 												<span class="text-gray-200 text-sm mr-2">Specialty :
 												</span>
 												<span class="text-sm">
-													{{ education.specialty }}</span>
+													{{ education.SpecialtyEn }}</span>
 											</div>
 
-											<div class="flex justify-start items-center  mb-2">
-												<span class="text-gray-200 text-sm mr-2">Grade :
-												</span>
-												<span class="text-sm">
-													{{ education.grade }}</span>
-											</div>
 											<div class="flex justify-start items-center  mb-2">
 												<span class="text-gray-200 text-sm mr-2">Degree :
 												</span>
 												<span class="text-sm">
-													{{ education.degree }}</span>
+													{{ education.DegreeEn }}</span>
 											</div>
 											<div class="flex justify-start items-center  mb-1">
 												<span class="text-gray-200 text-sm mr-2">Description :
@@ -112,7 +106,7 @@
 											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
 
 												<span>
-													{{ education.description }}</span>
+													{{ education.DescriptionEn }}</span>
 											</div>
 
 											<div class="flex justify-start items-center  mb-2">
@@ -132,7 +126,7 @@
 													<a href="{{ path('app_education_edit', { id: education.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 														<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
 													</a>
-													<a href="{{ path('app_education_delete', { id: education.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal"  onclick="showDeleteConfirmation(event)" >
+													<a href="{{ path('app_education_delete', { id: education.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal" onclick="showDeleteConfirmation(event)">
 														<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
 													</a>
 												</div>
@@ -187,19 +181,34 @@
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.degree) }}
-					{{ form_widget(form.degree) }}
+					{{ form_label(form.specialty_en) }}
+					{{ form_widget(form.specialty_en) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.degree) }}
+						{{ form_errors(form.specialty_en) }}
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.specialty) }}
-					{{ form_widget(form.specialty) }}
+					{{ form_label(form.specialty_fr) }}
+					{{ form_widget(form.specialty_fr) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.specialty) }}
+						{{ form_errors(form.specialty_fr) }}
 					</div>
 				</div>
+				<div>
+					{{ form_label(form.degree_en) }}
+					{{ form_widget(form.degree_en) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.degree_en) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.degree_fr) }}
+					{{ form_widget(form.degree_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.degree_fr) }}
+					</div>
+				</div>
+
 				<div>
 					{{ form_label(form.start_date) }}
 					{{ form_widget(form.start_date) }}
@@ -215,20 +224,19 @@
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.grade) }}
-					{{ form_widget(form.grade) }}
+					{{ form_label(form.description_fr) }}
+					{{ form_widget(form.description_fr) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.grade) }}
+						{{ form_errors(form.description_fr) }}
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.description) }}
-					{{ form_widget(form.description) }}
+					{{ form_label(form.description_en) }}
+					{{ form_widget(form.description_en) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.description) }}
+						{{ form_errors(form.description_en) }}
 					</div>
 				</div>
-
 				<div>
 					{{ form_label(form.imageFile) }}
 					{{ form_widget(form.imageFile) }}
@@ -243,7 +251,6 @@
 						{{ form_errors(form.skills) }}
 					</div>
 				</div>
-
 				<div class="w-full flex items-center justify-end">
 					{{ form_widget(form.submit) }}
 				</div>

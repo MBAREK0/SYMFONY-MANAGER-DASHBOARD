@@ -51,8 +51,8 @@ class PortfolioApiController extends AbstractController
         $this->userRepository = $userRepository;
     }
 
-    #[Route('/api/portfolio/{email}', name: 'app_api_portfolio')]
-    public function index(string $email): Response
+    #[Route('/api/portfolio/contacts/{email}')]
+    public function getMedia(string $email)
     {
         $user = $this->userRepository->findOneBy(['email' => $email]);
 
@@ -62,24 +62,12 @@ class PortfolioApiController extends AbstractController
         }
 
 
-        return $this->json([
-            'personalInformation'      => $this->getPersonalInformation($user),
-            'media'                    => $this->getMedia($user),
-            'educations'               => $this->getEducations($user),
-            'licenseAndCertifications' => $this->getLicenseAndCertifications($user),
-            'skills'                   => $this->getSkills($user),
-            'projects'                 => $this->getProjects($user),
-            'experiences'              => $this->getExperiences($user),
-            'awards'                   => $this->getAwards($user),
-            'languages'                => $this->getLanguages($user),
-
-        ]);
-    }
-
-    public function getMedia($user)
-    {
         $mediaArray = [];
         $media = $this->mediaRepository->findMediaByUserDesc($user);
+
+        if (!$media) {
+            return new JsonResponse(['error' => 'No contacts found'], Response::HTTP_NOT_FOUND);
+        }
 
 
         foreach ($media as $m) {
@@ -92,27 +80,58 @@ class PortfolioApiController extends AbstractController
         }
 
 
-        return $mediaArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $mediaArray,
+        ], 200);
     }
 
-    public function getPersonalInformation($user)
+
+    #[Route('/api/portfolio/info/{email}')]
+    public function getPersonalInformation(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
+
         $personalInformation = $user->getPersonalInformation();
 
-        return $personalInformation->getId() ? [
+        if (!$personalInformation) {
+            return new JsonResponse(['error' => 'No personal information found'], Response::HTTP_NOT_FOUND);
+        }
+
+        return $this->json([
+        'status'  => 'success',
+        'data'    => [
             'id'        => $personalInformation->getId(),
             'firstName' => $personalInformation->getFirstName(),
             'lastName'  => $personalInformation->getLastName(),
             'nickName'  => $personalInformation->getNickName(),
             'about'     => $personalInformation->getAbout(),
             'position'  => $personalInformation->getPosition(),
-        ] : [];
+        ]], 200);
     }
 
-    public function getAwards($user)
+
+    #[Route('/api/portfolio/awards/{email}')]
+    public function getAwards(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
+
         $awardsArray = [];
         $awards = $this->awardRepository->findAwardsByUserDesc($user);
+
+        if (!$awards) {
+            return new JsonResponse(['error' => 'No awards found'], Response::HTTP_NOT_FOUND);
+        }
 
         foreach ($awards as $award) {
             $awardsArray[] = [
@@ -123,13 +142,27 @@ class PortfolioApiController extends AbstractController
             ];
         }
 
-        return $awardsArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $awardsArray,
+        ], 200);
     }
 
-    public function getExperiences($user)
+    #[Route('/api/portfolio/experiences/{email}')]
+    public function getExperiences(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
         $experiencesArray = [];
         $experiences = $this->experienceRepository->findExperiencesByUserDesc($user);
+
+        if (!$experiences) {
+            return new JsonResponse(['error' => 'No experiences found'], Response::HTTP_NOT_FOUND);
+        }
 
         foreach ($experiences as $experience) {
             $technologies = [];
@@ -149,13 +182,28 @@ class PortfolioApiController extends AbstractController
             ];
         }
 
-        return $experiencesArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $experiencesArray,
+        ], 200);
     }
 
-    public function getProjects($user)
+
+    #[Route('/api/portfolio/projects/{email}')]
+    public function getProjects(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
         $projectsArray = [];
         $projects = $this->projectRepository->findProjectsByUserDesc($user);
+
+        if (!$projects) {
+            return new JsonResponse(['error' => 'No projects found'], Response::HTTP_NOT_FOUND);
+        }
 
         foreach ($projects as $project) {
             $technologies = [];
@@ -174,13 +222,27 @@ class PortfolioApiController extends AbstractController
             ];
         }
 
-        return $projectsArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $projectsArray,
+        ], 200);
     }
 
-    public function getSkills($user)
+    #[Route('/api/portfolio/skills/{email}')]
+    public function getSkills(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
         $skillsArray = [];
         $skills = $user->getSkills();
+
+        if (!$skills) {
+            return new JsonResponse(['error' => 'No skills found'], Response::HTTP_NOT_FOUND);
+        }
 
         foreach ($skills as $skill) {
             $skillsArray[] = [
@@ -190,14 +252,27 @@ class PortfolioApiController extends AbstractController
             ];
         }
 
-        return $skillsArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $skillsArray,
+        ], 200);
     }
 
-    public function getLicenseAndCertifications($user)
+    #[Route('/api/portfolio/licenses-and-certifications/{email}')]
+    public function getLicenseAndCertifications(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
         $licenseAndCertificationsArray = [];
         $licenseAndCertifications = $this->licenseAndCertificationRepository->findLicenseAndCertificationByUserDesc($user);
 
+        if (!$licenseAndCertifications) {
+            return new JsonResponse(['error' => 'No license and certifications found'], Response::HTTP_NOT_FOUND);
+        }
 
         foreach ($licenseAndCertifications as $licenseAndCertification) {
             $skills = [];
@@ -217,13 +292,28 @@ class PortfolioApiController extends AbstractController
             ];
         }
 
-        return $licenseAndCertificationsArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $licenseAndCertificationsArray,
+        ], 200);
     }
 
-    public function getEducations($user)
+
+    #[Route('/api/portfolio/educations/{email}')]
+    public function getEducations(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
         $educationsArray = [];
         $educations = $this->educationRepository->findEducationsByUserDesc($user);
+
+        if (!$educations) {
+            return new JsonResponse(['error' => 'No educations found'], Response::HTTP_NOT_FOUND);
+        }
 
         foreach ($educations as $education) {
             $skills = [];
@@ -245,13 +335,27 @@ class PortfolioApiController extends AbstractController
             ];
         }
 
-        return $educationsArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $educationsArray,
+        ], 200);
     }
 
-    public function getLanguages($user)
+    #[Route('/api/portfolio/languages/{email}')]
+    public function getLanguages(string $email)
     {
+        $user = $this->userRepository->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
+        }
+
         $languagesArray = [];
         $languages = $user->getLanguages();
+
+        if (!$languages) {
+            return new JsonResponse(['error' => 'No languages found'], Response::HTTP_NOT_FOUND);
+        }
 
         foreach ($languages as $language) {
             $languagesArray[] = [
@@ -261,6 +365,9 @@ class PortfolioApiController extends AbstractController
             ];
         }
 
-        return $languagesArray;
+        return $this->json([
+            'status'  => 'success',
+            'data'    => $languagesArray,
+        ], 200);
     }
 }

@@ -67,7 +67,7 @@
 													<span class="text-gray-200 text-sm mr-2">Name :
 													</span>
 													<span class="text-sm">
-														{{ license_and_certification.name }}</span>
+														{{ license_and_certification.NameEn }}</span>
 												</div>
 												<div class=" flex justify-start gap-2 items-center mb-2">
 													<div class="header">
@@ -93,7 +93,7 @@
 											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
 
 												<span>
-													{{ license_and_certification.description }}</span>
+													{{ license_and_certification.DescriptionEn }}</span>
 											</div>
 
 											<div class="flex justify-start items-center  mb-2">
@@ -112,7 +112,7 @@
 													<a href="{{ path('app_license_or_certification_edit', { id: license_and_certification.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 														<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
 													</a>
-													<a href="{{ path('app_license_or_certification_delete', { id: license_and_certification.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal"  onclick="showDeleteConfirmation(event)" >
+													<a href="{{ path('app_license_or_certification_delete', { id: license_and_certification.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal" onclick="showDeleteConfirmation(event)">
 														<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
 													</a>
 												</div>
@@ -148,7 +148,7 @@
 				<!-- Modal header -->
 				<div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 mb-2">
 					<h3 class="text-lg font-semibold text-gray-100 dark:text-white">
-						Create new license Or certifications 
+						Create new license Or certifications
 					</h3>
 					<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
 						<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 14">
@@ -159,10 +159,17 @@
 				</div>
 				{{ form_start(form) }}
 				<div>
-					{{ form_label(form.name) }}
-					{{ form_widget(form.name) }}
+					{{ form_label(form.name_en) }}
+					{{ form_widget(form.name_en) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.name) }}
+						{{ form_errors(form.name_en) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.name_fr) }}
+					{{ form_widget(form.name_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.name_fr) }}
 					</div>
 				</div>
 				<div>
@@ -172,6 +179,23 @@
 						{{ form_errors(form.organization) }}
 					</div>
 				</div>
+
+
+				<div>
+					{{ form_label(form.description_en) }}
+					{{ form_widget(form.description_en) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.description_en) }}
+					</div>
+				</div>
+
+				<div>
+					{{ form_label(form.description_fr) }}
+					{{ form_widget(form.description_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.description_fr) }}
+					</div>
+				</div>
 				<div>
 					{{ form_label(form.date) }}
 					{{ form_widget(form.date) }}
@@ -179,15 +203,6 @@
 						{{ form_errors(form.date) }}
 					</div>
 				</div>
-
-				<div>
-					{{ form_label(form.description) }}
-					{{ form_widget(form.description) }}
-					<div class="text-red-600 py-2">
-						{{ form_errors(form.description) }}
-					</div>
-				</div>
-
 				<div>
 					{{ form_label(form.imageFile) }}
 					{{ form_widget(form.imageFile) }}
@@ -207,6 +222,7 @@
 					{{ form_widget(form.submit) }}
 				</div>
 				{{ form_end(form) }}
+
 
 			</div>
 		</div>

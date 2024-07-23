@@ -11,7 +11,7 @@
 				<h1 class="text-xl font-semibold text-white m-0 ">Update Education</h1>
 				<hr class="w-[10%] mb-10 mt-2">
 				<div class=" mb-3 whiteShadow rounded-lg p-6">
-										{% for flashMessage in app.flashes('success') %}
+					{% for flashMessage in app.flashes('success') %}
 						<div id="alert-3" class="flex items-center p-4 mb-4  rounded-lg bg-gray-800 text-green-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
 								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -43,7 +43,6 @@
 							</button>
 						</div>
 					{% endfor %}
-
 					{{ form_start(form) }}
 					<div>
 						{{ form_label(form.school) }}
@@ -53,19 +52,34 @@
 						</div>
 					</div>
 					<div>
-						{{ form_label(form.degree) }}
-						{{ form_widget(form.degree) }}
+						{{ form_label(form.specialty_en) }}
+						{{ form_widget(form.specialty_en) }}
 						<div class="text-red-600 py-2">
-							{{ form_errors(form.degree) }}
+							{{ form_errors(form.specialty_en) }}
 						</div>
 					</div>
 					<div>
-						{{ form_label(form.specialty) }}
-						{{ form_widget(form.specialty) }}
+						{{ form_label(form.specialty_fr) }}
+						{{ form_widget(form.specialty_fr) }}
 						<div class="text-red-600 py-2">
-							{{ form_errors(form.specialty) }}
+							{{ form_errors(form.specialty_fr) }}
 						</div>
 					</div>
+					<div>
+						{{ form_label(form.degree_en) }}
+						{{ form_widget(form.degree_en) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.degree_en) }}
+						</div>
+					</div>
+					<div>
+						{{ form_label(form.degree_fr) }}
+						{{ form_widget(form.degree_fr) }}
+						<div class="text-red-600 py-2">
+							{{ form_errors(form.degree_fr) }}
+						</div>
+					</div>
+
 					<div>
 						{{ form_label(form.start_date) }}
 						{{ form_widget(form.start_date) }}
@@ -81,20 +95,19 @@
 						</div>
 					</div>
 					<div>
-						{{ form_label(form.grade) }}
-						{{ form_widget(form.grade) }}
+						{{ form_label(form.description_fr) }}
+						{{ form_widget(form.description_fr) }}
 						<div class="text-red-600 py-2">
-							{{ form_errors(form.grade) }}
+							{{ form_errors(form.description_fr) }}
 						</div>
 					</div>
 					<div>
-						{{ form_label(form.description) }}
-						{{ form_widget(form.description) }}
+						{{ form_label(form.description_en) }}
+						{{ form_widget(form.description_en) }}
 						<div class="text-red-600 py-2">
-							{{ form_errors(form.description) }}
+							{{ form_errors(form.description_en) }}
 						</div>
 					</div>
-
 					<div>
 						{{ form_label(form.imageFile) }}
 						{{ form_widget(form.imageFile) }}
@@ -109,11 +122,11 @@
 							{{ form_errors(form.skills) }}
 						</div>
 					</div>
-
 					<div class="w-full flex items-center justify-end">
 						{{ form_widget(form.submit) }}
 					</div>
 					{{ form_end(form) }}
+
 					<script>
 						document.addEventListener('DOMContentLoaded', (event) => {
 const deleteLabel = document.querySelector('label[for$="_imageFile_delete"]');

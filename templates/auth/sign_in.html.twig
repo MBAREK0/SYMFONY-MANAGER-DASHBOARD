@@ -13,59 +13,60 @@
 
 	</head>
 	<body class="bg-black">
-		 <main class=" bg-main_color dark:bg-gradient-to-r from-auth_png_color via-auth_png_color to-main_color_dark w-full md:w-full h-screen flex" v-else>
-      <!-- Primary Column with Picture -->
-<div class="w-1/2 hidden md:flex lg:flex bg-red-600 h-full justify-center bg-auth_png_color items-center">
-  <img src="https://media.licdn.com/dms/image/D4E12AQFULHkH6EanDA/article-cover_image-shrink_720_1280/0/1673825784652?e=2147483647&v=beta&t=JRLpNgiJAaUVwI6yol5cmnYuzYG2SiwQ58U8WuzNfTA" alt="Image" class="w-full h-full object-cover object-center">
-</div>
+		<main
+			class=" bg-main_color dark:bg-gradient-to-r from-auth_png_color via-auth_png_color to-main_color_dark w-full md:w-full h-screen flex" v-else>
+			<!-- Primary Column with Picture -->
+			<div class="w-1/2 hidden md:flex lg:flex h-full justify-center bg-auth_png_color items-center">
+				<img src="https://media.licdn.com/dms/image/D4E12AQFULHkH6EanDA/article-cover_image-shrink_720_1280/0/1673825784652?e=2147483647&v=beta&t=JRLpNgiJAaUVwI6yol5cmnYuzYG2SiwQ58U8WuzNfTA" alt="Image" class="w-full h-full object-cover object-center">
+			</div>
 
-      <!-- Login Form Column -->
-      <div class="w-full lg:w-1/2 md:w-1/2 2xl:w-1/2  bg-transparent p-8 flex justify-center flex-col  items-center ">
-        <div class="flex flex-col w-full xl:w-3/4">
+			<!-- Login Form Column -->
+			<div class="w-full lg:w-1/2 md:w-1/2 2xl:w-1/2  bg-transparent p-8 flex justify-center flex-col  items-center ">
+				<div class="flex flex-col w-full xl:w-3/4">
 
-          <h2 class="text-2xl font-semibold mb-4 align-self-start text-white ">Sign in</h2>
-          <form class="space-y-6" action="{{ path('app_auth_sign_in') }}" method="post">
-				{% if error %}
-					<div class="flex items-center mt-4 px-4 py-2 mb-4 text-sm text-white  rounded-lg bg-red-500 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
-						<svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
-							<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-						</svg>
-						<span class="sr-only">Info</span>
+					<h2 class="text-2xl font-semibold mb-4 align-self-start text-white ">Sign in</h2>
+					<form class="space-y-6" action="{{ path('app_auth_sign_in') }}" method="post">
+						{% if error %}
+							<div class="flex items-center mt-4 px-4 py-2 mb-4 text-sm text-white  rounded-lg bg-red-500 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+								<svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
+									<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+								</svg>
+								<span class="sr-only">Info</span>
+								<div>
+									<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+								</div>
+							</div>
+						{% endif %}
 						<div>
-							<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+							<label for="email" class="sr-only">Email address</label>
+							<input id="email" value="{{ last_username }}" name="_username" type="email" autocomplete="email" required class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" placeholder="Email address"/>
 						</div>
-					</div>
-				{% endif %}
-				<div>
-					<label for="email" class="sr-only">Email address</label>
-					<input id="email" value="{{ last_username }}" name="_username" type="email" autocomplete="email" required class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" placeholder="Email address"/>
+						<div>
+							<label for="password" class="sr-only">Password</label>
+							<input id="password" name="_password" type="password" autocomplete="current-password" required class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" placeholder="Password"/>
+						</div>
+						<div class="flex items-center justify-between">
+							<div class="flex items-center">
+								<input type="checkbox" id="remember-me" name="remember-me" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"/>
+								<label for="remember-me" class="ml-2 block text-sm text-gray-100">
+									Remember me
+								</label>
+							</div>
+							<div class="text-sm">
+								<a href="#" class="font-medium text-gray-100 hover:text-blue-500">
+									Forgot your password?
+								</a>
+							</div>
+						</div>
+						<div>
+							<button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+								Sign in
+							</button>
+						</div>
+					</form>
 				</div>
-				<div>
-					<label for="password" class="sr-only">Password</label>
-					<input id="password" name="_password" type="password" autocomplete="current-password" required class="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm" placeholder="Password"/>
-				</div>
-				<div class="flex items-center justify-between">
-					<div class="flex items-center">
-						<input type="checkbox" id="remember-me" name="remember-me" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"/>
-						<label for="remember-me" class="ml-2 block text-sm text-gray-100">
-							Remember me
-						</label>
-					</div>
-					<div class="text-sm">
-						<a href="#" class="font-medium text-gray-100 hover:text-blue-500">
-							Forgot your password?
-						</a>
-					</div>
-				</div>
-				<div>
-					<button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-						Sign in
-					</button>
-				</div>
-			</form>
-        </div>
-      </div>
-    </main>
+			</div>
+		</main>
 	</body>
 
 </html>

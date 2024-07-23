@@ -21,13 +21,19 @@ class LicenseAndCertification
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $name = null;
+    private ?string $name_en = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $name_fr = null;
+    
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_en = null;
+    
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description_fr = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $organization = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
@@ -61,14 +67,51 @@ class LicenseAndCertification
         return $this->id;
     }
 
-    public function getName(): ?string
+    
+    public function getNameEn(): ?string
     {
-        return $this->name;
+        return $this->name_en;
     }
 
-    public function setName(?string $name): static
+    public function setNameEn(?string $name_en): static
     {
-        $this->name = $name;
+        $this->name_en = $name_en;
+
+        return $this;
+    }
+
+    public function getNameFr(): ?string
+    {
+        return $this->name_fr;
+    }
+
+    public function setNameFr(?string $name_fr): static
+    {
+        $this->name_fr = $name_fr;
+
+        return $this;
+    }
+
+    public function getDescriptionEn(): ?string
+    {
+        return $this->description_en;
+    }
+
+    public function setDescriptionEn(?string $description_en): static
+    {
+        $this->description_en = $description_en;
+
+        return $this;
+    }
+
+    public function getDescriptionFr(): ?string
+    {
+        return $this->description_fr;
+    }
+
+    public function setDescriptionFr(?string $description_fr): static
+    {
+        $this->description_fr = $description_fr;
 
         return $this;
     }
@@ -81,18 +124,6 @@ class LicenseAndCertification
     public function setOrganization(?string $organization): static
     {
         $this->organization = $organization;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): static
-    {
-        $this->description = $description;
 
         return $this;
     }

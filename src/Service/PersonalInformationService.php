@@ -52,8 +52,12 @@ class PersonalInformationService
         $personalInfo->setFirstName($request->get('firstName'))
                          ->setLastName($request->get('lastName'))
                          ->setNickName($request->get('nickName'))
-                         ->setAbout($request->get('about'))
-                         ->setPosition($request->get('position'));
+                         ->setAboutEn($request->get('about_en'))
+                         ->setAboutFr($request->get('about_fr'))
+                         ->setPositionEn($request->get('position_en'))
+                         ->setPositionFr($request->get('position_fr'))
+                         ->setCurrentRoleEn($request->get('current_role_en'))
+                         ->setCurrentRoleFr($request->get('current_role_fr'));
 
 
 
@@ -81,11 +85,16 @@ class PersonalInformationService
             throw new PersonalInformationNotFoundException('Personal Information not found.');
         }
 
+
         $personalInfo->setFirstName($request->get('firstName'))
                      ->setLastName($request->get('lastName'))
                      ->setNickName($request->get('nickName'))
-                     ->setAbout($request->get('about'))
-                     ->setPosition($request->get('position'));
+                     ->setAboutEn($request->get('about_en'))
+                     ->setAboutFr($request->get('about_fr'))
+                     ->setPositionEn($request->get('position_en'))
+                     ->setPositionFr($request->get('position_fr'))
+                     ->setCurrentRoleEn($request->get('current_role_en'))
+                     ->setCurrentRoleFr($request->get('current_role_fr'));
 
 
         $this->entityManager->flush();
