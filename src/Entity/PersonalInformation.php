@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\PersonalInformationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PersonalInformationRepository::class)]
@@ -22,10 +25,10 @@ class PersonalInformation
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nickName = null;
 
-    #[ORM\Column(length: 1000, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $about_en = null;
 
-    #[ORM\Column(length: 1000, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $about_fr = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -37,10 +40,10 @@ class PersonalInformation
     #[ORM\OneToOne(mappedBy: 'PersonalInformation', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $current_role_en = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $current_role_fr = null;
 
     public function getId(): ?int

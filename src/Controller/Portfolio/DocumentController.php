@@ -80,13 +80,27 @@ class DocumentController extends AbstractController
      * @return Response
      */
 
-    #[Route('/document/download/{name}', name: 'app_document_download')]
-    public function download(Document $document, string $name): Response
-    {
-        $file = $this->getParameter('document_directory') . '/' . $document->getFileName();
+     #[Route('/api/document/download/{name}', name: 'app_document_download')]
+     public function download(string $name): Response
+     {
+  
+         $document = $this->em->getRepository(Document::class)->findOneBy(['fileName' => $name]);
+     
+         if (!$document) {
 
-        return $this->file($file);
-    }
+             throw $this->createNotFoundException('The document does not exist.');
+         }
+     
+
+         $filePath = $this->getParameter('document_directory') . '/' . $document->getFileName();
+     
+         if (!file_exists($filePath)) {
+
+             throw $this->createNotFoundException('The document file does not exist.');
+         }
+     
+         return $this->file($filePath);
+     }
 
     /**
      * ? in the function we are deleting a document

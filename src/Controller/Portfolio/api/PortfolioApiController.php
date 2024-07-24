@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 use App\Repository\PersonalInformationRepository;
 use App\Repository\AwardRepository;
@@ -54,6 +55,7 @@ class PortfolioApiController extends AbstractController
     #[Route('/api/portfolio/contacts/{email}')]
     public function getMedia(string $email)
     {
+    
         $user = $this->userRepository->findOneBy(['email' => $email]);
 
 
@@ -88,8 +90,9 @@ class PortfolioApiController extends AbstractController
 
 
     #[Route('/api/portfolio/info/{email}')]
-    public function getPersonalInformation(string $email)
+    public function getPersonalInformation(string $email, Request $request)
     {
+        $lang = $request->query->get('lang', 'en'); 
         $user = $this->userRepository->findOneBy(['email' => $email]);
 
         if (!$user) {
@@ -110,8 +113,9 @@ class PortfolioApiController extends AbstractController
             'firstName' => $personalInformation->getFirstName(),
             'lastName'  => $personalInformation->getLastName(),
             'nickName'  => $personalInformation->getNickName(),
-            'about'     => $personalInformation->getAbout(),
-            'position'  => $personalInformation->getPosition(),
+            'about'     => $personalInformation->{'getAbout' . ucfirst($lang)}(),
+            'position'  => $personalInformation->{'getPosition' . ucfirst($lang)}(),
+            'currentRole' => $personalInformation->{'getCurrentRole' . ucfirst($lang)}(),
         ]], 200);
     }
 
