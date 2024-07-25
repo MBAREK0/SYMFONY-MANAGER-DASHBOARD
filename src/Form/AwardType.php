@@ -81,7 +81,7 @@ class AwardType extends AbstractType
             'label'      => 'Description (French)',
             'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
             ])
-            
+
             ->add('date', null, [
                 'widget' => 'single_text',
                 'attr'   => [

@@ -25,10 +25,10 @@ class LicenseAndCertification
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name_fr = null;
-    
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description_en = null;
-    
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description_fr = null;
 
@@ -67,7 +67,7 @@ class LicenseAndCertification
         return $this->id;
     }
 
-    
+
     public function getNameEn(): ?string
     {
         return $this->name_en;

@@ -16,7 +16,7 @@
 						</button>
 					</div>
 
-										{% for flashMessage in app.flashes('success') %}
+					{% for flashMessage in app.flashes('success') %}
 						<div id="alert-3" class="flex items-center p-4 mb-4  rounded-lg bg-gray-800 text-green-400" role="alert">
 							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
 								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -57,17 +57,17 @@
 								<div class="flex flex-col gap-2 w-full lg:w-[48%]   text-sm  border border-gray-600 hover:border-gray-500 rounded-lg mb-4">
 									<div class="text-gray-100  cursor-default flex items-center justify-between w-full h-12 sm:h-14 rounded-lg bg-[#232531] px-[10px] ">
 										<div class="flex gap-2 items-center">
-										
-											
-												<h2 class="text-sm">{{ language.name }}</h2>
-											<small class="text-xs text-blue-600">{{ language.proficiency }}</small>
-											
+
+
+											<h2 class="text-sm">{{ language.NameEn }}</h2>
+											<small class="text-xs text-blue-600">{{ language.ProficiencyEn }}</small>
+
 										</div>
 										<div class="text-gray-600  p-1 rounded-md transition-colors ease-linear flex items-center gap-4">
 											<a href="{{ path('app_language_edit', { id: language.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
 												<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
 											</a>
-											<a href="{{ path('app_language_delete', { id: language.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal"  onclick="showDeleteConfirmation(event)" >
+											<a href="{{ path('app_language_delete', { id: language.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal" onclick="showDeleteConfirmation(event)">
 												<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
 											</a>
 										</div>
@@ -111,17 +111,31 @@
 				</div>
 				{{ form_start(form) }}
 				<div>
-					{{ form_label(form.name) }}
-					{{ form_widget(form.name) }}
+					{{ form_label(form.name_en) }}
+					{{ form_widget(form.name_en) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.name) }}
+						{{ form_errors(form.name_en) }}
 					</div>
 				</div>
 				<div>
-					{{ form_label(form.proficiency) }}
-					{{ form_widget(form.proficiency) }}
+					{{ form_label(form.name_fr) }}
+					{{ form_widget(form.name_fr) }}
 					<div class="text-red-600 py-2">
-						{{ form_errors(form.proficiency) }}
+						{{ form_errors(form.name_fr) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.proficiency_en) }}
+					{{ form_widget(form.proficiency_en) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.proficiency_en) }}
+					</div>
+				</div>
+				<div>
+					{{ form_label(form.proficiency_fr) }}
+					{{ form_widget(form.proficiency_fr) }}
+					<div class="text-red-600 py-2">
+						{{ form_errors(form.proficiency_fr) }}
 					</div>
 				</div>
 

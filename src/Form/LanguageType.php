@@ -16,18 +16,29 @@ class LanguageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
+            ->add('name_en', TextType::class, [
                 'attr' => [
                     'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
-                    'placeholder' => 'Enter The Medium Name',
+                    'placeholder' => 'Enter The Medium Name (English)',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Medium Name cannot be blank']),
+                    new NotBlank(['message' => 'Medium Name (English) cannot be blank']),
                 ],
-                'label'      => 'Name',
+                'label'      => 'Name (English)',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
             ])
-            ->add('proficiency', ChoiceType::class, [
+            ->add('name_fr', TextType::class, [
+                'attr' => [
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
+                    'placeholder' => 'Enter The Medium Name (French)',
+                ],
+                'constraints' => [
+                    new NotBlank(['message' => 'Medium Name (French) cannot be blank']),
+                ],
+                'label'      => 'Name (French)',
+                'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+            ])
+            ->add('proficiency_en', ChoiceType::class, [
                 'choices' => [
                     'A1 (Beginner)'           => 'Beginner',
                     'A2 (Elementary)'         => 'Elementary',
@@ -38,12 +49,31 @@ class LanguageType extends AbstractType
                 ],
                 'attr' => [
                     'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
-                    'placeholder' => 'Select Proficiency Level',
+                    'placeholder' => 'Select Proficiency Level (English)',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Proficiency level cannot be blank']),
+                    new NotBlank(['message' => 'Proficiency level (English) cannot be blank']),
                 ],
-                'label'      => 'Proficiency Level',
+                'label'      => 'Proficiency Level (English)',
+                'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
+            ])
+            ->add('proficiency_fr', ChoiceType::class, [
+                'choices' => [
+                    'A1 (Débutant)'           => 'Débutant',
+                    'A2 (Élémentaire)'        => 'Élémentaire',
+                    'B1 (Intermédiaire)'      => 'Intermédiaire',
+                    'B2 (Avancé)'             => 'Avancé',
+                    'C1 (Expert)'             => 'Expert',
+                    'C2 (Maîtrise)'           => 'Maîtrise',
+                ],
+                'attr' => [
+                    'class'       => 'border text-gray-100 text-sm rounded-lg  block w-full p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 focus:border-gray-400 inputs',
+                    'placeholder' => 'Select Proficiency Level (French)',
+                ],
+                'constraints' => [
+                    new NotBlank(['message' => 'Proficiency level (French) cannot be blank']),
+                ],
+                'label'      => 'Proficiency Level (French)',
                 'label_attr' => ['class' => 'block text-sm font-medium text-gray-100 mb-2'],
             ])
             ->add('submit', SubmitType::class, [

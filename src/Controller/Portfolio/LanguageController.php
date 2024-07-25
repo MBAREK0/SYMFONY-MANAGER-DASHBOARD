@@ -44,7 +44,7 @@ class LanguageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($Language->getName() == null && $Language->getProficiency() == null) {
+            if ($Language->getNameEn() == null && $Language->getProficiencyEn() == null) {
                 $this->addFlash('error', 'Please enter a name Or a level.');
 
                 return $this->redirectToRoute('app_language');
@@ -89,7 +89,7 @@ class LanguageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($Language->getName() == null && $Language->getProficiency() == null) {
+            if ($Language->getNameEn() == null && $Language->getProficiencyEn() == null) {
                 $this->addFlash('error', 'Please enter a name Or a level.');
 
                 return $this->redirectToRoute('app_language');

@@ -10,15 +10,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use App\Repository\DocumentRepository;
 
 class DocumentController extends AbstractController
 {
     private $em;
+    private $documentRepository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, DocumentRepository $documentRepository)
     {
         $this->em = $em;
+        $this->documentRepository = $documentRepository;
     }
+
 
 
     /**
@@ -80,27 +84,25 @@ class DocumentController extends AbstractController
      * @return Response
      */
 
-     #[Route('/api/document/download/{name}', name: 'app_document_download')]
-     public function download(string $name): Response
-     {
-  
-         $document = $this->em->getRepository(Document::class)->findOneBy(['fileName' => $name]);
-     
-         if (!$document) {
+    #[Route('/api/document/download/{name}', name: 'app_document_download')]
+    public function download(string $name): Response
+    {
+        $document = $this->documentRepository->findOneBy(['name' => $name]);
 
-             throw $this->createNotFoundException('The document does not exist.');
-         }
-     
 
-         $filePath = $this->getParameter('document_directory') . '/' . $document->getFileName();
-     
-         if (!file_exists($filePath)) {
+        if (!$document) {
+            throw $this->createNotFoundException('The document does not exist.');
+        }
 
-             throw $this->createNotFoundException('The document file does not exist.');
-         }
-     
-         return $this->file($filePath);
-     }
+
+        $filePath = $this->getParameter('document_directory') . '/' . $document->getFileName();
+
+        if (!file_exists($filePath)) {
+            throw $this->createNotFoundException('The document file does not exist.');
+        }
+
+        return $this->file($filePath);
+    }
 
     /**
      * ? in the function we are deleting a document

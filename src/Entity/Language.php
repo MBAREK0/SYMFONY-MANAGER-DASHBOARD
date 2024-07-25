@@ -6,7 +6,7 @@ use App\Repository\LanguageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LanguageRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_USER', fields: ['name', 'user'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_NAME_USER', fields: ['name_en', 'user'])]
 class Language
 {
     #[ORM\Id]
@@ -15,10 +15,16 @@ class Language
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $name_en = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $proficiency = null;
+    private ?string $name_fr = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $proficiency_en = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $proficiency_fr = null;
 
     #[ORM\ManyToOne(inversedBy: 'languages')]
     private ?User $user = null;
@@ -28,28 +34,44 @@ class Language
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNameEn(): ?string
     {
-        return $this->name;
+        return $this->name_en;
     }
 
-    public function setName(string $name): static
+    public function setNameEn(?string $name_en): void
     {
-        $this->name = $name;
-
-        return $this;
+        $this->name_en = $name_en;
     }
 
-    public function getProficiency(): ?string
+    public function getNameFr(): ?string
     {
-        return $this->proficiency;
+        return $this->name_fr;
     }
 
-    public function setProficiency(string $proficiency): static
+    public function setNameFr(?string $name_fr): void
     {
-        $this->proficiency = $proficiency;
+        $this->name_fr = $name_fr;
+    }
 
-        return $this;
+    public function getProficiencyEn(): ?string
+    {
+        return $this->proficiency_en;
+    }
+
+    public function setProficiencyEn(?string $proficiency_en): void
+    {
+        $this->proficiency_en = $proficiency_en;
+    }
+
+    public function getProficiencyFr(): ?string
+    {
+        return $this->proficiency_fr;
+    }
+
+    public function setProficiencyFr(?string $proficiency_fr): void
+    {
+        $this->proficiency_fr = $proficiency_fr;
     }
 
     public function getUser(): ?User
