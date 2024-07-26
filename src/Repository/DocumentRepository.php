@@ -16,6 +16,18 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
+    public function findOneByNameAndEmail(string $name, string $email)
+    {
+        return $this->createQueryBuilder('d')
+            ->innerJoin('d.user', 'u')
+            ->where('d.name = :name')
+            ->andWhere('u.email = :email')
+            ->setParameter('name', $name)
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+    
     //    /**
     //     * @return Document[] Returns an array of Document objects
     //     */

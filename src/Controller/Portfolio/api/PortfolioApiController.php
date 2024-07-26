@@ -238,8 +238,9 @@ class PortfolioApiController extends AbstractController
 
 
     #[Route('/api/portfolio/projects/{email}')]
-    public function getProjects(string $email)
+    public function getProjects(string $email , Request $request)
     {
+        $lang = $request->query->get('lang', 'en');
         $user = $this->userRepository->findOneBy(['email' => $email]);
 
         if (!$user) {
@@ -259,14 +260,21 @@ class PortfolioApiController extends AbstractController
                 $technologies[] = $technology->getName();
             };
 
+            $ProjectImages = [];
+            foreach ($project->getProjectImages() as $ProjectImage) {
+                $ProjectImages[] = $ProjectImage->getImageName();
+            };
+
+
             $projectsArray[] = [
                 'id'           => $project->getId(),
                 'name'         => $project->getName(),
                 'github_path'  => $project->getGithubPath(),
                 'host_path'    => $project->getHostPath(),
-                'description'  => $project->getDescription(),
+                'description'  => $project->{'getDescription' . ucfirst($lang)}(),
                 'imageName'    => $project->getImageName(),
                 'technologies' => $technologies,
+                'ProjectImages'    => $ProjectImages
             ];
         }
 

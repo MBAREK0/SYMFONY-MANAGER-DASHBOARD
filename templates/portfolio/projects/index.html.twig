@@ -244,8 +244,10 @@
 
 
 {% block javascripts %}
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
+		<script>
+
+
+		document.addEventListener('DOMContentLoaded', () => { // Function to handle adding new fields to a collection
 const handleAddField = (collectionHolder, addButtonClass, addButtonText, fieldType) => {
 let addButton = document.createElement('button');
 addButton.type = 'button';
@@ -258,13 +260,6 @@ newLinkLi.appendChild(addButton);
 collectionHolder.appendChild(newLinkLi);
 
 let addFormToCollection = (e) => {
-let currentInputs = collectionHolder.querySelectorAll('input').length;
-if (currentInputs >= 4) {
-addButton.disabled = true;
-addButton.classList.add('opacity-50', 'cursor-not-allowed');
-return;
-}
-
 let prototype = collectionHolder.dataset.prototype;
 let index = collectionHolder.dataset.index;
 let newForm = prototype.replace(/__name__/g, index);
@@ -273,13 +268,6 @@ collectionHolder.dataset.index = parseInt(index) + 1;
 let newFormLi = document.createElement('div');
 newFormLi.innerHTML = newForm;
 newLinkLi.parentNode.insertBefore(newFormLi, newLinkLi);
-
-// Update button state after adding a new form
-currentInputs = collectionHolder.querySelectorAll('input').length;
-if (currentInputs >= 4) {
-addButton.disabled = true;
-addButton.classList.add('opacity-50', 'cursor-not-allowed');
-}
 };
 
 addButton.addEventListener('click', addFormToCollection);
@@ -292,6 +280,7 @@ let screenShotsCollectionHolder = document.querySelector('.screenShots-collectio
 if (screenShotsCollectionHolder) {
 handleAddField(screenShotsCollectionHolder, 'add_screenShot_link', 'Add a screen shot for the project', 'screenshot');
 }
+
+
 });
-	</script>
-{% endblock %}
+	</script>{% endblock %}
