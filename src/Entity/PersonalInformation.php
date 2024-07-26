@@ -44,6 +44,12 @@ class PersonalInformation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $current_role_fr = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $presentation_en = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $presentation_fr = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +177,30 @@ class PersonalInformation
     public function setCurrentRoleFr(?string $current_role_fr): static
     {
         $this->current_role_fr = $current_role_fr;
+
+        return $this;
+    }
+
+    public function getPresentationEn(): ?string
+    {
+        return $this->presentation_en;
+    }
+
+    public function setPresentationEn(?string $presentation_en): static
+    {
+        $this->presentation_en = $presentation_en;
+
+        return $this;
+    }
+
+    public function getPresentationFr(): ?string
+    {
+        return $this->presentation_fr;
+    }
+
+    public function setPresentationFr(?string $presentation_fr): static
+    {
+        $this->presentation_fr = $presentation_fr;
 
         return $this;
     }

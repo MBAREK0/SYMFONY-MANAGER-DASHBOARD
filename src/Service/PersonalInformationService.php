@@ -57,7 +57,9 @@ class PersonalInformationService
                          ->setPositionEn($request->get('position_en'))
                          ->setPositionFr($request->get('position_fr'))
                          ->setCurrentRoleEn($request->get('current_role_en'))
-                         ->setCurrentRoleFr($request->get('current_role_fr'));
+                         ->setCurrentRoleFr($request->get('current_role_fr'))
+                         ->setPresentationEn($request->get('presentation_en'))
+                         ->setPresentationFr($request->get('presentation_fr'));
 
 
 
@@ -94,7 +96,9 @@ class PersonalInformationService
                      ->setPositionEn($request->get('position_en'))
                      ->setPositionFr($request->get('position_fr'))
                      ->setCurrentRoleEn($request->get('current_role_en'))
-                     ->setCurrentRoleFr($request->get('current_role_fr'));
+                     ->setCurrentRoleFr($request->get('current_role_fr'))
+                     ->setPresentationEn($request->get('presentation_en'))
+                     ->setPresentationFr($request->get('presentation_fr'));
 
 
         $this->entityManager->flush();

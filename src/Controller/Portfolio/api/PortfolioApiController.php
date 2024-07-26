@@ -79,6 +79,7 @@ class PortfolioApiController extends AbstractController
             'about'       => $personalInformation->{'getAbout' . ucfirst($lang)}(),
             'position'    => $personalInformation->{'getPosition' . ucfirst($lang)}(),
             'currentRole' => $personalInformation->{'getCurrentRole' . ucfirst($lang)}(),
+            'presentation' => $personalInformation->{'getPresentation' . ucfirst($lang)}(),
         ]], 200);
     }
 
