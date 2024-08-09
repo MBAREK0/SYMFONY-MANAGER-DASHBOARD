@@ -3,14 +3,14 @@
 {% block body %}
 
 
-	<div class="grid mb-4 pb-10 pt-3   lg:px-8 lg:mx-4 mx-2 rounded-sm bg-black min-h-screen">
+	
 
 
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
 
 
-				<div class=" mb-3 whiteShadow rounded-lg p-6">
+				<div class=" mb-3 ">
 					<div class="flex justify-end mb-10">
 
 						<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="  text-gray-100 text-center text-sm text-white rounded-lg  block w-full md:w-[48%] lg:w-[32%] p-2 bg-blue-600 " type="button">
@@ -52,90 +52,87 @@
 						</div>
 					{% endfor %}
 
-					<div class="w-full   ">
+					<div class="w-full overflow-x-auto  ">
 
-						{% if projects|length > 0 %}
-							{% for project in projects %}
+							{% if projects|length > 0 %}
 
 
-								<div class="project_card mb-3">
-									<div class="flex flex-col md:flex-row h-full gap-4">
-										<div class="flex flex-col  items-start justify-start gap-2">
-											{% if project.imageName %}
-												<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[280px] " style="background-image:url('{{ vich_uploader_asset(project, 'imageFile') }}')"></div>
-											{% endif %}
-											<div class=" flex items-center justify-between md:justify-start gap-2 w-full">
-												{% for screenshot in project.ProjectImages %}
-													{% if screenshot.imageName %}
-														<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat max-h-5 max-w-5 md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(screenshot, 'imageFile') }}')"></div>
+							 <table data-popover-target="popover-default" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+									<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+										<tr>
+
+											<th scope="col" class="px-6 py-3">
+												Name
+											</th>
+											<th scope="col" class="px-6 py-3">
+												Technologies
+											</th>
+
+											<th scope="col" class="px-6 py-3">
+												Actions
+											</th>
+										</tr>
+									</thead>
+									<tbody >
+										{% for project in projects %}
+											<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
+
+												<th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+													{% if project.imageName %}
+														<div class=" rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat w-10 h-10 " style="background-image:url('{{ vich_uploader_asset(project, 'imageFile') }}')"></div>
 													{% endif %}
+													<div class="ps-3">
+														<div class="text-base font-semibold">{{ project.name }}</div>
+														<div class="font-normal text-gray-500 ">{{ project.DescriptionEn|slice(0, 30) }}
+															...</div>
+													</div>
+												</th>
+												<td class="px-6 py-4  min-w-64">
+													<div class="categories flex gap-3 flex-wrap my-3">
 
-												{% endfor %}
-											</div>
-										</div>
-										<div class="main-content ">
-											<div class="header mb-2">
-												<span>{{ project.name }}</span>
+														{% for technology in project.technologies %}
+															<span class="text-xs font-semibold px-2 py-0.5 rounded  bg-blue-200 text-blue-800">
+																{{ technology.name }}</span>
+														{% endfor %}
 
-											</div>
+													</div>
+												</td>
 
-											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
+												<td class="px-6 py-4">
 
-												<span>
-													{{ project.DescriptionEn }}</span>
-											</div>
 
-											<div class="categories flex gap-3 flex-wrap my-3">
+													<div class="flex items-center gap-4 justify-end ">
 
-												{% for technology in project.technologies %}
-													<span>{{ technology.name }}</span>
-												{% endfor %}
-
-											</div>
-											<div class="flex md:flex-col lg:flex-row items-center md:items-start lg:items-center justify-between">
-												<div class="flex items-center gap-3">
-
-													{% if project.getGithubPath %}
-
-														<a href="{{ project.getGithubPath }}" target="_blank">
-															<button class="my-3 bg-blue-950 text-blue-400 border border-blue-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
-																<span class="bg-blue-400 shadow-blue-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-																GitHub
-															</button>
+														{% if project.getGithubPath %}
+															<a href="{{ project.getGithubPath }}" target="_blank" class="hover:bg-white/5 p-2 rounded-lg">github</a>
+														{% endif %}
+														{% if project.getHostPath %}
+															<a href="{{ project.getHostPath }}" target="_blank" class="hover:bg-white/5 p-2 rounded-lg">demo</a>
+														{% endif %}
+														<a href="{{ path('app_projects_edit', { id: project.id }) }}" class="text-blue-600 hover:bg-white/5 p-2 rounded-lg">
+															edit
 														</a>
-
-													{% endif %}
-
-													{% if project.getHostPath %}
-
-
-														<a href="{{ project.getHostPath }}" target="_blank">
-															<button class=" my-3 bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 py-1 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group text-sm">
-																<span class="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-40 h-[3px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-																Demo
-
-															</button>
+														<a href="{{ path('app_projects_delete', { id: project.id }) }}" class=" text-red-600  hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal" onclick="showDeleteConfirmation(event)">
+															delete
 														</a>
-													{% endif %}
+													</div>
 
-												</div>
-												<div class="flex items-center gap-4 justify-end ">
-													<a href="{{ path('app_projects_edit', { id: project.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
-														<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
-													</a>
-													<a href="{{ path('app_projects_delete', { id: project.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal" onclick="showDeleteConfirmation(event)">
-														<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
-													</a>
-												</div>
-											</div>
-
-
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+									<div data-popover id="popover-default" role="tooltip" class="absolute z-30 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+										
+										<div class="px-3 py-2">
+											<p>Click <span class="text-blue-600 ">edit</span> to update the screen shots and the project details</p>
+											
 										</div>
-
+										<div data-popper-arrow></div>
 									</div>
-								</div>
+								</table>
+							
 
-							{% endfor %}
+
 						{% else %}
 							<div class="w-full text-center text-gray-100">
 								No projects found
@@ -150,7 +147,7 @@
 
 		</div>
 
-	</div>
+	
 
 	<!-- Main modal -->
 	<div id="crud-modal" tabindex="-1" aria-hidden="true" class="  hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -244,7 +241,7 @@
 
 
 {% block javascripts %}
-		<script>
+	<script>
 
 
 		document.addEventListener('DOMContentLoaded', () => { // Function to handle adding new fields to a collection
@@ -283,4 +280,5 @@ handleAddField(screenShotsCollectionHolder, 'add_screenShot_link', 'Add a screen
 
 
 });
-	</script>{% endblock %}
+	</script>
+{% endblock %}
