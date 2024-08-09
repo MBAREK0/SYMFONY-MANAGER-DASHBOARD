@@ -2,13 +2,9 @@
 
 {% block body %}
 
-
-	<div class="grid mb-4 pb-10 pt-3   lg:px-8 lg:mx-4 mx-2 rounded-sm bg-black min-h-screen">
-
-
 		<div class="  transition-colors duration-300 ">
 			<div class="container mx-auto p-4">
-				<div class=" mb-3 whiteShadow rounded-lg p-6">
+				<div class=" my-3">
 					<div class="flex justify-end mb-10">
 
 						<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="  text-gray-100 text-center text-sm text-white rounded-lg  block w-full md:w-[48%] lg:w-[32%] p-2 bg-blue-600 " type="button">
@@ -49,86 +45,102 @@
 							</button>
 						</div>
 					{% endfor %}
+		<div class="w-full overflow-x-auto  ">
 
-					<div class="w-full   ">
+					{% if LicenseAndCertification|length > 0 %}
 
-						{% if LicenseAndCertification|length > 0 %}
-							{% for license_and_certification in LicenseAndCertification %}
+						<table data-popover-target="popover-default" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+							<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+								<tr>
 
 
-								<div class="project_card mb-3">
-									<div class="flex flex-col md:flex-row h-full gap-4">
-										{% if license_and_certification.imageName %}
-											<div class="p-8 rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat h-[170px] w-full md:w-[180px] " style="background-image:url('{{ vich_uploader_asset(license_and_certification, 'imageFile') }}')"></div>
-										{% endif %}
-										<div class="main-content ">
-											<div class="w-full flex flex-col md:flex-row justify-between md:items-center items-start">
-												<div class="flex justify-start items-center  mb-2">
-													<span class="text-gray-200 text-sm mr-2">Name :
+									<th scope="col" class="px-6 py-3">
+										Name
+									</th>
+									<th scope="col" class="px-6 py-3">
+										Organization
+									</th>
+									<th scope="col" class="px-6 py-3">
+										Skills
+									</th>
+
+									<th scope="col" class="px-6 py-3">
+										Actions
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for license_and_certification in LicenseAndCertification %}
+									<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
+
+										<th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+											{% if license_and_certification.imageName %}
+												<div class=" rounded-lg overflow-hidden flex items-center bg-center bg-cover bg-no-repeat w-10 h-10 " style="background-image:url('{{ vich_uploader_asset(license_and_certification, 'imageFile') }}')"></div>
+											{% endif %}
+											<div class="ps-3">
+												<div class="text-base font-semibold">{{ license_and_certification.NameEn }}</div>
+												<div class="font-normal text-gray-500 ">
+													<span>{{ license_and_certification.getDate()|date('Y-m-d') }}
 													</span>
-													<span class="text-sm">
-														{{ license_and_certification.NameEn }}</span>
-												</div>
-												<div class=" flex justify-start gap-2 items-center mb-2">
-													<div class="header">
-														<span>{{ license_and_certification.getDate()|date('Y-m-d') }}
-														</span>
-													</div>
-
 												</div>
 											</div>
+										</th>
+										<td class="px-6 py-4  min-w-64">
+											<div class="text-sm text-gray-500 dark:text-gray-400">
+												{{ license_and_certification.organization }}
+											</div>
+										</td>
+									
+												<td class="px-6 py-4  min-w-64">
+											<div class="categories flex gap-3 flex-wrap my-3">
 
-											<div class="flex justify-start items-center  mb-2">
-												<span class="text-gray-200 text-sm mr-2">Organization :
-												</span>
-												<span class="text-sm">
-													{{ license_and_certification.organization }}</span>
+												{% for skill in license_and_certification.skills %}
+													<span class="text-xs font-semibold px-2 py-0.5 rounded  bg-blue-200 text-blue-800">
+														{{ skill.name }}</span>
+												{% endfor %}
+
+											</div>
+										</td>
+
+										<td class="px-6 py-4">
+
+
+											<div class="flex items-center gap-4 justify-end ">
+
+												<a href="{{ path('app_license_or_certification_edit', { id: license_and_certification.id }) }}" class="text-blue-600 hover:bg-white/5 p-2 rounded-lg">
+													edit
+												</a>
+												<a href="{{ path('app_license_or_certification_delete', { id: license_and_certification.id }) }}" class=" text-red-600  hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal" onclick="showDeleteConfirmation(event)">
+													delete
+												</a>
 											</div>
 
-											<div class="flex justify-start items-center  mb-1">
-												<span class="text-gray-200 text-sm mr-2">Description :
-												</span>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+							<div data-popover id="popover-default" role="tooltip" class="absolute z-30 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
 
-											</div>
-											<div class="flex justify-start items-center text-xs text-gray-100  mb-2">
+								<div class="px-3 py-2">
+									<p>Click
+										<span class="text-blue-600 ">edit</span>
+										to edit the license and certification Description or more details
+									</p>
 
-												<span>
-													{{ license_and_certification.DescriptionEn }}</span>
-											</div>
-
-											<div class="flex justify-start items-center  mb-2">
-												<span class="text-gray-200 text-sm mr-2">Skills :
-												</span>
-												<div class="categories flex gap-3 flex-wrap my-3">
-
-													{% for skill in license_and_certification.skills %}
-														<span>{{ skill.name }}</span>
-													{% endfor %}
-
-												</div>
-											</div>
-											<div class="flex  items-center  justify-end">
-												<div class="flex items-center gap-4 justify-end ">
-													<a href="{{ path('app_license_or_certification_edit', { id: license_and_certification.id }) }}" class="hover:bg-white/5 p-2 rounded-lg">
-														<img src="{{ asset('images/svg/edit.svg') }}" class="h-4 w-4   " alt="">
-													</a>
-													<a href="{{ path('app_license_or_certification_delete', { id: license_and_certification.id }) }}" class="hover:bg-white/5 p-2 rounded-lg" data-modal-target="deleteConfirmationModal" data-modal-toggle="deleteConfirmationModal" onclick="showDeleteConfirmation(event)">
-														<img src="{{ asset('images/svg/delete.svg') }}" class="h-4 w-4   " alt="">
-													</a>
-												</div>
-											</div>
-										</div>
-
-									</div>
 								</div>
-
-							{% endfor %}
-						{% else %}
-							<div class="w-full text-center text-gray-100">
-								No license Or certifications found
+								<div data-popper-arrow></div>
 							</div>
-						{% endif %}
-					</div>
+						</table>
+
+					{% else %}
+
+						<div class="w-full text-center text-gray-100">
+							No projects found
+						</div>
+
+					{% endif %}
+
+				</div>
 				</div>
 
 			</div>
@@ -136,7 +148,7 @@
 
 		</div>
 
-	</div>
+	
 
 	<!-- Main modal -->
 	<div id="crud-modal" tabindex="-1" aria-hidden="true" class="  hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
