@@ -2,50 +2,17 @@
 
 {% block body %}
 
-		<div class="  transition-colors duration-300 ">
-			<div class="container mx-auto p-4">
-				<div class=" my-3">
-					<div class="flex justify-end mb-10">
+	<div class="  transition-colors duration-300 ">
+		<div class="container mx-auto p-4">
+			<div class=" my-3">
+				<div class="flex justify-end mb-10">
 
-						<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="  text-gray-100 text-center text-sm text-white rounded-lg  block w-full md:w-[48%] lg:w-[32%] p-2 bg-blue-600 " type="button">
-							Add New License Or Certification
-						</button>
-					</div>
+					<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="  text-gray-100 text-center text-sm text-white rounded-lg  block w-full md:w-[48%] lg:w-[32%] p-2 bg-blue-600 " type="button">
+						Add New License Or Certification
+					</button>
+				</div>
 
-					{% for flashMessage in app.flashes('success') %}
-						<div id="alert-3" class="flex items-center p-4 mb-4  rounded-lg bg-gray-800 text-green-400" role="alert">
-							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
-								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-							</svg>
-							<div class="ms-3 text-sm font-medium">
-								{{ flashMessage }}
-							</div>
-							<button type="button" class="ms-auto -mx-1.5 -my-1.5 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 inline-flex items-center justify-center h-8 w-8 bg-gray-800 text-green-400 hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
-								<span class="sr-only">Close</span>
-								<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 14">
-									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-								</svg>
-							</button>
-						</div>
-					{% endfor %}
-
-					{% for flashMessage in app.flashes('error') %}
-						<div id="alert-2" class="flex items-center p-4 mb-4 rounded-lg bg-gray-800 text-red-400" role="alert">
-							<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
-								<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-							</svg>
-							<div class="ms-3 text-sm font-medium">
-								{{ flashMessage }}
-							</div>
-							<button type="button" class="ms-auto -mx-1.5 -my-1.5  rounded-lg focus:ring-2 focus:ring-red-400 p-1.5  inline-flex items-center justify-center h-8 w-8 bg-gray-800 text-red-400 hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
-								<span class="sr-only">Close</span>
-								<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 14">
-									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-								</svg>
-							</button>
-						</div>
-					{% endfor %}
-		<div class="w-full overflow-x-auto  ">
+				<div class="w-full overflow-x-auto  ">
 
 					{% if LicenseAndCertification|length > 0 %}
 
@@ -90,8 +57,8 @@
 												{{ license_and_certification.organization }}
 											</div>
 										</td>
-									
-												<td class="px-6 py-4  min-w-64">
+
+										<td class="px-6 py-4  min-w-64">
 											<div class="categories flex gap-3 flex-wrap my-3">
 
 												{% for skill in license_and_certification.skills %}
@@ -141,14 +108,13 @@
 					{% endif %}
 
 				</div>
-				</div>
-
 			</div>
-
 
 		</div>
 
-	
+
+	</div>
+
 
 	<!-- Main modal -->
 	<div id="crud-modal" tabindex="-1" aria-hidden="true" class="  hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">

@@ -84,9 +84,11 @@ class DocumentController extends AbstractController
      * @return Response
      */
 
-    #[Route('/api/document/download/{email}/{name}', name: 'app_document_download')]
-    public function download(string $name, string $email): Response
+    #[Route('/document/download/{name}', name: 'app_document_download')]
+    public function download(string $name): Response
     {
+        $email = $this->getUser()->getEmail();
+
         $document = $this->documentRepository->findOneByNameAndEmail($name,$email);
 
 

@@ -17,6 +17,7 @@ use App\Repository\LicenseAndCertificationRepository;
 use App\Repository\EducationRepository;
 use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
+use App\Repository\DocumentRepository;
 
 class PortfolioApiController extends AbstractController
 {
@@ -29,6 +30,7 @@ class PortfolioApiController extends AbstractController
     private $educationRepository;
     private $mediaRepository;
     private $userRepository;
+    private $documentRepository;
 
     public function __construct(
         PersonalInformationRepository $personalInformationRepository,
@@ -39,7 +41,8 @@ class PortfolioApiController extends AbstractController
         LicenseAndCertificationRepository $licenseAndCertificationRepository,
         EducationRepository $educationRepository,
         MediaRepository $mediaRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        DocumentRepository $documentRepository
     ) {
         $this->personalInformationRepository = $personalInformationRepository;
         $this->awardRepository = $awardRepository;
@@ -50,7 +53,11 @@ class PortfolioApiController extends AbstractController
         $this->educationRepository = $educationRepository;
         $this->mediaRepository = $mediaRepository;
         $this->userRepository = $userRepository;
+        $this->documentRepository = $documentRepository;
     }
+
+
+
 
     #[Route('/api/portfolio/info/{email}')]
     public function getPersonalInformation(string $email, Request $request)
@@ -385,5 +392,26 @@ class PortfolioApiController extends AbstractController
             'status'  => 'success',
             'data'    => $languagesArray,
         ], 200);
+    }
+
+
+    #[Route('/api/document/download/{email}/{name}')]
+    public function download(string $name, string $email): Response
+    {
+        $document = $this->documentRepository->findOneByNameAndEmail($name,$email);
+
+
+        if (!$document) {
+            throw $this->createNotFoundException('The document does not exist.');
+        }
+
+
+        $filePath = $this->getParameter('document_directory') . '/' . $document->getFileName();
+
+        if (!file_exists($filePath)) {
+            throw $this->createNotFoundException('The document file does not exist.');
+        }
+
+        return $this->file($filePath);
     }
 }

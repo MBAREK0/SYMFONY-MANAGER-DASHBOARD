@@ -1,0 +1,30 @@
+flasher:
+    # Default notification library (e.g., 'flasher', 'toastr', 'noty', etc.)
+    default: flasher
+
+    # Path to the main JavaScript file of PHPFlasher
+    main_script: '/vendor/flasher/flasher.min.js'
+
+    # Path to the stylesheets for PHPFlasher notifications
+    styles:
+        - '/vendor/flasher/flasher.min.css'
+
+    # Enable translation of PHPFlasher messages using Symfony's service
+    translate: true
+
+    # Automatically inject PHPFlasher assets in HTML response
+    inject_assets: true
+
+    options:
+        # timeout in milliseconds
+        timeout: 5000
+        position: 'top-center'
+
+    # Map Symfony session keys to PHPFlasher notification types
+    flash_bag:
+        success: ['success']
+        error: ['error', 'danger']
+        warning: ['warning', 'alarm']
+        info: ['info', 'notice', 'alert']
+
+    # Removed the filter_criteria section as it's not recognized
