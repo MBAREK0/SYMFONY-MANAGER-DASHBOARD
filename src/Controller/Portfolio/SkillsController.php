@@ -132,15 +132,12 @@ class SkillsController extends AbstractController
         }
 
         try {
-            $sql = 'DELETE FROM Skill WHERE id = :skillId';
-
-            $stmt = $connection->prepare($sql);
-            $stmt->bindValue('skillId', $skill->getId())   ;
-            $stmt->execute();
+		$this->entityManager->remove($skill); // Use EntityManager to remove the skill
+        $this->entityManager->flush(); // Flush changes to the database
 
             $this->addFlash('success', 'Skill deleted successfully!');
         } catch (\Exception $e) {
-            $this->addFlash('error', 'Error deleting skill please try again later');
+	 $this->addFlash('error', 'Error deleting skill: ' . $e->getMessage());
         }
 
         return $this->redirectToRoute('app_skills');

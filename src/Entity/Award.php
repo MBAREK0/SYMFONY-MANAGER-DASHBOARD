@@ -51,7 +51,13 @@ class Award
     #[ORM\ManyToOne(inversedBy: 'awards')]
     private ?User $user = null;
 
+    #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'awards')]
+    private Collection $skills;
 
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -176,4 +182,31 @@ class Award
 
         return $this;
     }
+ /**
+     * @return Collection<int, Skill>
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    public function addSkill(Skill $skill): static
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+            $skill->addAward($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skill $skill): static
+    {
+        if ($this->skills->removeElement($skill)) {
+            $skill->removeAward($this);
+        }
+
+        return $this;
+    }
+
 }

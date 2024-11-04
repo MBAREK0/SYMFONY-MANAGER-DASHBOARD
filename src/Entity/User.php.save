@@ -97,9 +97,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Document::class, mappedBy: 'user')]
     private Collection $documents;
 
-    #[ORM\OneToMany(targetEntity: Award::class, mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Award::class)]
     private Collection $awards;
-
 
     public function __construct()
     {
@@ -112,7 +111,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->experiences = new ArrayCollection();
         $this->languages = new ArrayCollection();
         $this->documents = new ArrayCollection();
- 	$this->awards = new ArrayCollection();
+	$this->
     }
 
 
@@ -456,33 +455,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-  /**
-     * @return Collection<int, Award>
-     */
-    public function getAwards(): Collection
-    {
-        return $this->awards;
-    }
-
-    public function addAward(Award $award): static
-    {
-        if (!$this->awards->contains($award)) {
-            $this->awards->add($award);
-            $award->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAward(Award $award): static
-    {
-        if ($this->awards->removeElement($award)) {
-            if ($award->getUser() === $this) {
-                $award->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
 }
